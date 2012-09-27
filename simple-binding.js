@@ -20,6 +20,11 @@ sb.Dependency;
  * @constructor
  */
 sb.Observer = function() {
+    
+    /**
+     * @type {sb.Observer}
+     */
+    var that = this;
 
     /**
      * @type {Array.<sb.Dependency>
@@ -33,7 +38,7 @@ sb.Observer = function() {
     this.find = function(observable) {
         var i;
         for (i=0; i<dependencies.length; i++) {
-            if (observable === dependencies[i].observable) {
+            if (observable === dependencies[i].source) {
                 return dependencies[i];
             }
         } 
@@ -57,7 +62,7 @@ sb.Observer = function() {
         var found = [];
 
         for (i=0; i<dependencies.length; i++) {
-            if (compute === dependencies[i].compute) {
+            if (compute === dependencies[i].source.compute) {
                 found.push(dependencies[i]);
             }
         } 
@@ -71,11 +76,11 @@ sb.Observer = function() {
      */
     this.add = function(observable) {
 
-        if (this.find(observable) != null) {
+        if (that.find(observable) != null) {
             return;
         }
 
-        observable.push({
+        dependencies.push({
             source: observable,
             dists: []
         });
@@ -96,14 +101,14 @@ sb.Observer = function() {
         /**
          * @type {sb.Dependency}
          */
-        var dependency = this.find(source);
+        var dependency = that.find(source);
        
         /**
          * @type {sb.Observable}
          */ 
         var dist;
 
-        for (i=0; i<dependency.dists[i]; i++) {
+        for (i=0; i<dependency.dists.length; i++) {
             dist = dependency.dists[i];
             dist.property(dist.compute())
         }  
@@ -118,6 +123,12 @@ sb.Observer = function() {
  * @param {sb.Compute} compute
  */
 sb.Observable = function(observer, value, compute) {
+
+    /**
+     * @type {sb.Observable}
+     */
+    var that = this;
+
     var value = value;
 
     /**
@@ -126,18 +137,18 @@ sb.Observable = function(observer, value, compute) {
     var firstCall = true;
 
     /**
-     * @param {(void|*)} value
+     * @param {(void|*)} v
      * @return {*}
      * @this {sb.Observable}
      */
-    var propertyMain = function(value) {
+    var propertyMain = function(v) {
 
-        if (value === undefined) {
-            this.value = value;
-            this.observer.notify(this);
+        if (v !== undefined) {
+            value = v;
+            observer.notify(that);
         }
         
-        return this.value;
+        return value;
     }
 
 
@@ -156,28 +167,28 @@ sb.Observable = function(observer, value, compute) {
         /**
          * @type {sb.Dependency}
          */
-        var dependency = observer.find(this);
+        var dependency = observer.find(that);
 
         /**
          * @type {Array.<sb.Dependency>}
          */
-        var dependencies = observer.findByCompute(this.compute);
+        var dependencies = observer.findByCompute(that.property.caller);
         for (i = 0; i<dependencies.length; i++) {
             dependency.dists.push(dependencies[i].source);
         }
     }
    
     /**
-     * @param {(void|*)} value
+     * @param {(void|*)} v
      * @return {*}
      * @this {sb.Observable}
      */ 
-    this.property = function(value) {
+    this.property = function(v) {
         addDependencies();
         
-        this.property = propertyMain;
+        that.property = propertyMain;
         
-        return propertyMain(value); 
+        return propertyMain(v); 
     };
 
     /**
@@ -192,13 +203,13 @@ sb.Observable = function(observer, value, compute) {
  * @private
  * @type {sb.Observer}
  */
-var observer = new Observer();
+var observer = new sb.Observer();
 
 /**
  * @param {*} value
  * @param {sb.Compute} compute
  */
 sb.observable = function(value, compute) {
-    var observable = new Observable(observer, value, compute);
+    var observable = new sb.Observable(observer, value, compute);
     return observable.property; 
 };

@@ -1,7 +1,7 @@
 /**
  * @namespace 
  */
-sb = {};
+var sb = {};
 
 /**
  * @private

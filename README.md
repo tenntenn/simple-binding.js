@@ -30,7 +30,15 @@ Usage
     foo(200); // foo = 200, bar = hoge - foo, hoge = foo + bar
 
 
-    var piyo = sb.observable(200);
-    var piyopiyo = sb.observable(100);
-    sb.binding(piyo, piyopiyo).bind();
-    piyo(100); // piyo() === piyopiyo
+    var piyo = sb.observable(100);
+    var piyopiyo = sb.observable(200);
+    var piyopiyopiyo = sb.observable(300);
+    sb.binding(piyo, piyopiyo, piyopiyopiyo).bind();
+    piyo(200); // piyo() === piyopiyo() === piyopiyopiyo()
+
+
+    var hogera = sb.observable(100);
+    sb.binding(hogera, function() {
+        console.log("callback!!");
+    }).bind();
+    hogera(200); // print "callback!!" on consle.

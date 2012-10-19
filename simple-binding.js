@@ -28,6 +28,8 @@
             return result;
         };
 
+        var callback;
+
         var observables = [];
         for (arg in arguments) {
             if (arguments[arg].prototype === sb.Observable) {
@@ -44,11 +46,22 @@
             inputs = arguments[0];
             outputs = arguments[0];
         } else if (arguments.length <= 2) {
-            inputs = arguments[0];
             if (typeof arguments[1] === "function") {
-                outputs = arguments[0];
-                compute = arguments[1];
+                callback = arguments[1];
+                if (arguments[0].prototype === sb.Observable) {
+                    inputs = {"observable": arguments[0]};
+                    outputs = {};
+                    compute = function(inputs) {
+                        callback(inputs.observable);
+                        return {};
+                    }
+                } else {
+                    inputs = arguments[0];
+                    outputs = arguments[0];
+                    compute = arguments[1];
+                }
             } else {
+                inputs = arguments[0];
                 outputs = arguments[1];
             }
         } else if (arguments.length > 2) {

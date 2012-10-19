@@ -187,6 +187,8 @@ sb.Observable = function(bindingMaster, value) {
             return result;
         };
 
+        var callback;
+
         var observables = [];
         for (arg in arguments) {
             if (arguments[arg].prototype === sb.Observable) {
@@ -203,11 +205,22 @@ sb.Observable = function(bindingMaster, value) {
             inputs = arguments[0];
             outputs = arguments[0];
         } else if (arguments.length <= 2) {
-            inputs = arguments[0];
             if (typeof arguments[1] === "function") {
-                outputs = arguments[0];
-                compute = arguments[1];
+                callback = arguments[1];
+                if (arguments[0].prototype === sb.Observable) {
+                    inputs = {"observable": arguments[0]};
+                    outputs = {};
+                    compute = function(inputs) {
+                        callback(inputs.observable);
+                        return {};
+                    }
+                } else {
+                    inputs = arguments[0];
+                    outputs = arguments[0];
+                    compute = arguments[1];
+                }
             } else {
+                inputs = arguments[0];
                 outputs = arguments[1];
             }
         } else if (arguments.length > 2) {
@@ -312,3 +325,12 @@ if (piyo() !== piyopiyo() || piyo() !== piyopiyopiyo()) {
     console.error("piyo() and piyopiyo() and piyopiyopiyo() must be same");
 }
 
+var ok = false;
+var hogera = sb.observable(100);
+sb.binding(hogera, function() {
+    ok = true;
+}).bind();
+hogera(200);
+if (!ok) {
+    console.error("ok must be true");
+}

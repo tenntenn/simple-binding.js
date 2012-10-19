@@ -79,3 +79,12 @@ if (piyo() !== piyopiyo() || piyo() !== piyopiyopiyo()) {
     console.error("piyo() and piyopiyo() and piyopiyopiyo() must be same");
 }
 
+var ok = false;
+var hogera = sb.observable(100);
+sb.binding(hogera, function() {
+    ok = true;
+}).bind();
+hogera(200);
+if (!ok) {
+    console.error("ok must be true");
+}

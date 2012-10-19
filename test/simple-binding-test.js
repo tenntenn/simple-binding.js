@@ -72,9 +72,10 @@ test(200, 4000, 4200);
 
 var piyo = sb.observable(200);
 var piyopiyo = sb.observable(300);
-sb.binding(piyo, piyopiyo).bind();
+var piyopiyopiyo = sb.observable(400);
+sb.binding(piyo, piyopiyo, piyopiyopiyo).bind();
 piyo(500);
-if (piyo() !== piyopiyo()) {
-    console.error("piyo() and piyopiyo() must be same");
+if (piyo() !== piyopiyo() || piyo() !== piyopiyopiyo()) {
+    console.error("piyo() and piyopiyo() and piyopiyopiyo() must be same");
 }
 

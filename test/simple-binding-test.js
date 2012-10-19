@@ -2,7 +2,7 @@
 var foo = sb.observable(100);
 var bar = sb.observable(200);
 var hoge = sb.observable(500);
-
+/*
 var binding1 = sb.binding(
     {foo: foo, hoge:hoge},
     {bar: bar},
@@ -11,7 +11,7 @@ var binding1 = sb.binding(
             bar : input.hoge() - input.foo()
         }
     }
-).bind();
+).bind().unbind();
 
 var binding2 = sb.binding(
     {bar: bar, hoge: hoge},
@@ -21,7 +21,7 @@ var binding2 = sb.binding(
             foo: input.hoge() - input.bar()
         };
     }
-).bind();
+).bind().unbind();
 
 var binding3 = sb.binding(
     {bar: bar, foo: foo},
@@ -31,18 +31,19 @@ var binding3 = sb.binding(
             hoge: input.foo() + input.bar()
         };
     }
-).bind();
-
+).bind().unbind();
+*/
 function test(expectFoo, expectBar, expectHoge) {
     if (foo() !== expectFoo) {
         console.error("foo is expected as "+expectFoo+" but actual is " + foo());
     }
     if (bar() !== expectBar) {
-        console.error("foo is expected as "+expectBar+" but actual is " + bar());
+        console.error("bar is expected as "+expectBar+" but actual is " + bar());
     }
     if (hoge() !== expectHoge) {
-        console.error("foo is expected as "+expectHoge+"but actual is " + hoge());
+        console.error("hoge is expected as "+expectHoge+" but actual is " + hoge());
     }   
+    console.error();
 }
 
 // init
@@ -50,10 +51,30 @@ function test(expectFoo, expectBar, expectHoge) {
 // bar: 200, hoge - foo
 // hoge: 500, foo + bar
 
+sb.binding(
+    {foo: foo, bar: bar, hoge:hoge},
+    function(inputs) {
+        return {
+            foo: inputs.hoge() - inputs.bar(),
+            bar: inputs.hoge() - inputs.foo(),
+            hoge: inputs.foo() + inputs.bar(),
+        };
+    }
+).bind();
+
 // foo(200) -> bar(500 - 200) -> hoge(200 + 300)
 foo(200);
-test(200, 300, 500);
+test(200, 200, 400);
 
 // bar(4000) -> foo(500 - 4000) -> hoge(-3500 + 4000)
 bar(4000);
-test(-3500, 4000, 500);
+test(200, 4000, 4200);
+
+var piyo = sb.observable(200);
+var piyopiyo = sb.observable(300);
+sb.binding(piyo, piyopiyo).bind();
+piyo(500);
+if (piyo() !== piyopiyo()) {
+    console.error("piyo() and piyopiyo() must be same");
+}
+

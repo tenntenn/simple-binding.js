@@ -26,8 +26,9 @@ sb.BindingMaster = function() {
     var bindings = [];
 
     /**
+     * Find observable which is registered as input in binding.
      * @param {sb.Observable} input
-     * @return {Array.<sb.Binding>} result
+     * @return {Array.<sb.Binding>}
      */
     this.findByInput = function(input) {
 
@@ -37,7 +38,7 @@ sb.BindingMaster = function() {
         var i, j;
 
         /**
-         * @type {Array.<sb.Observable>}
+         * @type {Object}
          */
         var inputs;
 
@@ -56,8 +57,8 @@ sb.BindingMaster = function() {
                 }
             }
         }
-        return result;
 
+        return result;
     }
 
     /**
@@ -95,11 +96,6 @@ sb.BindingMaster = function() {
         var i;
 
         /**
-         * @type {sb.stackTracer}
-         */
-        var input;
-
-        /**
          * @type {Array.<sb.Binding>}
          */
         var bindings;
@@ -133,20 +129,14 @@ sb.BindingMaster = function() {
     };
 }
 
-
 /**
  * @private
- * @type {sb.BindingMaster}
- */
-var bindingMaster = new sb.BindingMaster();
-
-/**
- * @private
- * @param {Array.<sb.Observables>} inputs
- * @param {Array.<sb.Observables>} outputs
+ * @param {sb.BindingMaster} bindingMaster
+ * @param {Object} inputs
+ * @param {Object} outputs
  * @param {sb.Compute} compute
  */
-sb.Binding = function(inputs, outputs, compute) {
+sb.Binding = function(bindingMaster, inputs, outputs, compute) {
 
     /**
      * @param {void}
@@ -175,7 +165,7 @@ sb.Binding = function(inputs, outputs, compute) {
         var output;
         for (output in outputs) {
             if (outputs.hasOwnProperty(output) 
-	 && typeof outputs[output] === "function") {
+	                && typeof outputs[output] === "function") {
                 outputs[output](result[output]);
             }
         }
@@ -197,8 +187,6 @@ sb.Observable = function(bindingMaster, value) {
      */
     var that = this;
 
-    var value = value;
-
     /**
      * @param {(void|*)} v
      * @return {*}
@@ -215,52 +203,20 @@ sb.Observable = function(bindingMaster, value) {
     };
 }
 
-/**
- * @private
- * @constructor
- */
-sb.StackTracer = function() {
+(function() {
 
-    var that = this;
 
-    that.stack = [];
+    /**
+     * @type {sb.BindingMaster}
+     */
+    var bindingMaster = new BindingMaster();
 
-    this.push = function(input) {
-        that.stack.push(input);
+    /**
+     * @param {*} value
+     */
+    sb.observable = function(value) {
+        var observable = new sb.Observable(bindingMaster, value);
+        return observable.property;
     };
-
-    this.reset = function() {
-        that.stack.length = 0;
-    };
-
-    this.find = function(input) {
-
-        var i;
-
-        for (i = 0; i < that.stack.length; i++) {
-            if (that.stack[i] === input) {
-                return true;
-            }
-        }
-        return false;
-    };
-}
-
-
-/**
- * @private
- * @type {sb.BindingMaster}
- */
-var bindingMaster = new sb.BindingMaster();
-
-var stackTracer = new sb.StackTracer();
-
-/**
- * @param {*} value
- * @param {sb.Compute} compute
- */
-sb.observable = function(value) {
-    var observable = new sb.Observable(bindingMaster, value);
-    return observable.property;
-};
+})();
 

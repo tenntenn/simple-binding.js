@@ -11,118 +11,186 @@ sb.Compute;
 
 /**
  * @private
- * @typedef {{source:sb.Observable, dists: Array.<sb.Observable>}}
- */
-sb.Dependency;
-
-/**
- * @private
  * @constructor
  */
-sb.Observer = function() {
-    
+sb.BindingMaster = function() {
+
     /**
      * @type {sb.Observer}
      */
     var that = this;
 
     /**
-     * @type {Array.<sb.Dependency>
+     * @type {Array.<sb.Binding>}
      */
-    var dependencies = [];
+    var bindings = [];
 
     /**
-     * @param {sb.Observable} observable
-     * @return {sb.Dependency}
+     * @param {sb.Observable} input
+     * @return {Array.<sb.Binding>} result
      */
-    this.find = function(observable) {
-        var i;
-        for (i=0; i<dependencies.length; i++) {
-            if (observable === dependencies[i].source) {
-                return dependencies[i];
+    this.findByInput = function(input) {
+
+        /**
+         * @type {number}
+         */
+        var i, j;
+
+        /**
+         * @type {Array.<sb.Observable>}
+         */
+        var inputs;
+
+        /**
+         * @type {Array.<sb.Binding>}
+         */
+        var result = [];
+
+        for (i = 0; i < bindings.length; i++) {
+            inputs = bindings[i].inputs;
+            for (j in inputs) {
+                if (inputs.hasOwnProperty(j)) {
+                    if (inputs[j] === input.property) {
+                        result.push(bindings[i]);
+                    }
+                }
             }
-        } 
+        }
+        return result;
 
-        return null;
-    };
+    }
 
     /**
-     * @param {sb.Compute} compute
-     * @return {Array.<sb.Dependency>}
+     * @param {sb.Binding} binding
+     * @return void
      */
-    this.findByCompute = function(compute) {
+    this.add = function(binding) {
         /**
          * @type {number}
          */
         var i;
 
-        /**
-         * @type {Array.<sb.Dependency>}
-         */
-        var found = [];
-
-        for (i=0; i<dependencies.length; i++) {
-            if (compute === dependencies[i].source.compute) {
-                found.push(dependencies[i]);
-            }
-        } 
-
-        return found;
-    };
-
-    /**
-     * @param {sb.Observable} observable
-     * @return void
-     */
-    this.add = function(observable) {
-
-        if (that.find(observable) != null) {
+        if (binding === null || typeof binding === "undefined") {
             return;
         }
 
-        dependencies.push({
-            source: observable,
-            dists: []
-        });
+        for (i = 0; i < bindings.length; i++) {
+            if (bindings[i] === binding) {
+                return;
+            }
+        }
 
-        observable.compute();
+        bindings.push(binding);
     };
 
     /**
-     * @param {sb.Observable} source
+     * @param {Array<sb.Observable>} input
      * @return void
      */
-    this.notify = function(source) {
+    this.notify = function(input) {
+
         /**
          * @type {number}
          */
         var i;
 
         /**
-         * @type {sb.Dependency}
+         * @type {sb.stackTracer}
          */
-        var dependency = that.find(source);
-       
-        /**
-         * @type {sb.Observable}
-         */ 
-        var dist;
+        var input;
 
-        for (i=0; i<dependency.dists.length; i++) {
-            dist = dependency.dists[i];
-            dist.property(dist.compute())
-        }  
+        /**
+         * @type {Array.<sb.Binding>}
+         */
+        var bindings;
+
+        bindings = that.findByInput(input);
+        for (i = 0; i < bindings.length; i++) {
+            if (!stackTracer.find(bindings[i])) {
+                stackTracer.push(bindings[i]);
+                bindings[i].compute();
+            }
+        }
+    };
+
+    /**
+     * @param {sb.Binding} target
+     * @return void
+     */
+    this.remove = function(target) {
+
+        /**
+         * @type {number}
+         */
+        var i;
+
+        for (i = bindings.length - 1; i >= 0; i--) {
+            if (bindings[i] === target) {
+                bindings.splice(i, 1);
+            }
+        }
+
     };
 }
+
+
+/**
+ * @private
+ * @type {sb.BindingMaster}
+ */
+var bindingMaster = new sb.BindingMaster();
+
+/**
+ * @private
+ * @param {Array.<sb.Observables>} inputs
+ * @param {Array.<sb.Observables>} outputs
+ * @param {sb.Compute} compute
+ */
+sb.Binding = function(inputs, outputs, compute) {
+
+    /**
+     * @param {void}
+     * @return {void}
+     */
+    this.bind = function() {
+        bindingMaster.add(this);
+    };
+
+    /**
+     * @param {void}
+     * @return {void}
+     */
+    this.unbind = function() {
+        bindingMaster.remove(this);
+    };
+
+    this.inputs = inputs;
+
+    /**
+     * @param {void}
+     * @return {void}
+     */
+    this.compute = function() {
+        var result = compute(inputs);
+        var output;
+        for (output in outputs) {
+            if (outputs.hasOwnProperty(output) 
+	 && typeof outputs[output] === "function") {
+                outputs[output](result[output]);
+            }
+        }
+    };
+
+}
+
 
 /**
  * @private
  * @constructor
- * @param {sb.Observer} observer
+ * @param {sb.BindingMaster} bindingMaster
  * @param {*} value
- * @param {sb.Compute} compute
  */
-sb.Observable = function(observer, value, compute) {
+sb.Observable = function(bindingMaster, value) {
 
     /**
      * @type {sb.Observable}
@@ -132,84 +200,67 @@ sb.Observable = function(observer, value, compute) {
     var value = value;
 
     /**
-     * @type {boolean}
-     */
-    var firstCall = true;
-
-    /**
      * @param {(void|*)} v
      * @return {*}
      * @this {sb.Observable}
      */
-    var propertyMain = function(v) {
+    this.property = function(v) {
 
         if (v !== undefined) {
             value = v;
-            observer.notify(that);
+            bindingMaster.notify(that);
         }
-        
+
         return value;
-    }
-
-
-    /**
-     * @param {void}
-     * @return {void}
-     * @this {sb.Observable}
-     */
-    var addDependencies = function() {
-
-        /**
-         * @type {number}
-         */
-        var i;
-        
-        /**
-         * @type {sb.Dependency}
-         */
-        var dependency = observer.find(that);
-
-        /**
-         * @type {Array.<sb.Dependency>}
-         */
-        var dependencies = observer.findByCompute(that.property.caller);
-        for (i = 0; i<dependencies.length; i++) {
-            dependency.dists.push(dependencies[i].source);
-        }
-    }
-   
-    /**
-     * @param {(void|*)} v
-     * @return {*}
-     * @this {sb.Observable}
-     */ 
-    this.property = function(v) {
-        addDependencies();
-        
-        that.property = propertyMain;
-        
-        return propertyMain(v); 
     };
-
-    /**
-     * @type sb.Compute
-     */
-    this.compute = compute; 
-
-    observer.add(this);
 }
 
 /**
  * @private
- * @type {sb.Observer}
+ * @constructor
  */
-var observer = new sb.Observer();
+sb.StackTracer = function() {
+
+    var that = this;
+
+    that.stack = [];
+
+    this.push = function(input) {
+        that.stack.push(input);
+    };
+
+    this.reset = function() {
+        that.stack.length = 0;
+    };
+
+    this.find = function(input) {
+
+        var i;
+
+        for (i = 0; i < that.stack.length; i++) {
+            if (that.stack[i] === input) {
+                return true;
+            }
+        }
+        return false;
+    };
+}
+
+
+/**
+ * @private
+ * @type {sb.BindingMaster}
+ */
+var bindingMaster = new sb.BindingMaster();
+
+var stackTracer = new sb.StackTracer();
 
 /**
  * @param {*} value
  * @param {sb.Compute} compute
  */
-sb.observable = function(value, compute) {
-    var observable = new sb.Observable(observer, value, compute);
-    return observable.property; 
+sb.observable = function(value) {
+    var observable = new sb.Observable(bindingMaster, value);
+    return observable.property;
 };
+

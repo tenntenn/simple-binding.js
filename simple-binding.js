@@ -50,7 +50,7 @@
                 callback = arguments[1];
                 if (arguments[0].prototype === sb.Observable) {
                     inputs = {"observable": arguments[0]};
-                    outputs = {};
+                    outputs = inputs;
                     compute = function(inputs) {
                         callback(inputs.observable);
                         return {};

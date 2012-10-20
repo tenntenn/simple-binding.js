@@ -39,8 +39,7 @@ sb.Binding = function(bindingMaster, inputs, outputs, compute) {
         Object.keys(result).forEach(function(name){
             var observable = outputs[name];
             if (outputs.hasOwnProperty(name)
-                    && typeof observable === "function"
-                    && input !== observable) {
+                    && typeof observable === "function") {
                 observable.notify(callStack, result[name]);
             }
         });

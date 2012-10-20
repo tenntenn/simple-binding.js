@@ -111,8 +111,7 @@ sb.Binding = function(bindingMaster, inputs, outputs, compute) {
         Object.keys(result).forEach(function(name){
             var observable = outputs[name];
             if (outputs.hasOwnProperty(name)
-                    && typeof observable === "function"
-                    && input !== observable) {
+                    && typeof observable === "function") {
                 observable.notify(callStack, result[name]);
             }
         });
@@ -209,7 +208,7 @@ sb.Observable = function(bindingMaster, value) {
                 callback = arguments[1];
                 if (arguments[0].prototype === sb.Observable) {
                     inputs = {"observable": arguments[0]};
-                    outputs = {};
+                    outputs = inputs;
                     compute = function(inputs) {
                         callback(inputs.observable);
                         return {};
@@ -331,6 +330,7 @@ sb.binding(hogera, function() {
     ok = true;
 }).bind();
 hogera(200);
+console.log(hogera());
 if (!ok) {
     console.error("ok must be true");
 }

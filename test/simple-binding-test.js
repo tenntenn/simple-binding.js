@@ -85,6 +85,7 @@ sb.binding(hogera, function() {
     ok = true;
 }).bind();
 hogera(200);
+console.log(hogera());
 if (!ok) {
     console.error("ok must be true");
 }

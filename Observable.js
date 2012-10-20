@@ -25,12 +25,31 @@ sb.Observable = function(bindingMaster, value) {
      * @param {*} v
      */
     property.notify = function(callStack, v) {
+        var pre = value;
         if (callStack.lastIndexOf(property) < 0) {
             value = v;
+            if (typeof property.callback === "function") {
+                property.callback(property, pre);
+            }
             bindingMaster.notify(callStack.concat(property), property);
         }  
     };
 
-    property.prototype = sb.Observable;
+    property.callback = null;
+    property.observable = this;
     this.property = property;
+};
+
+sb.isObservable = function(obj) {
+
+    if (obj instanceof sb.Observable) {
+        return true;
+    }
+
+    if (obj.observable 
+            && obj.observable instanceof sb.Observable){
+        return true;
+    }
+    
+    return false;
 };

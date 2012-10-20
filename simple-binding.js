@@ -32,7 +32,7 @@
 
         var observables = [];
         for (arg in arguments) {
-            if (arguments[arg].prototype === sb.Observable) {
+            if (sb.isObservable(arguments[arg])) {
                 observables.push(arguments[arg])
             }
         }
@@ -47,19 +47,9 @@
             outputs = arguments[0];
         } else if (arguments.length <= 2) {
             if (typeof arguments[1] === "function") {
-                callback = arguments[1];
-                if (arguments[0].prototype === sb.Observable) {
-                    inputs = {"observable": arguments[0]};
-                    outputs = inputs;
-                    compute = function(inputs) {
-                        callback(inputs.observable);
-                        return {};
-                    }
-                } else {
-                    inputs = arguments[0];
-                    outputs = arguments[0];
-                    compute = arguments[1];
-                }
+                inputs = arguments[0];
+                outputs = arguments[0];
+                compute = arguments[1];
             } else {
                 inputs = arguments[0];
                 outputs = arguments[1];
@@ -70,7 +60,7 @@
             compute = arguments[2];
         }
 
-       var binding = new sb.Binding(bindingMaster, inputs, outputs, compute);
+        var binding = new sb.Binding(bindingMaster, inputs, outputs, compute);
         return binding;
     };
 

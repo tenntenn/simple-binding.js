@@ -147,14 +147,33 @@ sb.Observable = function(bindingMaster, value) {
      * @param {*} v
      */
     property.notify = function(callStack, v) {
+        var pre = value;
         if (callStack.lastIndexOf(property) < 0) {
             value = v;
+            if (typeof property.callback === "function") {
+                property.callback(property, pre);
+            }
             bindingMaster.notify(callStack.concat(property), property);
         }  
     };
 
-    property.prototype = sb.Observable;
+    property.callback = null;
+    property.observable = this;
     this.property = property;
+};
+
+sb.isObservable = function(obj) {
+
+    if (obj instanceof sb.Observable) {
+        return true;
+    }
+
+    if (obj.observable 
+            && obj.observable instanceof sb.Observable){
+        return true;
+    }
+    
+    return false;
 };
 (function() {
 
@@ -190,7 +209,7 @@ sb.Observable = function(bindingMaster, value) {
 
         var observables = [];
         for (arg in arguments) {
-            if (arguments[arg].prototype === sb.Observable) {
+            if (sb.isObservable(arguments[arg])) {
                 observables.push(arguments[arg])
             }
         }
@@ -205,19 +224,9 @@ sb.Observable = function(bindingMaster, value) {
             outputs = arguments[0];
         } else if (arguments.length <= 2) {
             if (typeof arguments[1] === "function") {
-                callback = arguments[1];
-                if (arguments[0].prototype === sb.Observable) {
-                    inputs = {"observable": arguments[0]};
-                    outputs = inputs;
-                    compute = function(inputs) {
-                        callback(inputs.observable);
-                        return {};
-                    }
-                } else {
-                    inputs = arguments[0];
-                    outputs = arguments[0];
-                    compute = arguments[1];
-                }
+                inputs = arguments[0];
+                outputs = arguments[0];
+                compute = arguments[1];
             } else {
                 inputs = arguments[0];
                 outputs = arguments[1];
@@ -228,7 +237,7 @@ sb.Observable = function(bindingMaster, value) {
             compute = arguments[2];
         }
 
-       var binding = new sb.Binding(bindingMaster, inputs, outputs, compute);
+        var binding = new sb.Binding(bindingMaster, inputs, outputs, compute);
         return binding;
     };
 
@@ -326,9 +335,9 @@ if (piyo() !== piyopiyo() || piyo() !== piyopiyopiyo()) {
 
 var ok = false;
 var hogera = sb.observable(100);
-sb.binding(hogera, function() {
+hogera.callback = function() {
     ok = true;
-}).bind();
+};
 hogera(200);
 console.log(hogera());
 if (!ok) {

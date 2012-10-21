@@ -3,4 +3,4 @@ Compute.js
 BindingMaster.js
 Binding.js
 Observable.js
-simple-binding.js
+binding.js

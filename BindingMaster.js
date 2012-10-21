@@ -45,7 +45,7 @@ sb.BindingMaster = function() {
             return found;
         });
 
-        bindings.forEach(function(binding) {
+        bs.forEach(function(binding) {
             binding.notify(callStack);
         });
    };

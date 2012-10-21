@@ -81,9 +81,9 @@ if (piyo() !== piyopiyo() || piyo() !== piyopiyopiyo()) {
 
 var ok = false;
 var hogera = sb.observable(100);
-hogera.callback = function() {
+sb.binding(hogera, function() {
     ok = true;
-};
+}).bind();
 hogera(200);
 console.log(hogera());
 if (!ok) {

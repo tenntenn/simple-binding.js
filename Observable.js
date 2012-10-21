@@ -27,15 +27,11 @@ sb.Observable = function(bindingMaster, value) {
     property.notify = function(callStack, v) {
         var pre = value;
         if (callStack.lastIndexOf(property) < 0) {
-            value = v;
-            if (typeof property.callback === "function") {
-                property.callback(property, pre);
-            }
-            bindingMaster.notify(callStack.concat(property), property);
+           value = v;
+           bindingMaster.notify(callStack.concat(property), property);
         }  
     };
 
-    property.callback = null;
     property.observable = this;
     this.property = property;
 };

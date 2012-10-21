@@ -194,8 +194,7 @@ sb.isObservable = function(obj) {
             var result = {};
             Object.keys(outputs).forEach(function(output) {
                 Object.keys(inputs).forEach(function(input) {
-                    if (input !== output
-                            && inputs[input]() !== outputs[output]()) {
+                    if (inputs[input]() !== outputs[output]()) {
                         result[output] = inputs[input]();
                         return;
                     }

@@ -1,77 +1,50 @@
-(function() {
+/**
+ * @private
+ * @param {sb.BindingMaster} bindingMaster
+ * @param {Object} inputs
+ * @param {Object} outputs
+ * @param {sb.Compute} compute
+ */
+sb.Binding = function(bindingMaster, inputs, outputs, compute) {
 
+    this.inputs = inputs;
+    this.outputs = outputs;
+    this.compute = compute;
 
     /**
-     * @type {sb.BindingMaster}
+     * @param {void}
+     * @return {void}
      */
-    var bindingMaster = new sb.BindingMaster();
-
-    /**
-     * @param {Object} inputs
-     * @param {Object} outputs
-     * @param {sb.Compute} compute
-     */
-    sb.binding = function() {
-        var inputs, outputs;
-        var compute = function() {
-            var result = {};
-            Object.keys(outputs).forEach(function(output) {
-                Object.keys(inputs).forEach(function(input) {
-                    if (input !== output
-                            && inputs[input]() !== outputs[output]()) {
-                        result[output] = inputs[input]();
-                        return;
-                    }
-                });
-            });
-
-            return result;
-        };
-
-        var callback;
-
-        var observables = [];
-        for (arg in arguments) {
-            if (sb.isObservable(arguments[arg])) {
-                observables.push(arguments[arg])
-            }
-        }
-        if (observables.length === arguments.length) {
-            inputs = {};
-            observables.forEach(function(observable, key){
-                inputs["observable"+key] = observable; 
-            });
-            outputs = inputs;
-        } else if (arguments.length == 1) {
-            inputs = arguments[0];
-            outputs = arguments[0];
-        } else if (arguments.length <= 2) {
-            if (typeof arguments[1] === "function") {
-                inputs = arguments[0];
-                outputs = arguments[0];
-                compute = arguments[1];
-            } else {
-                inputs = arguments[0];
-                outputs = arguments[1];
-            }
-        } else if (arguments.length > 2) {
-            inputs = arguments[0];
-            outputs = arguments[1];
-            compute = arguments[2];
-        }
-
-        var binding = new sb.Binding(bindingMaster, inputs, outputs, compute);
-        return binding;
+    this.bind = function() {
+        bindingMaster.add(this);
+        return this;
     };
 
     /**
-     * @param {*} value
+     * @param {void}
+     * @return {void}
      */
-    sb.observable = function(value) {
-        var observable = new sb.Observable(bindingMaster, value);
-        return observable.property;
+    this.unbind = function() {
+        bindingMaster.remove(this);
+        return this;
     };
 
+    /**
+     * @param {Array.<sb.Observable>}
+     * @return {void}
+     */
+    this.notify = function(callStack) {
+        var result = compute(inputs);
+        var input = callStack[callStack.length - 1];
+        Object.keys(result).forEach(function(name){
+            var observable = outputs[name];
+            if (outputs.hasOwnProperty(name)
+                    && typeof observable === "function") {
+                observable.notify(callStack, result[name]);
+            }
+        });
 
-})();
+        return this;
+    };
 
+};

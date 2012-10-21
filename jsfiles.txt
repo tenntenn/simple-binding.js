@@ -3,4 +3,5 @@ Compute.js
 BindingMaster.js
 Binding.js
 Observable.js
+BindingChain.js
 functions.js

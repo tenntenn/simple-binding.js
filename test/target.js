@@ -172,6 +172,113 @@ sb.isObservable = function(obj) {
     
     return false;
 };
+(function(){
+
+    sb.BindingChain = function(bindingMaster, observables) {
+
+        var bindings = [];
+
+        this.synchronize = function() {
+
+            var syncObservables = [];
+            var args = arguments;
+            Object.keys(args).forEach(function(i) {
+                var arg = args[i];
+                if (sb.isObservable(arg)
+                        && observables.indexOf(arg) >= 0) {
+                    syncObservables.push(arg);
+                }
+            });
+
+            syncObservables.forEach(function(input) {
+                var inputs = {input: input};
+                var outputs = {};
+                syncObservables.forEach(function(output, i) {
+                    if (input !== output) {
+                        outputs["output"+i] = output;
+                    }
+                });
+                var compute = function(inputs) { 
+                    var results = {};
+                    Object.keys(outputs).forEach(function(key){
+                        results[key] = inputs.input();
+                    });
+                    return results;
+                };
+                var b = new sb.Binding(bindingMaster, inputs, outputs, compute);
+                bindings.push(b);
+            });
+
+            return this;
+        };
+
+        this.compute = function(o, f) {
+
+            if (!sb.isObservable(o)
+                    || typeof f !== "function"
+                    || observables.indexOf(o) < 0){
+                return this;
+            }
+
+            var inputs = {};
+            observables.forEach(function(input, i) {
+                if (o !== input) {
+                    inputs["input"+i] = input;
+                }
+            });
+            var outputs = {output: o}; 
+
+            var b = new sb.Binding(
+                bindingMaster,
+                inputs,
+                outputs,
+                function(inputs) {
+                    return {output: f(inputs)};
+                }
+            );
+
+            bindings.push(b);
+
+            return this;
+        };
+
+        this.onChange = function(o, callback) {
+            if (!sb.isObservable(o)
+                    || typeof callback !== "function"
+                    || observables.indexOf(o) < 0) {
+                return this;
+            }
+
+            var b = new sb.Binding(
+                bindingMaster,
+                {input: o},
+                {},
+                function() {
+                    callback();
+                    return {};
+                }
+            );
+
+            bindings.push(b);
+            return this;
+        };
+
+        this.bind = function() {
+            bindings.forEach(function(b) {
+                b.bind();
+            });
+            return this;
+        };
+
+        this.unbind = function() {
+            bindings.forEach(function(b) {
+                b.unbind();
+            });
+            return this;
+        };
+    };
+
+})();
 (function() {
 
 
@@ -180,71 +287,19 @@ sb.isObservable = function(obj) {
      */
     var bindingMaster = new sb.BindingMaster();
 
-    /**
-     * @param {Object} inputs
-     * @param {Object} outputs
-     * @param {sb.Compute} compute
-     */
     sb.binding = function() {
-        var inputs, outputs;
-        var compute = function() {
-            var result = {};
-            Object.keys(outputs).forEach(function(output) {
-                Object.keys(inputs).forEach(function(input) {
-                    if (inputs[input]() !== outputs[output]()) {
-                        result[output] = inputs[input]();
-                        return;
-                    }
-                });
-            });
-
-            return result;
-        };
-
-        var callback;
-
         var observables = [];
-        for (arg in arguments) {
-            if (sb.isObservable(arguments[arg])) {
-                observables.push(arguments[arg])
+        var args = arguments;
+        Object.keys(args).forEach(function(i) {
+            var arg = args[i];
+            if (sb.isObservable(arg)) {
+                observables.push(arg);
             }
-        }
-        if (observables.length === arguments.length) {
-            inputs = {};
-            observables.forEach(function(observable, key){
-                inputs["observable"+key] = observable; 
-            });
-            outputs = inputs;
-        } else if (arguments.length == 1) {
-            inputs = arguments[0];
-            outputs = arguments[0];
-        } else if (arguments.length <= 2) {
-            if (typeof arguments[1] === "function") {
-                if (sb.isObservable(arguments[0])) {
-                    callback = arguments[1];
-                    inputs = {observable: arguments[0]};
-                    outputs = {};
-                    compute = function() {
-                        callback();
-                        return {};
-                    };
-                } else {
-                    inputs = arguments[0];
-                    outputs = arguments[0];
-                    compute = arguments[1];
-                }
-            } else {
-                inputs = arguments[0];
-                outputs = arguments[1];
-            }
-        } else if (arguments.length > 2) {
-            inputs = arguments[0];
-            outputs = arguments[1];
-            compute = arguments[2];
-        }
+        });
 
-        var binding = new sb.Binding(bindingMaster, inputs, outputs, compute);
-        return binding;
+        var chain = new sb.BindingChain(bindingMaster, observables);
+
+        return chain;
     };
 
     /**
@@ -255,44 +310,13 @@ sb.isObservable = function(obj) {
         return observable.property;
     };
 
-
 })();
 
 
 var foo = sb.observable(100);
 var bar = sb.observable(200);
 var hoge = sb.observable(500);
-/*
-var binding1 = sb.binding(
-    {foo: foo, hoge:hoge},
-    {bar: bar},
-    function(input) {
-        return {
-            bar : input.hoge() - input.foo()
-        }
-    }
-).bind().unbind();
 
-var binding2 = sb.binding(
-    {bar: bar, hoge: hoge},
-    {foo: foo},
-    function(input) {
-        return {
-            foo: input.hoge() - input.bar()
-        };
-    }
-).bind().unbind();
-
-var binding3 = sb.binding(
-    {bar: bar, foo: foo},
-    {hoge: hoge},
-    function(input) {
-        return {
-            hoge: input.foo() + input.bar()
-        };
-    }
-).bind().unbind();
-*/
 function test(expectFoo, expectBar, expectHoge) {
     if (foo() !== expectFoo) {
         console.error("foo is expected as "+expectFoo+" but actual is " + foo());
@@ -303,7 +327,6 @@ function test(expectFoo, expectBar, expectHoge) {
     if (hoge() !== expectHoge) {
         console.error("hoge is expected as "+expectHoge+" but actual is " + hoge());
     }   
-    console.error();
 }
 
 // init
@@ -311,41 +334,50 @@ function test(expectFoo, expectBar, expectHoge) {
 // bar: 200, hoge - foo
 // hoge: 500, foo + bar
 
-sb.binding(
-    {foo: foo, bar: bar, hoge:hoge},
-    function(inputs) {
-        return {
-            foo: inputs.hoge() - inputs.bar(),
-            bar: inputs.hoge() - inputs.foo(),
-            hoge: inputs.foo() + inputs.bar(),
-        };
-    }
-).bind();
+sb.binding(foo, bar, hoge)
+    .compute(foo, function() {
+        return hoge() - bar();
+    })
+    .compute(bar, function() {
+        return hoge() - foo();
+    })
+    .compute(hoge, function() {
+        return foo() + bar();
+    })
+    .bind();
 
 // foo(200) -> bar(500 - 200) -> hoge(200 + 300)
+console.log("test1");
 foo(200);
-test(200, 200, 400);
+test(200, 300, 500);
+console.log("done");
 
 // bar(4000) -> foo(500 - 4000) -> hoge(-3500 + 4000)
+console.log("test2");
 bar(4000);
-test(200, 4000, 4200);
+test(-3500, 4000, 500);
+console.log("done");
 
 var piyo = sb.observable(200);
 var piyopiyo = sb.observable(300);
 var piyopiyopiyo = sb.observable(400);
-sb.binding(piyo, piyopiyo, piyopiyopiyo).bind();
+sb.binding(piyo, piyopiyo, piyopiyopiyo)
+    .synchronize(piyo, piyopiyo, piyopiyopiyo).bind();
+console.log("test3");
 piyo(500);
 if (piyo() !== piyopiyo() || piyo() !== piyopiyopiyo()) {
     console.error("piyo() and piyopiyo() and piyopiyopiyo() must be same");
 }
+console.log("done");
 
 var ok = false;
 var hogera = sb.observable(100);
-sb.binding(hogera, function() {
+sb.binding(hogera).onChange(hogera, function() {
     ok = true;
 }).bind();
+console.log("test4");
 hogera(200);
-console.log(hogera());
 if (!ok) {
     console.error("ok must be true");
 }
+console.log("done");

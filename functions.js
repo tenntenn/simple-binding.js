@@ -29,5 +29,33 @@
         return observable.property;
     };
 
+    sb.observableArray = function(array) {
+        var observableArray = new sb.ObservableArray(bindingMaster, array);
+        return observableArray.property;
+    };
+
+    sb.isObservable = function(obj) {
+
+        if (obj instanceof sb.Observable) {
+            return true;
+        }
+
+        if (obj.observable 
+                && obj.observable instanceof sb.Observable){
+            return true;
+        }
+
+        if (obj instanceof sb.ObservableArray) {
+            return true;
+        }
+
+        if (obj.observable 
+                && obj.observable instanceof sb.ObservableArray){
+            return true;
+        }    
+
+        return false;
+    };
+
 })();
 

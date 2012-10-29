@@ -35,17 +35,3 @@ sb.Observable = function(bindingMaster, value) {
     property.observable = this;
     this.property = property;
 };
-
-sb.isObservable = function(obj) {
-
-    if (obj instanceof sb.Observable) {
-        return true;
-    }
-
-    if (obj.observable 
-            && obj.observable instanceof sb.Observable){
-        return true;
-    }
-    
-    return false;
-};

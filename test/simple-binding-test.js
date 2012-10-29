@@ -67,3 +67,18 @@ if (!ok) {
     console.error("ok must be true");
 }
 console.log("done");
+
+
+var observableArray = sb.observableArray([100]);
+if (observableArray.get(0) !== 100) {
+    console.log("observableArray.get(0) is expected as 100 but actual is " + observableArray.get(0));
+} 
+
+ok = false;
+sb.binding(observableArray).onChange(observableArray, function() {
+    ok = true;
+}).bind();
+observableArray.push(200);
+if (!ok) {
+    console.error("ok must be true");
+}

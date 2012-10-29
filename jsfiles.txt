@@ -1,7 +1,10 @@
 package.js
+extend.js
 Compute.js
 BindingMaster.js
 Binding.js
 Observable.js
+ObservableArray.js
 BindingChain.js
+argumentsToArray.js
 functions.js

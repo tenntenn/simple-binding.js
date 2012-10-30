@@ -6,7 +6,7 @@ Sinmple binding library.
 Authors
 -------------
 * @tenntenn (Takuya Ueda)
-* spd-user
+* [spd-user](http://github.com/spd-user/simple-binding.js) (Yuji Katsumata)
 * kazuma-s
 
 Build

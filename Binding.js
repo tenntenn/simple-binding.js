@@ -1,11 +1,10 @@
 /**
- * @private
- * @param {sb.BindingMaster} bindingMaster
+ * @param {sb.Observer} observer
  * @param {Object} inputs
  * @param {Object} outputs
  * @param {sb.Compute} compute
  */
-sb.Binding = function(bindingMaster, inputs, outputs, compute) {
+sb.Binding = function(observer, inputs, outputs, compute) {
 
     this.inputs = inputs;
     this.outputs = outputs;
@@ -16,7 +15,7 @@ sb.Binding = function(bindingMaster, inputs, outputs, compute) {
      * @return {void}
      */
     this.bind = function() {
-        bindingMaster.add(this);
+        observer.add(this);
         return this;
     };
 
@@ -25,13 +24,13 @@ sb.Binding = function(bindingMaster, inputs, outputs, compute) {
      * @return {void}
      */
     this.unbind = function() {
-        bindingMaster.remove(this);
+        observer.remove(this);
         return this;
     };
 
     /**
      * @param {Array.<sb.Observable>}
-     * @return {void}
+     * @return {sb.Binding}
      */
     this.notify = function(callStack) {
         var result = compute(inputs);

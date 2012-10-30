@@ -2,4 +2,4 @@
  * @private
  * @typedef {function(void):*}
  */
-sb.Compute;
+sb.Computed;

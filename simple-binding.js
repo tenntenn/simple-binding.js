@@ -16,12 +16,11 @@ sb.extend = function(superclass, constructor) {
  * @private
  * @typedef {function(void):*}
  */
-sb.Compute;
+sb.Computed;
 /**
- * @private
  * @constructor
  */
-sb.BindingMaster = function() {
+sb.Observer = function() {
 
     /**
      * @type {Array.<sb.Binding>}
@@ -81,13 +80,12 @@ sb.BindingMaster = function() {
     };
 };
 /**
- * @private
- * @param {sb.BindingMaster} bindingMaster
+ * @param {sb.Observer} observer
  * @param {Object} inputs
  * @param {Object} outputs
  * @param {sb.Compute} compute
  */
-sb.Binding = function(bindingMaster, inputs, outputs, compute) {
+sb.Binding = function(observer, inputs, outputs, compute) {
 
     this.inputs = inputs;
     this.outputs = outputs;
@@ -98,7 +96,7 @@ sb.Binding = function(bindingMaster, inputs, outputs, compute) {
      * @return {void}
      */
     this.bind = function() {
-        bindingMaster.add(this);
+        observer.add(this);
         return this;
     };
 
@@ -107,13 +105,13 @@ sb.Binding = function(bindingMaster, inputs, outputs, compute) {
      * @return {void}
      */
     this.unbind = function() {
-        bindingMaster.remove(this);
+        observer.remove(this);
         return this;
     };
 
     /**
      * @param {Array.<sb.Observable>}
-     * @return {void}
+     * @return {sb.Binding}
      */
     this.notify = function(callStack) {
         var result = compute(inputs);
@@ -132,82 +130,136 @@ sb.Binding = function(bindingMaster, inputs, outputs, compute) {
 
 };
 /**
- * @private
+ * A property of observable value.
+ * It is a function and provides notify function as method.
+ * @interface
+ */
+sb.ObservableProperty;
+
+/**
+ * Check either obj is sb.ObservableProperty or not.
+ * @param {*} tested object 
+ * @return {boolean} true indicates that obj implements sb.ObservableProperty. 
+ */
+sb.isObservable = function(obj) {
+
+    // either obj is a function or not?
+    if (typeof obj !== "function") { 
+        return false;
+    }
+
+    // either obj has notify function as own method.
+    if (!obj.notify
+            || typeof obj.notify !== "function") {
+        return false;
+    }
+
+    return true;
+};
+/**
+ * An observable value which is observable by sb.Observer.
+ * 
  * @constructor
- * @param {sb.BindingMaster} bindingMaster
+ * @param {sb.Observer} observer observer of this observable value
  * @param {*} value
  */
-sb.Observable = function(bindingMaster, value) {
+sb.Observable = function(observer, value) {
 
     /**
-     * @param {(void|*)} v
-     * @return {*}
+     * @type {sb.Observable} own
+     */
+    var that = this;
+
+    /**
+     * @implements {sb.ObservableProperty}
+     * @param {*} v it is set for this observable 
+     * @return {*} set value at this observable
      * @this {sb.Observable}
      */
-    var property = function(v) {
+    that.property = function(v) {
 
+        // if v is not undefined, it works as setter.
         if (v !== undefined) {
-            property.notify([], v);
+            that.property.notify([], v);
         }
 
+        // getter
         return value;
     };
 
     /**
-     * @param {Array.<sb.Observable>} callStack
-     * @param {*} v
+     * @param {Array.<sb.ObservableProperty>} callStack stack of sb.ObservableProperty which have already propagated.
+     * @param {*} v it is set for this observable
      */
-    property.notify = function(callStack, v) {
-        var pre = value;
-        if (callStack.lastIndexOf(property) < 0) {
+    that.property.notify = function(callStack, v) {
+        if (callStack.lastIndexOf(that.property) < 0) {
            value = v;
-           bindingMaster.notify(callStack.concat(property), property);
+           observer.notify(callStack.concat(that.property), that.property);
         }  
     };
 
-    property.observable = this;
-    this.property = property;
 };
 (function(){
     /**
-     * @private
      * @constructor
-     * @param {sb.BindingMaster} bindingMaster
-     * @param {*} value
+     * @param {sb.Observer} observer
+     * @param {Array.<*>} initArray
      */
-    sb.ObservableArray = function(bindingMaster, array) {
+    sb.ObservableArray = function(observer, initArray) {
 
-        // init internal array
+        /**
+         * @type {sb.ObservableArray} own
+         */
+        var that = this;
+
+        /**
+         * @type {Array.<*>} internal array
+         */
+        var array = initArray;
         if (!(array instanceof Array)) {
             array = [];
         }
 
-        // return the internal array
-        var property = function() {
+        /**
+         * Get internal array.
+         * @return {Array.<*>} internal array
+         */
+        that.property = function() {
             return array.concat();
         };
     
         /**
-         * @param {Array.<sb.Observable>} callStack
+         * Notify changing for observer.
+         * @param {Array.<sb.ObservableProperty>} callStack
          */
-        property.notify = function(callStack) {
-            if (callStack.lastIndexOf(property) < 0) {
-               bindingMaster.notify(callStack.concat(property), property);
+        that.property.notify = function(callStack) {
+            if (callStack.lastIndexOf(that.property) < 0) {
+               observer.notify(callStack.concat(that.property), that.property);
             }  
         };
 
-        // size of the internal array length
-        property.length = function() {
+        /**
+         * Get array size which wrapes the internal array length.
+         * @return {numnber} array size
+         */
+        that.property.length = function() {
             return array.length;
         };
 
-        property.get = function(i) {
+        /**
+         * Get value with index i.
+         */
+        that.property.get = function(i) {
             return array[i];
         };
 
-        property.set = function(i, v) {
+        /**
+         * Set value with index i.
+         * And it notify observer.
+         */
+        that.property.set = function(i, v) {
             array[i] = v;
-            property.notify([]);
+            that.property.notify([]);
         };
 
         // wrapper for functions which change the internal array
@@ -221,10 +273,10 @@ sb.Observable = function(bindingMaster, value) {
             "sort"
         ].forEach(function(fn) {
             if (typeof array[fn] === "function") {
-                property[fn] = function() {
+                that.property[fn] = function() {
                     var args = sb.argumentsToArray(arguments);
                     var ret = array[fn].apply(array, args); 
-                    property.notify([]);
+                    that.property.notify([]);
 
                     return ret;
                 };
@@ -240,12 +292,12 @@ sb.Observable = function(bindingMaster, value) {
             "filter"
         ].forEach(function(fn) {
              if (typeof array[fn] === "function") {
-                property[fn] = function() {
+                that.property[fn] = function() {
                     var args = sb.argumentsToArray(arguments);
                     var ret = array[fn].apply(array, args); 
 
                     // wrap with ObservableArray
-                    var oa = new ObservableArray(bindingMaster, ret);
+                    var oa = new sb.ObservableArray(observer, ret);
                     
                     return oa;
                 };
@@ -264,7 +316,7 @@ sb.Observable = function(bindingMaster, value) {
             "forEach"
         ].forEach(function(fn) {
             if (typeof array[fn] === "function") {
-                property[fn] = function() {
+                that.property[fn] = function() {
                     var args = sb.argumentsToArray(arguments);
                     var ret = array[fn].apply(array, args);
                     return ret;
@@ -272,13 +324,16 @@ sb.Observable = function(bindingMaster, value) {
             }
         });
    
-        property.observable = this;
-        this.property = property;
     };
 })();
 (function(){
 
-    sb.BindingChain = function(bindingMaster, observables) {
+    /**
+     * A set of binding which provide binding functions as method chains.
+     * @param {sb.Observer} observer 
+     * @param {Array.<sb.ObservableProperty>} observables
+     */
+    sb.BindingChain = function(observer, observables) {
 
         var bindings = [];
 
@@ -309,7 +364,7 @@ sb.Observable = function(bindingMaster, value) {
                     });
                     return results;
                 };
-                var b = new sb.Binding(bindingMaster, inputs, outputs, compute);
+                var b = new sb.Binding(observer, inputs, outputs, compute);
                 bindings.push(b);
             });
 
@@ -333,7 +388,7 @@ sb.Observable = function(bindingMaster, value) {
             var outputs = {output: o}; 
 
             var b = new sb.Binding(
-                bindingMaster,
+                observer,
                 inputs,
                 outputs,
                 function(inputs) {
@@ -354,7 +409,7 @@ sb.Observable = function(bindingMaster, value) {
             }
 
             var b = new sb.Binding(
-                bindingMaster,
+                observer,
                 {input: o},
                 {},
                 function() {
@@ -391,63 +446,64 @@ sb.argumentsToArray = function(args) {
 
     return arry;
 };
+// It provide functions which can be use easily.
 (function() {
 
+    /**
+     * @const {sb.Observer} default observer.
+     */
+    var observer = new sb.Observer();
 
     /**
-     * @type {sb.BindingMaster}
+     * Create default setting binding chain.
+     * @return {sb.BindingChain} default setting binding chain.
      */
-    var bindingMaster = new sb.BindingMaster();
-
     sb.binding = function() {
-        var observables = [];
-        var args = arguments;
-        Object.keys(args).forEach(function(i) {
-            var arg = args[i];
-            if (sb.isObservable(arg)) {
-                observables.push(arg);
-            }
+
+        /**
+         * @type {Array.<*>} arguments array of this function.
+         */
+        var args = sb.argumentsToArray(arguments);
+
+        /**
+         * @type {Array.<sb.ObservableProperty>} 
+         */
+        var observables = args.filter(function(arg){
+            return sb.isObservable(arg);
         });
 
-        var chain = new sb.BindingChain(bindingMaster, observables);
+        /**
+         * @type {sb.BindingChain} default setting binding chain.
+         */
+        var chain = new sb.BindingChain(observer, observables);
 
         return chain;
     };
 
     /**
-     * @param {*} value
+     * Create default setting property of sb.Observable.
+     * @param {*} initValue initial value.
+     * @return {sb.ObservableProperty} default setting property of sb.Observable.
      */
-    sb.observable = function(value) {
-        var observable = new sb.Observable(bindingMaster, value);
+    sb.observable = function(initValue) {
+        /**
+         * @type {sb.ObservableProperty} default setting property of sb.Observable.
+         */
+        var observable = new sb.Observable(observer, initValue);
         return observable.property;
     };
 
+     /**
+      * Create default setting property of sb.ObservableArray.
+      * @param {*} array initial value.
+      * @return {sb.ObservableProperty} default setting property of sb.ObservableArray.
+      */
     sb.observableArray = function(array) {
-        var observableArray = new sb.ObservableArray(bindingMaster, array);
+        /**
+         * @type {sb.ObservableProperty} default setting property of sb.ObservableArray.
+         */
+        var observableArray = new sb.ObservableArray(observer, array);
         return observableArray.property;
-    };
-
-    sb.isObservable = function(obj) {
-
-        if (obj instanceof sb.Observable) {
-            return true;
-        }
-
-        if (obj.observable 
-                && obj.observable instanceof sb.Observable){
-            return true;
-        }
-
-        if (obj instanceof sb.ObservableArray) {
-            return true;
-        }
-
-        if (obj.observable 
-                && obj.observable instanceof sb.ObservableArray){
-            return true;
-        }    
-
-        return false;
     };
 
 })();

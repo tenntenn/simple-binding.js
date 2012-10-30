@@ -1,6 +1,11 @@
 (function(){
 
-    sb.BindingChain = function(bindingMaster, observables) {
+    /**
+     * A set of binding which provide binding functions as method chains.
+     * @param {sb.Observer} observer 
+     * @param {Array.<sb.ObservableProperty>} observables
+     */
+    sb.BindingChain = function(observer, observables) {
 
         var bindings = [];
 
@@ -31,7 +36,7 @@
                     });
                     return results;
                 };
-                var b = new sb.Binding(bindingMaster, inputs, outputs, compute);
+                var b = new sb.Binding(observer, inputs, outputs, compute);
                 bindings.push(b);
             });
 
@@ -55,7 +60,7 @@
             var outputs = {output: o}; 
 
             var b = new sb.Binding(
-                bindingMaster,
+                observer,
                 inputs,
                 outputs,
                 function(inputs) {
@@ -76,7 +81,7 @@
             }
 
             var b = new sb.Binding(
-                bindingMaster,
+                observer,
                 {input: o},
                 {},
                 function() {

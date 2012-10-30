@@ -1,37 +1,43 @@
 /**
- * @private
+ * An observable value which is observable by sb.Observer.
+ * 
  * @constructor
- * @param {sb.BindingMaster} bindingMaster
+ * @param {sb.Observer} observer observer of this observable value
  * @param {*} value
  */
-sb.Observable = function(bindingMaster, value) {
+sb.Observable = function(observer, value) {
 
     /**
-     * @param {(void|*)} v
-     * @return {*}
+     * @type {sb.Observable} own
+     */
+    var that = this;
+
+    /**
+     * @implements {sb.ObservableProperty}
+     * @param {*} v it is set for this observable 
+     * @return {*} set value at this observable
      * @this {sb.Observable}
      */
-    var property = function(v) {
+    that.property = function(v) {
 
+        // if v is not undefined, it works as setter.
         if (v !== undefined) {
-            property.notify([], v);
+            that.property.notify([], v);
         }
 
+        // getter
         return value;
     };
 
     /**
-     * @param {Array.<sb.Observable>} callStack
-     * @param {*} v
+     * @param {Array.<sb.ObservableProperty>} callStack stack of sb.ObservableProperty which have already propagated.
+     * @param {*} v it is set for this observable
      */
-    property.notify = function(callStack, v) {
-        var pre = value;
-        if (callStack.lastIndexOf(property) < 0) {
+    that.property.notify = function(callStack, v) {
+        if (callStack.lastIndexOf(that.property) < 0) {
            value = v;
-           bindingMaster.notify(callStack.concat(property), property);
+           observer.notify(callStack.concat(that.property), that.property);
         }  
     };
 
-    property.observable = this;
-    this.property = property;
 };

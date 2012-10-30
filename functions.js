@@ -1,60 +1,61 @@
+// It provide functions which can be use easily.
 (function() {
 
+    /**
+     * @const {sb.Observer} default observer.
+     */
+    var observer = new sb.Observer();
 
     /**
-     * @type {sb.BindingMaster}
+     * Create default setting binding chain.
+     * @return {sb.BindingChain} default setting binding chain.
      */
-    var bindingMaster = new sb.BindingMaster();
-
     sb.binding = function() {
-        var observables = [];
-        var args = arguments;
-        Object.keys(args).forEach(function(i) {
-            var arg = args[i];
-            if (sb.isObservable(arg)) {
-                observables.push(arg);
-            }
+
+        /**
+         * @type {Array.<*>} arguments array of this function.
+         */
+        var args = sb.argumentsToArray(arguments);
+
+        /**
+         * @type {Array.<sb.ObservableProperty>} 
+         */
+        var observables = args.filter(function(arg){
+            return sb.isObservable(arg);
         });
 
-        var chain = new sb.BindingChain(bindingMaster, observables);
+        /**
+         * @type {sb.BindingChain} default setting binding chain.
+         */
+        var chain = new sb.BindingChain(observer, observables);
 
         return chain;
     };
 
     /**
-     * @param {*} value
+     * Create default setting property of sb.Observable.
+     * @param {*} initValue initial value.
+     * @return {sb.ObservableProperty} default setting property of sb.Observable.
      */
-    sb.observable = function(value) {
-        var observable = new sb.Observable(bindingMaster, value);
+    sb.observable = function(initValue) {
+        /**
+         * @type {sb.ObservableProperty} default setting property of sb.Observable.
+         */
+        var observable = new sb.Observable(observer, initValue);
         return observable.property;
     };
 
+     /**
+      * Create default setting property of sb.ObservableArray.
+      * @param {*} array initial value.
+      * @return {sb.ObservableProperty} default setting property of sb.ObservableArray.
+      */
     sb.observableArray = function(array) {
-        var observableArray = new sb.ObservableArray(bindingMaster, array);
+        /**
+         * @type {sb.ObservableProperty} default setting property of sb.ObservableArray.
+         */
+        var observableArray = new sb.ObservableArray(observer, array);
         return observableArray.property;
-    };
-
-    sb.isObservable = function(obj) {
-
-        if (obj instanceof sb.Observable) {
-            return true;
-        }
-
-        if (obj.observable 
-                && obj.observable instanceof sb.Observable){
-            return true;
-        }
-
-        if (obj instanceof sb.ObservableArray) {
-            return true;
-        }
-
-        if (obj.observable 
-                && obj.observable instanceof sb.ObservableArray){
-            return true;
-        }    
-
-        return false;
     };
 
 })();

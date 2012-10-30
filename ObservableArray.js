@@ -1,43 +1,64 @@
 (function(){
     /**
-     * @private
      * @constructor
-     * @param {sb.BindingMaster} bindingMaster
-     * @param {*} value
+     * @param {sb.Observer} observer
+     * @param {Array.<*>} initArray
      */
-    sb.ObservableArray = function(bindingMaster, array) {
+    sb.ObservableArray = function(observer, initArray) {
 
-        // init internal array
+        /**
+         * @type {sb.ObservableArray} own
+         */
+        var that = this;
+
+        /**
+         * @type {Array.<*>} internal array
+         */
+        var array = initArray;
         if (!(array instanceof Array)) {
             array = [];
         }
 
-        // return the internal array
-        var property = function() {
+        /**
+         * Get internal array.
+         * @return {Array.<*>} internal array
+         */
+        that.property = function() {
             return array.concat();
         };
     
         /**
-         * @param {Array.<sb.Observable>} callStack
+         * Notify changing for observer.
+         * @param {Array.<sb.ObservableProperty>} callStack
          */
-        property.notify = function(callStack) {
-            if (callStack.lastIndexOf(property) < 0) {
-               bindingMaster.notify(callStack.concat(property), property);
+        that.property.notify = function(callStack) {
+            if (callStack.lastIndexOf(that.property) < 0) {
+               observer.notify(callStack.concat(that.property), that.property);
             }  
         };
 
-        // size of the internal array length
-        property.length = function() {
+        /**
+         * Get array size which wrapes the internal array length.
+         * @return {numnber} array size
+         */
+        that.property.length = function() {
             return array.length;
         };
 
-        property.get = function(i) {
+        /**
+         * Get value with index i.
+         */
+        that.property.get = function(i) {
             return array[i];
         };
 
-        property.set = function(i, v) {
+        /**
+         * Set value with index i.
+         * And it notify observer.
+         */
+        that.property.set = function(i, v) {
             array[i] = v;
-            property.notify([]);
+            that.property.notify([]);
         };
 
         // wrapper for functions which change the internal array
@@ -51,10 +72,10 @@
             "sort"
         ].forEach(function(fn) {
             if (typeof array[fn] === "function") {
-                property[fn] = function() {
+                that.property[fn] = function() {
                     var args = sb.argumentsToArray(arguments);
                     var ret = array[fn].apply(array, args); 
-                    property.notify([]);
+                    that.property.notify([]);
 
                     return ret;
                 };
@@ -70,12 +91,12 @@
             "filter"
         ].forEach(function(fn) {
              if (typeof array[fn] === "function") {
-                property[fn] = function() {
+                that.property[fn] = function() {
                     var args = sb.argumentsToArray(arguments);
                     var ret = array[fn].apply(array, args); 
 
                     // wrap with ObservableArray
-                    var oa = new ObservableArray(bindingMaster, ret);
+                    var oa = new sb.ObservableArray(observer, ret);
                     
                     return oa;
                 };
@@ -94,7 +115,7 @@
             "forEach"
         ].forEach(function(fn) {
             if (typeof array[fn] === "function") {
-                property[fn] = function() {
+                that.property[fn] = function() {
                     var args = sb.argumentsToArray(arguments);
                     var ret = array[fn].apply(array, args);
                     return ret;
@@ -102,7 +123,5 @@
             }
         });
    
-        property.observable = this;
-        this.property = property;
     };
 })();

@@ -20,9 +20,16 @@ sb.Observable = function(observer, value) {
      */
     that.property = function(v) {
 
+        /**
+         * Propagation context.
+         * @type {sb.Propagation}
+         */
+        var propagation;
+
         // if v is not undefined, it works as setter.
         if (v !== undefined) {
-            that.property.notify([], v);
+            propagation = observer.getPropagationGuardian().createPropagation();
+            that.property.notify(propagation, v);
         }
 
         // getter
@@ -30,13 +37,13 @@ sb.Observable = function(observer, value) {
     };
 
     /**
-     * @param {Array.<sb.ObservableProperty>} callStack stack of sb.ObservableProperty which have already propagated.
+     * @param {sb.Propagation} propagation propagation context
      * @param {*} v it is set for this observable
      */
-    that.property.notify = function(callStack, v) {
-        if (callStack.lastIndexOf(that.property) < 0) {
+    that.property.notify = function(propagation, v) {
+        if (propagation(that.property, v)) {
            value = v;
-           observer.notify(callStack.concat(that.property), that.property);
+           observer.notify(propagation, that.property);
         }  
     };
 

@@ -1,12 +1,26 @@
 /**
  * @constructor
  */
-sb.Observer = function() {
+sb.Observer = function(propagationGuardian) {
+
+    if (!propagationGuardian
+            || !propagationGuardian instanceof sb.PropagationGuardian) {
+        console.log("hoge");
+        propagationGuardian = sb.defaultPropagationGuardian;
+    }
 
     /**
      * @type {Array.<sb.Binding>}
      */
     var bindings = [];
+
+    /**
+     * Get sb.PropagationGuardian.
+     * @return {sb.PropagationGuardian}
+     */
+    this.getPropagationGuardian = function() {
+        return propagationGuardian;
+    }
 
     /**
      * @param {sb.Binding} binding
@@ -25,11 +39,11 @@ sb.Observer = function() {
     };
 
     /**
-     * @param {Array<sb.Observable>} callStack
+     * @param {sb.Propagation} propagation 
      * @param {Array<sb.Observable>} input
      * @return void
      */
-    this.notify = function(callStack, input) {
+    this.notify = function(propagation, input) {
 
         // get bindings which has given input as argument
         var bs = bindings.filter(function(binding) {
@@ -45,7 +59,7 @@ sb.Observer = function() {
         });
 
         bs.forEach(function(binding) {
-            binding.notify(callStack);
+            binding.notify(propagation);
         });
    };
 

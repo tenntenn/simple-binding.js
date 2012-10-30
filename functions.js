@@ -57,6 +57,5 @@
         var observableArray = new sb.ObservableArray(observer, array);
         return observableArray.property;
     };
-
 })();
 

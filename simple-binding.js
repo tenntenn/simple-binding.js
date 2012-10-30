@@ -59,14 +59,108 @@ sb.expandable = function() {
  */
 sb.Computed;
 /**
+ * It provide context of propagation and can test availability of propagation.
+ * @typedef {function(sb.ObservableProperty, Object): boolean}
+ */
+sb.Propagation;
+/**
+ * 
  * @constructor
  */
-sb.Observer = function() {
+sb.PropagationGuardian = function(stopCondition, timeout) {
+
+    if (typeof stopCondition !== "function") {
+        stopCondition = function() {
+            return true;
+        };
+    }
+
+    if (typeof timeout !== "number"
+            || timeout <= 0) {
+        timeout = 1;
+    }
+
+    this.createPropagation = function() {
+
+        /**
+         * Call Stack of observable.
+         * @type {Array.<sb.ObservableProperty>}
+         */
+        var callStack = [];
+
+        /**
+         * Test propagation is success with given stopCondition and timeout.
+         * @type {sb.Propagation}
+         * @param {sb.ObservableProperty} source adjacent source of notify propagation
+         * @param {Object} e event object.
+         */
+        var propagation =  function(source, e) {
+
+            // getter of callStack
+            propagation.callStack = function() {
+                return callStack.concat();
+            };
+
+            /**
+             * Counter for number of appearance
+             * of same observable in callstack.
+             * @type {number}
+             */
+            var loopCount = 0;
+            callStack.forEach(function(o) {
+                if (o === source) {
+                    loopCount++;
+                }
+            });
+
+            // either loopCounter over timeout
+            if (timeout <= loopCount) {
+                return false;
+            }
+
+            if (!stopCondition(source, e)) {
+                return false;
+            }
+
+            callStack.push(source);
+
+            return true;
+        };
+
+
+        return propagation;
+    };     
+};
+
+/**
+ * Default sb.PropagationGuardian.
+ * @const {sb.PropagationGuardian}
+ */
+sb.defaultPropagationGuardian = new sb.PropagationGuardian(null, 1);
+
+/**
+ * @constructor
+ */
+sb.Observer = function(propagationGuardian) {
+
+    if (!propagationGuardian
+            || !propagationGuardian instanceof sb.PropagationGuardian) {
+        console.log("hoge");
+        propagationGuardian = sb.defaultPropagationGuardian;
+    }
 
     /**
      * @type {Array.<sb.Binding>}
      */
     var bindings = [];
+
+    /**
+     * Get sb.PropagationGuardian.
+     * @return {sb.PropagationGuardian}
+     */
+    this.getPropagationGuardian = function() {
+        return propagationGuardian;
+    }
 
     /**
      * @param {sb.Binding} binding
@@ -85,11 +179,11 @@ sb.Observer = function() {
     };
 
     /**
-     * @param {Array<sb.Observable>} callStack
+     * @param {sb.Propagation} propagation 
      * @param {Array<sb.Observable>} input
      * @return void
      */
-    this.notify = function(callStack, input) {
+    this.notify = function(propagation, input) {
 
         // get bindings which has given input as argument
         var bs = bindings.filter(function(binding) {
@@ -105,7 +199,7 @@ sb.Observer = function() {
         });
 
         bs.forEach(function(binding) {
-            binding.notify(callStack);
+            binding.notify(propagation);
         });
    };
 
@@ -177,15 +271,20 @@ sb.Binding = function(observer, inputs, outputs, computed) {
     /**
      * Notify changing to output observables.
      * 
-     * @param {Array.<sb.ObservableProperty>}
+     * @param {sb.Propagation} propagation propagation context
      * @return {sb.Binding}
      */
-    that.notify = function(callStack) {
+    that.notify = function(propagation) {
 
         /**
          * @type {sb.Parameters} result of computed
          */
         var result = computed(inputs);
+
+        /**
+         * @type {Array.<sb.ObservableProperty>}
+         */
+        var callStack = propagation.callStack();
 
         /**
          * @type {sb.ObservableProperty} input observable
@@ -198,7 +297,7 @@ sb.Binding = function(observer, inputs, outputs, computed) {
             if (input !== observable
                     && outputs.hasOwnProperty(name)
                     && sb.isObservable(observable)) {
-                observable.notify(callStack, result[name]);
+                observable.notify(propagation, result[name]);
             }
         });
 
@@ -255,9 +354,16 @@ sb.Observable = function(observer, value) {
      */
     that.property = function(v) {
 
+        /**
+         * Propagation context.
+         * @type {sb.Propagation}
+         */
+        var propagation;
+
         // if v is not undefined, it works as setter.
         if (v !== undefined) {
-            that.property.notify([], v);
+            propagation = observer.getPropagationGuardian().createPropagation();
+            that.property.notify(propagation, v);
         }
 
         // getter
@@ -265,13 +371,13 @@ sb.Observable = function(observer, value) {
     };
 
     /**
-     * @param {Array.<sb.ObservableProperty>} callStack stack of sb.ObservableProperty which have already propagated.
+     * @param {sb.Propagation} propagation propagation context
      * @param {*} v it is set for this observable
      */
-    that.property.notify = function(callStack, v) {
-        if (callStack.lastIndexOf(that.property) < 0) {
+    that.property.notify = function(propagation, v) {
+        if (propagation(that.property, v)) {
            value = v;
-           observer.notify(callStack.concat(that.property), that.property);
+           observer.notify(propagation, that.property);
         }  
     };
 
@@ -307,11 +413,12 @@ sb.Observable = function(observer, value) {
     
         /**
          * Notify changing for observer.
-         * @param {Array.<sb.ObservableProperty>} callStack
+         * @param {sb.Propagation} propagation propagation context
          */
-        that.property.notify = function(callStack) {
-            if (callStack.lastIndexOf(that.property) < 0) {
-               observer.notify(callStack.concat(that.property), that.property);
+        that.property.notify = function(propagation) {
+            
+            if (propagation(that.property, that.property)) {
+               observer.notify(propagation, that.property);
             }  
         };
 
@@ -335,8 +442,16 @@ sb.Observable = function(observer, value) {
          * And it notify observer.
          */
         that.property.set = function(i, v) {
+
+            /**
+             * Propagation context.
+             * @type {sb.Propagation}
+             */
+            var propagation = observer.getPropagationGuardian().createPropagation();
+
             array[i] = v;
-            that.property.notify([]);
+           
+            that.property.notify(propagation);
         };
 
         // wrapper for functions which change the internal array
@@ -353,7 +468,12 @@ sb.Observable = function(observer, value) {
                 that.property[fn] = function() {
                     var args = sb.argumentsToArray(arguments);
                     var ret = array[fn].apply(array, args); 
-                    that.property.notify([]);
+                    /**
+                     * Propagation context.
+                     * @type {sb.Propagation}
+                     */
+                    var propagation = observer.getPropagationGuardian().createPropagation();
+                    that.property.notify(propagation);
 
                     return ret;
                 };
@@ -662,6 +782,5 @@ sb.argumentsToArray = function(args) {
         var observableArray = new sb.ObservableArray(observer, array);
         return observableArray.property;
     };
-
 })();
 

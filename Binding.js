@@ -55,15 +55,20 @@ sb.Binding = function(observer, inputs, outputs, computed) {
     /**
      * Notify changing to output observables.
      * 
-     * @param {Array.<sb.ObservableProperty>}
+     * @param {sb.Propagation} propagation propagation context
      * @return {sb.Binding}
      */
-    that.notify = function(callStack) {
+    that.notify = function(propagation) {
 
         /**
          * @type {sb.Parameters} result of computed
          */
         var result = computed(inputs);
+
+        /**
+         * @type {Array.<sb.ObservableProperty>}
+         */
+        var callStack = propagation.callStack();
 
         /**
          * @type {sb.ObservableProperty} input observable
@@ -76,7 +81,7 @@ sb.Binding = function(observer, inputs, outputs, computed) {
             if (input !== observable
                     && outputs.hasOwnProperty(name)
                     && sb.isObservable(observable)) {
-                observable.notify(callStack, result[name]);
+                observable.notify(propagation, result[name]);
             }
         });
 

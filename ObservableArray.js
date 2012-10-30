@@ -29,11 +29,12 @@
     
         /**
          * Notify changing for observer.
-         * @param {Array.<sb.ObservableProperty>} callStack
+         * @param {sb.Propagation} propagation propagation context
          */
-        that.property.notify = function(callStack) {
-            if (callStack.lastIndexOf(that.property) < 0) {
-               observer.notify(callStack.concat(that.property), that.property);
+        that.property.notify = function(propagation) {
+            
+            if (propagation(that.property, that.property)) {
+               observer.notify(propagation, that.property);
             }  
         };
 
@@ -57,8 +58,16 @@
          * And it notify observer.
          */
         that.property.set = function(i, v) {
+
+            /**
+             * Propagation context.
+             * @type {sb.Propagation}
+             */
+            var propagation = observer.getPropagationGuardian().createPropagation();
+
             array[i] = v;
-            that.property.notify([]);
+           
+            that.property.notify(propagation);
         };
 
         // wrapper for functions which change the internal array
@@ -75,7 +84,12 @@
                 that.property[fn] = function() {
                     var args = sb.argumentsToArray(arguments);
                     var ret = array[fn].apply(array, args); 
-                    that.property.notify([]);
+                    /**
+                     * Propagation context.
+                     * @type {sb.Propagation}
+                     */
+                    var propagation = observer.getPropagationGuardian().createPropagation();
+                    that.property.notify(propagation);
 
                     return ret;
                 };

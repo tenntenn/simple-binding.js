@@ -20,14 +20,14 @@ function test(expectFoo, expectBar, expectHoge) {
 // bar: 200, hoge - foo
 // hoge: 500, foo + bar
 
-sb.binding(foo, bar, hoge)
-    .compute(foo, function() {
+sb.binding()
+    .computed(foo, function() {
         return hoge() - bar();
     })
-    .compute(bar, function() {
+    .computed(bar, function() {
         return hoge() - foo();
     })
-    .compute(hoge, function() {
+    .computed(hoge, function() {
         return foo() + bar();
     })
     .bind();
@@ -47,8 +47,7 @@ console.log("done");
 var piyo = sb.observable(200);
 var piyopiyo = sb.observable(300);
 var piyopiyopiyo = sb.observable(400);
-sb.binding(piyo, piyopiyo, piyopiyopiyo)
-    .synchronize(piyo, piyopiyo, piyopiyopiyo).bind();
+sb.binding().synchronize(piyo, piyopiyo, piyopiyopiyo).bind();
 console.log("test3");
 piyo(500);
 if (piyo() !== piyopiyo() || piyo() !== piyopiyopiyo()) {
@@ -58,7 +57,7 @@ console.log("done");
 
 var ok = false;
 var hogera = sb.observable(100);
-sb.binding(hogera).onChange(hogera, function() {
+sb.binding().onChange(hogera, function() {
     ok = true;
 }).bind();
 console.log("test4");
@@ -75,7 +74,7 @@ if (observableArray.get(0) !== 100) {
 } 
 
 ok = false;
-sb.binding(observableArray).onChange(observableArray, function() {
+sb.binding().onChange(observableArray, function() {
     ok = true;
 }).bind();
 observableArray.push(200);

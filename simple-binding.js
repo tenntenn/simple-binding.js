@@ -2,19 +2,60 @@
  * @namespace 
  */
 var sb = {};
-sb.extend = function(superclass, constructor) {
-    function f(){};
-    f.property = superclass.property;
-    constructor.property = new f();
-    constructor.superclass = superclass.property;
-    constructor.superclass.constructor = superclass;
-    constructor.property.constructor = constructor;
+/**
+ * Create an expandable function 
+ * which can expand with other function.
+ * Forexample, let f is expandable function and g is normal function.
+ * f.expand(g) expand f with g.
+ * Calling expanded f do the original process of f and then do the g's process. 
+ * 
+ * @return {function(*):*} expandable function
+ */
+sb.expandable = function() {
+    
+    /**
+     * Expandable function.
+     * @type {function(*):*} 
+     */
+    var that = function() {
+        var args = sb.argumentsToArray(arguments);
+        that.funcs.forEach(function(f) {
+            f.apply(that, args);
+        });
+    };
 
-    return constructor;
+    /**
+     * Arguments array of this function.
+     * @type {Array.<*>}
+     */
+    var args = sb.argumentsToArray(arguments);
+
+    /**
+     * Sub functions.
+     * @type {Array.<function(*):*>}
+     */
+    that.funcs = args.filter(function(arg) {
+        return typeof arg === "function";
+    });
+ 
+    /**
+     * Expand with given function.
+     * @param {function(*):*} newFunc new sub function which is run at last.
+     */
+    that.expand = function(newFunc) {
+        if (typeof newFunc === "function") {
+            that.funcs.push(newFunc);
+        }
+        return that;
+    };
+
+    return that;
 };
 /**
- * @private
- * @typedef {function(void):*}
+ * Computed function.
+ * It is used when notifies changing an observable value
+ * to other binded observables by using computing notified value at sb.Binding.
+ * @typedef {function(sb.Parameters):sb.Parameters}
  */
 sb.Computed;
 /**
@@ -80,42 +121,78 @@ sb.Observer = function() {
     };
 };
 /**
- * @param {sb.Observer} observer
- * @param {Object} inputs
- * @param {Object} outputs
- * @param {sb.Compute} compute
+ * A binding between observables.
+ * If an observer which contained of input observables
+ * notifies changing own value to the observer 
+ * observer will notifies values which converted by computed function
+ * to binded observables which contained of output observables. 
+ * 
+ * @param {sb.Observer} observer the observer
+ * @param {sb.Parameters} inputs input observables
+ * @param {sb.Parameters} outputs output observables
+ * @param {sb.Computed} computed computed function
  */
-sb.Binding = function(observer, inputs, outputs, compute) {
-
-    this.inputs = inputs;
-    this.outputs = outputs;
-    this.compute = compute;
+sb.Binding = function(observer, inputs, outputs, computed) {
 
     /**
-     * @param {void}
-     * @return {void}
+     * @type {sb.Binding} own
      */
-    this.bind = function() {
-        observer.add(this);
-        return this;
-    };
+    var that = this;
 
     /**
-     * @param {void}
-     * @return {void}
+     * @type {sb.Parameters} input observables
      */
-    this.unbind = function() {
-        observer.remove(this);
-        return this;
-    };
+    that.inputs = inputs;
 
     /**
-     * @param {Array.<sb.Observable>}
+     * 
+     * @type {sb.Parameters} output observables
+     */
+    that.outputs = outputs;
+
+    /**
+     * Computed function.
+     * @type {sb.Computed}
+     */
+    that.computed = computed;
+
+    /**
+     * Enable this binding.
      * @return {sb.Binding}
      */
-    this.notify = function(callStack) {
-        var result = compute(inputs);
+    that.bind = function() {
+        observer.add(that);
+        return that;
+    };
+
+    /**
+     * Disable this binding.
+     * @return {sb.Binding}
+     */
+    that.unbind = function() {
+        observer.remove(that);
+        return that;
+    };
+
+    /**
+     * Notify changing to output observables.
+     * 
+     * @param {Array.<sb.ObservableProperty>}
+     * @return {sb.Binding}
+     */
+    that.notify = function(callStack) {
+
+        /**
+         * @type {sb.Parameters} result of computed
+         */
+        var result = computed(inputs);
+
+        /**
+         * @type {sb.ObservableProperty} input observable
+         */
         var input = callStack[callStack.length - 1];
+
+        // notify to output observables
         Object.keys(result).forEach(function(name){
             var observable = outputs[name];
             if (input !== observable
@@ -125,7 +202,7 @@ sb.Binding = function(observer, inputs, outputs, compute) {
             }
         });
 
-        return this;
+        return that;
     };
 
 };
@@ -329,27 +406,58 @@ sb.Observable = function(observer, value) {
 (function(){
 
     /**
-     * A set of binding which provide binding functions as method chains.
+     * A set of bindings which provide binding functions as method chains.
      * @param {sb.Observer} observer 
      * @param {Array.<sb.ObservableProperty>} observables
      */
     sb.BindingChain = function(observer, observables) {
 
+        /**
+         * Create bindings.
+         * @type {sb.expandable}
+         */
+        var bindingsMaker = sb.expandable();
+
+        /**
+         * A set of bindings.
+         * @type {Array.<sb.Binding>}
+         */
         var bindings = [];
 
+        /**
+         * Synchronize observables which are same value each other
+         * and when an observable changes, others immediately synchronized.
+         * 
+         * @return {sb.BindingChain} own 
+         */
         this.synchronize = function() {
 
-            var syncObservables = [];
-            var args = arguments;
-            Object.keys(args).forEach(function(i) {
-                var arg = args[i];
-                if (sb.isObservable(arg)
-                        && observables.indexOf(arg) >= 0) {
-                    syncObservables.push(arg);
-                }
-            });
+            /**
+             * Arguments array this function.
+             * @type {Array.<*>}
+             */
+            var args = sb.argumentsToArray(arguments);
 
-            syncObservables.forEach(function(input) {
+            /**
+             * Observables which are synchronized.
+             * @type {Array.<sb.ObservableProperty>}
+             */
+            var syncObservables = [];
+
+            args.forEach(function(arg) {
+                if (sb.isObservable(arg)) {
+                    syncObservables.push(arg);
+                    if (observables.indexOf(arg) < 0) {
+                        observables.push(arg);
+                    }
+                } 
+            }); 
+
+            /**
+             * Bindings which are used for synchronize given observables.
+             * @type {Array.<sb.Binding>}
+             */
+            var syncBindings = syncObservables.map(function(input) {
                 var inputs = {input: input};
                 var outputs = {};
                 syncObservables.forEach(function(output, i) {
@@ -357,60 +465,89 @@ sb.Observable = function(observer, value) {
                         outputs["output"+i] = output;
                     }
                 });
-                var compute = function(inputs) { 
+                var computed = function(inputs) { 
                     var results = {};
                     Object.keys(outputs).forEach(function(key){
                         results[key] = inputs.input();
                     });
                     return results;
                 };
-                var b = new sb.Binding(observer, inputs, outputs, compute);
+                var b = new sb.Binding(observer, inputs, outputs, computed);
+                return b;
+            });
+
+
+            // for lazy evaluation
+            bindingsMaker.expand(function() {
+                bindings = bindings.concat(syncBindings);
+            });
+
+            return this;
+        };
+
+        
+        /**
+         * Add computed binding.
+         * @param {sb.ObservableProperty} observable target observable
+         * @param {sb.Computed} func computed function
+         * @return {sb.BindingChain} own
+         */
+        this.computed = function(observable, func) {
+
+            if (!sb.isObservable(observable)
+                    || typeof func !== "function") {
+                return this;
+            }
+
+            if (observables.indexOf(observable) < 0) {
+                observables.push(observable);
+            }
+
+            // lazy evaluation
+            bindingsMaker.expand(function() {
+                var inputs = {};
+                observables.forEach(function(input, i) {
+                    if (observable !== input) {
+                        inputs["input"+i] = input;
+                    }
+                });
+                var outputs = {output: observable}; 
+
+                var b = new sb.Binding(
+                    observer,
+                    inputs,
+                    outputs,
+                    function(inputs) {
+                        return {output: func(inputs)};
+                    }
+                );
+
                 bindings.push(b);
             });
 
             return this;
         };
 
-        this.compute = function(o, f) {
+        /**
+         * Add callback which call after changing a given observable value.
+         * @param {sb.ObservableProperty} observable target observable.
+         * @param {function(*):*} callback callback function
+         * @return {sb.BindingChain} own
+         */
+        this.onChange = function(observable, callback) {
 
-            if (!sb.isObservable(o)
-                    || typeof f !== "function"
-                    || observables.indexOf(o) < 0){
+            if (!sb.isObservable(observable)
+                    || typeof callback !== "function") {
                 return this;
             }
 
-            var inputs = {};
-            observables.forEach(function(input, i) {
-                if (o !== input) {
-                    inputs["input"+i] = input;
-                }
-            });
-            var outputs = {output: o}; 
-
-            var b = new sb.Binding(
-                observer,
-                inputs,
-                outputs,
-                function(inputs) {
-                    return {output: f(inputs)};
-                }
-            );
-
-            bindings.push(b);
-
-            return this;
-        };
-
-        this.onChange = function(o, callback) {
-            if (!sb.isObservable(o)
-                    || typeof callback !== "function"
-                    || observables.indexOf(o) < 0) {
-                return this;
+            if (observables.indexOf(observable)) {
+                observables.push(observable);
             }
 
             var b = new sb.Binding(
                 observer,
-                {input: o},
+                {input: observable},
                 {},
                 function() {
                     callback();
@@ -418,21 +555,41 @@ sb.Observable = function(observer, value) {
                 }
             );
 
-            bindings.push(b);
+            // for lazy evaluation
+            bindingsMaker.expand(function() {
+                bindings.push(b);
+            });
             return this;
         };
 
+        /**
+         * Enable internal all internal bindings.
+         * @return {sb.BindingChain} own
+         */
         this.bind = function() {
+
+            // init
+            this.unbind();
+            bindingsMaker();
+
             bindings.forEach(function(b) {
                 b.bind();
             });
+
             return this;
         };
 
+        /**
+         * Disable internal all internal bindings.
+         * @return {sb.BindingChain} own
+         */
         this.unbind = function() {
+            
             bindings.forEach(function(b) {
                 b.unbind();
             });
+            bindings = [];
+
             return this;
         };
     };

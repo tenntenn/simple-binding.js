@@ -1,6 +1,6 @@
 package.js
-extend.js
-Compute.js
+expandable.js
+Computed.js
 Observer.js
 Binding.js
 ObservableProperty.js

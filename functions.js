@@ -2,13 +2,13 @@
 (function() {
 
     /**
-     * @const {sb.binding.Observer} default observer.
+     * @const {sb.base.binding.Observer} default observer.
      */
-    var observer = new sb.binding.Observer();
+    var observer = new sb.base.binding.Observer();
 
     /**
      * Create default setting binding chain.
-     * @return {sb.binding.BindingChain} default setting binding chain.
+     * @return {sb.base.binding.BindingChain} default setting binding chain.
      */
     sb.binding = function() {
 
@@ -18,43 +18,43 @@
         var args = sb.util.argumentsToArray(arguments);
 
         /**
-         * @type {Array.<sb.observable.ObservableObject>} 
+         * @type {Array.<sb.base.observable.ObservableObject>} 
          */
         var observables = args.filter(function(arg){
-            return sb.observable.isObservable(arg);
+            return sb.base.observable.isObservableObject(arg);
         });
 
         /**
-         * @type {sb.binding.BindingChain} default setting binding chain.
+         * @type {sb.base.binding.BindingChain} default setting binding chain.
          */
-        var chain = new sb.binding.BindingChain(observer, observables);
+        var chain = new sb.base.binding.BindingChain(observer, observables);
 
         return chain;
     };
 
     /**
-     * Create default setting property of sb.observable.Observable.
+     * Create default setting property of sb.base.observable.Observable.
      * @param {*} initValue initial value.
-     * @return {sb.observable.Observable} default setting of sb.observable.Observable.
+     * @return {sb.base.observable.Observable} default setting of sb.base.observable.Observable.
      */
     sb.observable = function(initValue) {
         /**
-         * @type {sb.observable.Observable} default setting of sb.observable.Observable.
+         * @type {sb.base.observable.Observable} default setting of sb.base.observable.Observable.
          */
-        var observable = new sb.observable.newObservable(observer, initValue);
+        var observable = new sb.base.observable.newObservable(observer, initValue);
         return observable;
     };
 
      /**
-      * Create default setting property of sb.observable.ObservableArray.
+      * Create default setting property of sb.base.observable.ObservableArray.
       * @param {*} array initial value.
-      * @return {sb.observable.ObservableArray} default setting sb.observable.ObservableArray.
+      * @return {sb.base.observable.ObservableArray} default setting sb.base.observable.ObservableArray.
       */
     sb.observableArray = function(array) {
         /**
-         * @type {sb.observable.ObservableArray} default setting of sb.observable.ObservableArray.
+         * @type {sb.base.observable.ObservableArray} default setting of sb.base.observable.ObservableArray.
          */
-        var observableArray = new sb.observable.newObservableArray(observer, array);
+        var observableArray = new sb.base.observable.newObservableArray(observer, array);
         return observableArray;
     };
 })();

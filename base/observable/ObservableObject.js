@@ -4,14 +4,14 @@
  *  + notify function as method
  * @interface
  */
-sb.observable.ObservableObject;
+sb.base.observable.ObservableObject;
 
 /**
  * Check either obj is sb.ObservableyObject or not.
  * @param {*} tested object 
  * @return {boolean} true indicates that obj implements sb.ObservableObject. 
  */
-sb.observable.isObservableObject = function(obj) {
+sb.base.observable.isObservableObject = function(obj) {
 
     // either obj is a function or not?
     if (typeof obj !== "function") { 

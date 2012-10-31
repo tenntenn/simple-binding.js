@@ -5,38 +5,38 @@
  * observer will notifies values which converted by computed function
  * to binded observables which contained of output observables. 
  * 
- * @param {sb.Observer} observer the observer
- * @param {sb.Parameters} inputs input observables
- * @param {sb.Parameters} outputs output observables
- * @param {sb.Computed} computed computed function
+ * @param {sb.base.binding.Observer} observer the observer
+ * @param {sb.base.binding.Parameters} inputs input observables
+ * @param {sb.base.binding.Parameters} outputs output observables
+ * @param {sb.base.binding.Computed} computed computed function
  */
-sb.binding.Binding = function(observer, inputs, outputs, computed) {
+sb.base.binding.Binding = function(observer, inputs, outputs, computed) {
 
     /**
-     * @type {sb.binding.Binding} own
+     * @type {sb.base.binding.Binding} own
      */
     var that = this;
 
     /**
-     * @type {sb.binding.Parameters} input observables
+     * @type {sb.base.binding.Parameters} input observables
      */
     that.inputs = inputs;
 
     /**
      * 
-     * @type {sb.binding.Parameters} output observables
+     * @type {sb.base.binding.Parameters} output observables
      */
     that.outputs = outputs;
 
     /**
      * Computed function.
-     * @type {sb.binding.Computed}
+     * @type {sb.base.binding.Computed}
      */
     that.computed = computed;
 
     /**
      * Enable this binding.
-     * @return {sb.binding.Binding}
+     * @return {sb.base.binding.Binding}
      */
     that.bind = function() {
         observer.add(that);
@@ -45,7 +45,7 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
 
     /**
      * Disable this binding.
-     * @return {sb.binding.Binding}
+     * @return {sb.base.binding.Binding}
      */
     that.unbind = function() {
         observer.remove(that);
@@ -55,23 +55,23 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
     /**
      * Notify changing to output observables.
      * 
-     * @param {sb.binding.Propagation} propagation propagation context
-     * @return {sb.binding.Binding}
+     * @param {sb.base.binding.Propagation} propagation propagation context
+     * @return {sb.base.binding.Binding}
      */
     that.notify = function(propagation) {
 
         /**
-         * @type {sb.binding.Parameters} result of computed
+         * @type {sb.base.binding.Parameters} result of computed
          */
         var result = computed(inputs);
 
         /**
-         * @type {Array.<sb.observable.ObservableObject>}
+         * @type {Array.<sb.base.observable.ObservableObject>}
          */
         var callStack = propagation.callStack();
 
         /**
-         * @type {sb.observable.ObservableObject} input observable
+         * @type {sb.base.observable.ObservableObject} input observable
          */
         var input = callStack[callStack.length - 1];
 
@@ -80,7 +80,7 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
             var observable = outputs[name];
             if (input !== observable
                     && outputs.hasOwnProperty(name)
-                    && sb.isObservable(observable)) {
+                    && sb.base.observable.isObservableObject(observable)) {
                 observable.notify(propagation, result[name]);
             }
         });

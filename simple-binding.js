@@ -1,3 +1,33 @@
+/** @preserve simple-binding.js - It is a javascript simple binding library and provides simple observable objects and binding.
+* https://github.com/tenntenn/simple-binding.js
+*
+* Copyright (c) 2012, Takuya Ueda and Yuji Katsumata.
+* All rights reserved.
+* 
+* Redistribution and use in source and binary forms, with or without modification,
+* are permitted provided that the following conditions are met:
+* 
+* * Redistributions of source code must retain the above copyright notice,
+*   this list of conditions and the following disclaimer.
+* * Redistributions in binary form must reproduce the above copyright notice,
+*   this list of conditions and the following disclaimer in the documentation
+*   and/or other materials provided with the distribution.
+* * Neither the name of the author nor the names of its contributors may be used
+*   to endorse or promote products derived from this software
+*   without specific prior written permission.
+* 
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+* ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+* DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+* ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+* (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+* ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 /**
  * @namespace 
  */
@@ -6,7 +36,7 @@ var sb = {};
  * It provides utility functions and data structures.
  * @namespace
  */
-sb.util = {};
+sb.util = sb.util || {};
 /**
  * Create an expandable function 
  * which can expand with other function.
@@ -23,7 +53,7 @@ sb.util.expandable = function() {
      * @type {function(*):*} 
      */
     var that = function() {
-        var args = sb.argumentsToArray(arguments);
+        var args = sb.util.argumentsToArray(arguments);
         that.funcs.forEach(function(f) {
             f.apply(that, args);
         });
@@ -33,7 +63,7 @@ sb.util.expandable = function() {
      * Arguments array of this function.
      * @type {Array.<*>}
      */
-    var args = sb.argumentsToArray(arguments);
+    var args = sb.util.argumentsToArray(arguments);
 
     /**
      * Sub functions.
@@ -65,30 +95,35 @@ sb.util.argumentsToArray = function(args) {
     return arry;
 };
 /**
+ * It provides base of structures.
+ * @namespace
+ */
+sb.base = sb.base || {};
+/**
  * It provides objects which are related to binding.
  * @namespace
  */
-sb.binding = {};
+sb.base.binding = sb.base.binding || {};
 /**
  * Computed function.
  * It is used when notifies changing an observable value
- * to other binded observables by using computing notified value at sb.Binding.
- * @typedef {function(sb.Parameters):sb.Parameters}
+ * to other binded observables by using computing notified value at sb.base.binding.Binding.
+ * @typedef {function(sb.base.binding.Parameters):sb.base.binding.Parameters}
  */
-sb.Computed;
+sb.base.binding.Computed;
 /**
  * It provide context of propagation and can test availability of propagation.
- * @typedef {function(sb.ObservableProperty, Object): boolean}
+ * @typedef {function(sb.base.binding.ObservableProperty, Object): boolean}
  */
-sb.Propagation;
+sb.base.binding.Propagation;
 /**
  * 
  * @constructor
  */
-sb.PropagationGuardian = function(stopCondition, timeout) {
+sb.base.binding.PropagationGuardian = function(continueCondition, timeout) {
 
-    if (typeof stopCondition !== "function") {
-        stopCondition = function() {
+    if (typeof continueCondition !== "function") {
+        continueCondition = function() {
             return true;
         };
     }
@@ -102,14 +137,14 @@ sb.PropagationGuardian = function(stopCondition, timeout) {
 
         /**
          * Call Stack of observable.
-         * @type {Array.<sb.ObservableProperty>}
+         * @type {Array.<sb.base.binding.ObservableProperty>}
          */
         var callStack = [];
 
         /**
-         * Test propagation is success with given stopCondition and timeout.
-         * @type {sb.Propagation}
-         * @param {sb.ObservableProperty} source adjacent source of notify propagation
+         * Test propagation is success with given continueCondition and timeout.
+         * @type {sb.base.binding.Propagation}
+         * @param {sb.base.binding.ObservableProperty} source adjacent source of notify propagation
          * @param {Object} e event object.
          */
         var propagation =  function(source, e) {
@@ -136,7 +171,7 @@ sb.PropagationGuardian = function(stopCondition, timeout) {
                 return false;
             }
 
-            if (!stopCondition(source, e)) {
+            if (!continueCondition(source, e)) {
                 return false;
             }
 
@@ -151,37 +186,36 @@ sb.PropagationGuardian = function(stopCondition, timeout) {
 };
 
 /**
- * Default sb.PropagationGuardian.
- * @const {sb.PropagationGuardian}
+ * Default sb.base.binding.PropagationGuardian.
+ * @const {sb.base.binding.PropagationGuardian}
  */
-sb.defaultPropagationGuardian = new sb.PropagationGuardian(null, 1);
+sb.base.binding.defaultPropagationGuardian = new sb.base.binding.PropagationGuardian(null, 1);
 
 /**
  * @constructor
  */
-sb.Observer = function(propagationGuardian) {
+sb.base.binding.Observer = function(propagationGuardian) {
 
     if (!propagationGuardian
-            || !propagationGuardian instanceof sb.PropagationGuardian) {
-        console.log("hoge");
-        propagationGuardian = sb.defaultPropagationGuardian;
+            || !propagationGuardian instanceof sb.base.binding.PropagationGuardian) {
+        propagationGuardian = sb.base.binding.defaultPropagationGuardian;
     }
 
     /**
-     * @type {Array.<sb.Binding>}
+     * @type {Array.<sb.base.binding.Binding>}
      */
     var bindings = [];
 
     /**
-     * Get sb.PropagationGuardian.
-     * @return {sb.PropagationGuardian}
+     * Get sb.base.binding.PropagationGuardian.
+     * @return {sb.base.binding.PropagationGuardian}
      */
     this.getPropagationGuardian = function() {
         return propagationGuardian;
     }
 
     /**
-     * @param {sb.Binding} binding
+     * @param {sb.base.binding.Binding} binding
      * @return void
      */
     this.add = function(binding) {
@@ -197,8 +231,8 @@ sb.Observer = function(propagationGuardian) {
     };
 
     /**
-     * @param {sb.Propagation} propagation 
-     * @param {Array<sb.Observable>} input
+     * @param {sb.base.binding.Propagation} propagation 
+     * @param {Array<sb.base.binding.Observable>} input
      * @return void
      */
     this.notify = function(propagation, input) {
@@ -222,7 +256,7 @@ sb.Observer = function(propagationGuardian) {
    };
 
     /**
-     * @param {sb.Binding} target
+     * @param {sb.base.binding.Binding} target
      * @return void
      */
     this.remove = function(target) {
@@ -244,33 +278,33 @@ sb.Observer = function(propagationGuardian) {
  * @param {sb.Parameters} outputs output observables
  * @param {sb.Computed} computed computed function
  */
-sb.binding.Binding = function(observer, inputs, outputs, computed) {
+sb.base.binding.Binding = function(observer, inputs, outputs, computed) {
 
     /**
-     * @type {sb.binding.Binding} own
+     * @type {sb.base.binding.Binding} own
      */
     var that = this;
 
     /**
-     * @type {sb.binding.Parameters} input observables
+     * @type {sb.base.binding.Parameters} input observables
      */
     that.inputs = inputs;
 
     /**
      * 
-     * @type {sb.binding.Parameters} output observables
+     * @type {sb.base.binding.Parameters} output observables
      */
     that.outputs = outputs;
 
     /**
      * Computed function.
-     * @type {sb.binding.Computed}
+     * @type {sb.base.binding.Computed}
      */
     that.computed = computed;
 
     /**
      * Enable this binding.
-     * @return {sb.binding.Binding}
+     * @return {sb.base.binding.Binding}
      */
     that.bind = function() {
         observer.add(that);
@@ -279,7 +313,7 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
 
     /**
      * Disable this binding.
-     * @return {sb.binding.Binding}
+     * @return {sb.base.binding.Binding}
      */
     that.unbind = function() {
         observer.remove(that);
@@ -289,23 +323,23 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
     /**
      * Notify changing to output observables.
      * 
-     * @param {sb.binding.Propagation} propagation propagation context
-     * @return {sb.binding.Binding}
+     * @param {sb.base.binding.Propagation} propagation propagation context
+     * @return {sb.base.binding.Binding}
      */
     that.notify = function(propagation) {
 
         /**
-         * @type {sb.binding.Parameters} result of computed
+         * @type {sb.base.binding.Parameters} result of computed
          */
         var result = computed(inputs);
 
         /**
-         * @type {Array.<sb.observable.ObservableObject>}
+         * @type {Array.<sb.base.observable.ObservableObject>}
          */
         var callStack = propagation.callStack();
 
         /**
-         * @type {sb.observable.ObservableObject} input observable
+         * @type {sb.base.observable.ObservableObject} input observable
          */
         var input = callStack[callStack.length - 1];
 
@@ -327,10 +361,10 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
 
     /**
      * A set of bindings which provide binding functions as method chains.
-     * @param {sb.binding.Observer} observer 
-     * @param {Array.<sb.observable.ObservableObject>} observables
+     * @param {sb.base.binding.Observer} observer 
+     * @param {Array.<sb.base.observable.ObservableObject>} observables
      */
-    sb.binding.BindingChain = function(observer, observables) {
+    sb.base.binding.BindingChain = function(observer, observables) {
 
         /**
          * Create bindings.
@@ -340,7 +374,7 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
 
         /**
          * A set of bindings.
-         * @type {Array.<sb.binding.Binding>}
+         * @type {Array.<sb.base.binding.Binding>}
          */
         var bindings = [];
 
@@ -348,7 +382,7 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
          * Synchronize observables which are same value each other
          * and when an observable changes, others immediately synchronized.
          * 
-         * @return {sb.binding.BindingChain} own 
+         * @return {sb.base.binding.BindingChain} own 
          */
         this.synchronize = function() {
 
@@ -360,12 +394,12 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
 
             /**
              * Observables which are synchronized.
-             * @type {Array.<sb.binding.ObservableObject>}
+             * @type {Array.<sb.base.binding.ObservableObject>}
              */
             var syncObservables = [];
 
             args.forEach(function(arg) {
-                if (sb.observable.isObservable(arg)) {
+                if (sb.base.observable.isObservableObject(arg)) {
                     syncObservables.push(arg);
                     if (observables.indexOf(arg) < 0) {
                         observables.push(arg);
@@ -375,7 +409,7 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
 
             /**
              * Bindings which are used for synchronize given observables.
-             * @type {Array.<sb.binding.Binding>}
+             * @type {Array.<sb.base.binding.Binding>}
              */
             var syncBindings = syncObservables.map(function(input) {
                 var inputs = {input: input};
@@ -392,7 +426,7 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
                     });
                     return results;
                 };
-                var b = new sb.binding.Binding(observer, inputs, outputs, computed);
+                var b = new sb.base.binding.Binding(observer, inputs, outputs, computed);
                 return b;
             });
 
@@ -408,13 +442,13 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
         
         /**
          * Add computed binding.
-         * @param {sb.observable.ObservableObject} observable target observable
-         * @param {sb.binding.Computed} func computed function
-         * @return {sb.binding.BindingChain} own
+         * @param {sb.base.observable.ObservableObject} observable target observable
+         * @param {sb.base.binding.Computed} func computed function
+         * @return {sb.base.binding.BindingChain} own
          */
         this.computed = function(observable, func) {
 
-            if (!sb.observable.isObservable(observable)
+            if (!sb.base.observable.isObservableObject(observable)
                     || typeof func !== "function") {
                 return this;
             }
@@ -433,7 +467,7 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
                 });
                 var outputs = {output: observable}; 
 
-                var b = new sb.binding.Binding(
+                var b = new sb.base.binding.Binding(
                     observer,
                     inputs,
                     outputs,
@@ -450,13 +484,13 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
 
         /**
          * Add callback which call after changing a given observable value.
-         * @param {sb.observable.ObservableObject} observable target observable.
+         * @param {sb.base.observable.ObservableObject} observable target observable.
          * @param {function(*):*} callback callback function
-         * @return {sb.binding.BindingChain} own
+         * @return {sb.base.binding.BindingChain} own
          */
         this.onChange = function(observable, callback) {
 
-            if (!sb.observable.isObservable(observable)
+            if (!sb.base.observable.isObservableObject(observable)
                     || typeof callback !== "function") {
                 return this;
             }
@@ -465,7 +499,7 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
                 observables.push(observable);
             }
 
-            var b = new sb.binding.Binding(
+            var b = new sb.base.binding.Binding(
                 observer,
                 {input: observable},
                 {},
@@ -484,7 +518,7 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
 
         /**
          * Enable internal all internal bindings.
-         * @return {sb.binding.BindingChain} own
+         * @return {sb.base.binding.BindingChain} own
          */
         this.bind = function() {
 
@@ -501,7 +535,7 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
 
         /**
          * Disable internal all internal bindings.
-         * @return {sb.binding.BindingChain} own
+         * @return {sb.base.binding.BindingChain} own
          */
         this.unbind = function() {
             
@@ -519,21 +553,21 @@ sb.binding.Binding = function(observer, inputs, outputs, computed) {
  * It provides data structures of observables.
  * @namespace
  */
-sb.observable = {};
+sb.base.observable = sb.base.observables || {};
 /**
  * An interface for observable objects.
  * It is a function and provides followings :
  *  + notify function as method
  * @interface
  */
-sb.observable.ObservableObject;
+sb.base.observable.ObservableObject;
 
 /**
  * Check either obj is sb.ObservableyObject or not.
  * @param {*} tested object 
  * @return {boolean} true indicates that obj implements sb.ObservableObject. 
  */
-sb.observable.isObservableObject = function(obj) {
+sb.base.observable.isObservableObject = function(obj) {
 
     // either obj is a function or not?
     if (typeof obj !== "function") { 
@@ -553,19 +587,19 @@ sb.observable.isObservableObject = function(obj) {
  *
  * @typedef {function(*):*}
 */
-sb.observable.Observable;
+sb.base.observable.Observable;
 
 /**
- * Create an sb.observable.Observable object.
+ * Create an sb.base.observable.Observable object.
  * 
  * @param {sb.Observer} observer observer of this observable value
  * @param {*} value
  */
-sb.observable.newObservable = function(observer, value) {
+sb.base.observable.newObservable = function(observer, value) {
 
     /**
-     * @implements {sb.observable.ObservableObject}
-     * @type {sb.observable.Observable}
+     * @implements {sb.base.observable.ObservableObject}
+     * @type {sb.base.observable.Observable}
      * @param {*} v it is set for this observable 
      * @return {*} set value at this observable
      */
@@ -604,17 +638,17 @@ sb.observable.newObservable = function(observer, value) {
 /**
  * An array which can be observed.
  * If new element is added or an element deleted,
- * sb.observable.ObservableArray notify binded other sb.ObservableObject.
+ * sb.base.observable.ObservableArray notify binded other sb.ObservableObject.
  *
  * @typedef {function():Array.<*>}
  */
-sb.observable.ObservableArray;
+sb.base.observable.ObservableArray;
 
 /**
  * @param {sb.Observer} observer
  * @param {Array.<*>} initArray
  */
-sb.observable.newObservableArray = function(observer, initArray) {
+sb.base.observable.newObservableArray = function(observer, initArray) {
 
     /**
      * @type {Array.<*>} internal array
@@ -687,7 +721,7 @@ sb.observable.newObservableArray = function(observer, initArray) {
     ].forEach(function(fn) {
         if (typeof array[fn] === "function") {
             observable[fn] = function() {
-                var args = sb.argumentsToArray(arguments);
+                var args = sb.util.argumentsToArray(arguments);
                 var ret = array[fn].apply(array, args); 
                 /**
                  * Propagation context.
@@ -711,7 +745,7 @@ sb.observable.newObservableArray = function(observer, initArray) {
     ].forEach(function(fn) {
          if (typeof array[fn] === "function") {
             observable[fn] = function() {
-                var args = sb.argumentsToArray(arguments);
+                var args = sb.util.argumentsToArray(arguments);
                 var ret = array[fn].apply(array, args); 
 
                 // wrap with ObservableArray
@@ -735,7 +769,7 @@ sb.observable.newObservableArray = function(observer, initArray) {
     ].forEach(function(fn) {
         if (typeof array[fn] === "function") {
             observable[fn] = function() {
-                var args = sb.argumentsToArray(arguments);
+                var args = sb.util.argumentsToArray(arguments);
                 var ret = array[fn].apply(array, args);
                 return ret;
             };
@@ -748,60 +782,60 @@ sb.observable.newObservableArray = function(observer, initArray) {
 (function() {
 
     /**
-     * @const {sb.Observer} default observer.
+     * @const {sb.base.binding.Observer} default observer.
      */
-    var observer = new sb.Observer();
+    var observer = new sb.base.binding.Observer();
 
     /**
      * Create default setting binding chain.
-     * @return {sb.BindingChain} default setting binding chain.
+     * @return {sb.base.binding.BindingChain} default setting binding chain.
      */
     sb.binding = function() {
 
         /**
          * @type {Array.<*>} arguments array of this function.
          */
-        var args = sb.argumentsToArray(arguments);
+        var args = sb.util.argumentsToArray(arguments);
 
         /**
-         * @type {Array.<sb.ObservableProperty>} 
+         * @type {Array.<sb.base.observable.ObservableObject>} 
          */
         var observables = args.filter(function(arg){
-            return sb.isObservable(arg);
+            return sb.base.observable.isObservableObject(arg);
         });
 
         /**
-         * @type {sb.BindingChain} default setting binding chain.
+         * @type {sb.base.binding.BindingChain} default setting binding chain.
          */
-        var chain = new sb.BindingChain(observer, observables);
+        var chain = new sb.base.binding.BindingChain(observer, observables);
 
         return chain;
     };
 
     /**
-     * Create default setting property of sb.Observable.
+     * Create default setting property of sb.base.observable.Observable.
      * @param {*} initValue initial value.
-     * @return {sb.ObservableProperty} default setting property of sb.Observable.
+     * @return {sb.base.observable.Observable} default setting of sb.base.observable.Observable.
      */
     sb.observable = function(initValue) {
         /**
-         * @type {sb.ObservableProperty} default setting property of sb.Observable.
+         * @type {sb.base.observable.Observable} default setting of sb.base.observable.Observable.
          */
-        var observable = new sb.Observable(observer, initValue);
-        return observable.property;
+        var observable = new sb.base.observable.newObservable(observer, initValue);
+        return observable;
     };
 
      /**
-      * Create default setting property of sb.ObservableArray.
+      * Create default setting property of sb.base.observable.ObservableArray.
       * @param {*} array initial value.
-      * @return {sb.ObservableProperty} default setting property of sb.ObservableArray.
+      * @return {sb.base.observable.ObservableArray} default setting sb.base.observable.ObservableArray.
       */
-    sb.observableArray = function(array) {
+    sb.base.observableArray = function(array) {
         /**
-         * @type {sb.ObservableProperty} default setting property of sb.ObservableArray.
+         * @type {sb.base.observable.ObservableArray} default setting of sb.base.observable.ObservableArray.
          */
-        var observableArray = new sb.ObservableArray(observer, array);
-        return observableArray.property;
+        var observableArray = new sb.base.observable.newObservableArray(observer, array);
+        return observableArray;
     };
 })();
 

@@ -1,29 +1,28 @@
 /**
  * @constructor
  */
-sb.binding.Observer = function(propagationGuardian) {
+sb.base.binding.Observer = function(propagationGuardian) {
 
     if (!propagationGuardian
-            || !propagationGuardian instanceof sb.binding.PropagationGuardian) {
-        console.log("hoge");
-        propagationGuardian = sb.binding.defaultPropagationGuardian;
+            || !propagationGuardian instanceof sb.base.binding.PropagationGuardian) {
+        propagationGuardian = sb.base.binding.defaultPropagationGuardian;
     }
 
     /**
-     * @type {Array.<sb.binding.Binding>}
+     * @type {Array.<sb.base.binding.Binding>}
      */
     var bindings = [];
 
     /**
-     * Get sb.binding.PropagationGuardian.
-     * @return {sb.binding.PropagationGuardian}
+     * Get sb.base.binding.PropagationGuardian.
+     * @return {sb.base.binding.PropagationGuardian}
      */
     this.getPropagationGuardian = function() {
         return propagationGuardian;
     }
 
     /**
-     * @param {sb.binding.Binding} binding
+     * @param {sb.base.binding.Binding} binding
      * @return void
      */
     this.add = function(binding) {
@@ -39,8 +38,8 @@ sb.binding.Observer = function(propagationGuardian) {
     };
 
     /**
-     * @param {sb.binding.Propagation} propagation 
-     * @param {Array<sb.binding.Observable>} input
+     * @param {sb.base.binding.Propagation} propagation 
+     * @param {Array<sb.base.binding.Observable>} input
      * @return void
      */
     this.notify = function(propagation, input) {
@@ -64,7 +63,7 @@ sb.binding.Observer = function(propagationGuardian) {
    };
 
     /**
-     * @param {sb.binding.Binding} target
+     * @param {sb.base.binding.Binding} target
      * @return void
      */
     this.remove = function(target) {

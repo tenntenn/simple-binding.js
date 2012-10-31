@@ -2,10 +2,10 @@
 
     /**
      * A set of bindings which provide binding functions as method chains.
-     * @param {sb.binding.Observer} observer 
-     * @param {Array.<sb.observable.ObservableObject>} observables
+     * @param {sb.base.binding.Observer} observer 
+     * @param {Array.<sb.base.observable.ObservableObject>} observables
      */
-    sb.binding.BindingChain = function(observer, observables) {
+    sb.base.binding.BindingChain = function(observer, observables) {
 
         /**
          * Create bindings.
@@ -15,7 +15,7 @@
 
         /**
          * A set of bindings.
-         * @type {Array.<sb.binding.Binding>}
+         * @type {Array.<sb.base.binding.Binding>}
          */
         var bindings = [];
 
@@ -23,7 +23,7 @@
          * Synchronize observables which are same value each other
          * and when an observable changes, others immediately synchronized.
          * 
-         * @return {sb.binding.BindingChain} own 
+         * @return {sb.base.binding.BindingChain} own 
          */
         this.synchronize = function() {
 
@@ -35,12 +35,12 @@
 
             /**
              * Observables which are synchronized.
-             * @type {Array.<sb.binding.ObservableObject>}
+             * @type {Array.<sb.base.binding.ObservableObject>}
              */
             var syncObservables = [];
 
             args.forEach(function(arg) {
-                if (sb.observable.isObservable(arg)) {
+                if (sb.base.observable.isObservableObject(arg)) {
                     syncObservables.push(arg);
                     if (observables.indexOf(arg) < 0) {
                         observables.push(arg);
@@ -50,7 +50,7 @@
 
             /**
              * Bindings which are used for synchronize given observables.
-             * @type {Array.<sb.binding.Binding>}
+             * @type {Array.<sb.base.binding.Binding>}
              */
             var syncBindings = syncObservables.map(function(input) {
                 var inputs = {input: input};
@@ -67,7 +67,7 @@
                     });
                     return results;
                 };
-                var b = new sb.binding.Binding(observer, inputs, outputs, computed);
+                var b = new sb.base.binding.Binding(observer, inputs, outputs, computed);
                 return b;
             });
 
@@ -83,13 +83,13 @@
         
         /**
          * Add computed binding.
-         * @param {sb.observable.ObservableObject} observable target observable
-         * @param {sb.binding.Computed} func computed function
-         * @return {sb.binding.BindingChain} own
+         * @param {sb.base.observable.ObservableObject} observable target observable
+         * @param {sb.base.binding.Computed} func computed function
+         * @return {sb.base.binding.BindingChain} own
          */
         this.computed = function(observable, func) {
 
-            if (!sb.observable.isObservable(observable)
+            if (!sb.base.observable.isObservableObject(observable)
                     || typeof func !== "function") {
                 return this;
             }
@@ -108,7 +108,7 @@
                 });
                 var outputs = {output: observable}; 
 
-                var b = new sb.binding.Binding(
+                var b = new sb.base.binding.Binding(
                     observer,
                     inputs,
                     outputs,
@@ -125,13 +125,13 @@
 
         /**
          * Add callback which call after changing a given observable value.
-         * @param {sb.observable.ObservableObject} observable target observable.
+         * @param {sb.base.observable.ObservableObject} observable target observable.
          * @param {function(*):*} callback callback function
-         * @return {sb.binding.BindingChain} own
+         * @return {sb.base.binding.BindingChain} own
          */
         this.onChange = function(observable, callback) {
 
-            if (!sb.observable.isObservable(observable)
+            if (!sb.base.observable.isObservableObject(observable)
                     || typeof callback !== "function") {
                 return this;
             }
@@ -140,7 +140,7 @@
                 observables.push(observable);
             }
 
-            var b = new sb.binding.Binding(
+            var b = new sb.base.binding.Binding(
                 observer,
                 {input: observable},
                 {},
@@ -159,7 +159,7 @@
 
         /**
          * Enable internal all internal bindings.
-         * @return {sb.binding.BindingChain} own
+         * @return {sb.base.binding.BindingChain} own
          */
         this.bind = function() {
 
@@ -176,7 +176,7 @@
 
         /**
          * Disable internal all internal bindings.
-         * @return {sb.binding.BindingChain} own
+         * @return {sb.base.binding.BindingChain} own
          */
         this.unbind = function() {
             

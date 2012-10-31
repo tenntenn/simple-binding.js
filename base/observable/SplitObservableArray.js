@@ -1,15 +1,15 @@
 /**
  * 
  */
-sb.observable.SplitObservableArray;
+sb.base.observable.SplitObservableArray;
 
 /**
- * Create sb.observable.SplitObservableArray.
+ * Create sb.base.observable.SplitObservableArray.
  * @param {sb.Observer} observer observer of this observableObject
- * @param {sb.observable.ObservableArray|Array.<*>} allElements sb.observable.ObservableArray or javascript array contains all elements
- * @param {sb.observable.SplittingStrategy}
+ * @param {sb.base.observable.ObservableArray|Array.<*>} allElements sb.base.observable.ObservableArray or javascript array contains all elements
+ * @param {sb.base.observable.SplittingStrategy}
  */
-sb.observable.newSplitObservableArray = function(observer, allElements) {
+sb.base.observable.newSplitObservableArray = function(observer, allElements) {
 
         var observableObject = sb.ObservableArray();
 

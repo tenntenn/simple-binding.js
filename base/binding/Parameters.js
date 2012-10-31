@@ -1,5 +1,5 @@
 /**
- * Inputs or Outputs for sb.binding.Computed function.
+ * Inputs or Outputs for sb.base.binding.Computed function.
  * @typedef {Object}
  */
-sb.binding.Parameters;
+sb.base.binding.Parameters;

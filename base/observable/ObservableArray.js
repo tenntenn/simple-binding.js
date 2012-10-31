@@ -2,17 +2,17 @@
 /**
  * An array which can be observed.
  * If new element is added or an element deleted,
- * sb.observable.ObservableArray notify binded other sb.ObservableObject.
+ * sb.base.observable.ObservableArray notify binded other sb.ObservableObject.
  *
  * @typedef {function():Array.<*>}
  */
-sb.observable.ObservableArray;
+sb.base.observable.ObservableArray;
 
 /**
  * @param {sb.Observer} observer
  * @param {Array.<*>} initArray
  */
-sb.observable.newObservableArray = function(observer, initArray) {
+sb.base.observable.newObservableArray = function(observer, initArray) {
 
     /**
      * @type {Array.<*>} internal array
@@ -85,7 +85,7 @@ sb.observable.newObservableArray = function(observer, initArray) {
     ].forEach(function(fn) {
         if (typeof array[fn] === "function") {
             observable[fn] = function() {
-                var args = sb.argumentsToArray(arguments);
+                var args = sb.util.argumentsToArray(arguments);
                 var ret = array[fn].apply(array, args); 
                 /**
                  * Propagation context.
@@ -109,7 +109,7 @@ sb.observable.newObservableArray = function(observer, initArray) {
     ].forEach(function(fn) {
          if (typeof array[fn] === "function") {
             observable[fn] = function() {
-                var args = sb.argumentsToArray(arguments);
+                var args = sb.util.argumentsToArray(arguments);
                 var ret = array[fn].apply(array, args); 
 
                 // wrap with ObservableArray
@@ -133,7 +133,7 @@ sb.observable.newObservableArray = function(observer, initArray) {
     ].forEach(function(fn) {
         if (typeof array[fn] === "function") {
             observable[fn] = function() {
-                var args = sb.argumentsToArray(arguments);
+                var args = sb.util.argumentsToArray(arguments);
                 var ret = array[fn].apply(array, args);
                 return ret;
             };

@@ -3,19 +3,19 @@
  *
  * @typedef {function(*):*}
 */
-sb.observable.Observable;
+sb.base.observable.Observable;
 
 /**
- * Create an sb.observable.Observable object.
+ * Create an sb.base.observable.Observable object.
  * 
  * @param {sb.Observer} observer observer of this observable value
  * @param {*} value
  */
-sb.observable.newObservable = function(observer, value) {
+sb.base.observable.newObservable = function(observer, value) {
 
     /**
-     * @implements {sb.observable.ObservableObject}
-     * @type {sb.observable.Observable}
+     * @implements {sb.base.observable.ObservableObject}
+     * @type {sb.base.observable.Observable}
      * @param {*} v it is set for this observable 
      * @return {*} set value at this observable
      */

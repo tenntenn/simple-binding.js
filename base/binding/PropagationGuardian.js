@@ -2,7 +2,7 @@
  * 
  * @constructor
  */
-sb.binding.PropagationGuardian = function(continueCondition, timeout) {
+sb.base.binding.PropagationGuardian = function(continueCondition, timeout) {
 
     if (typeof continueCondition !== "function") {
         continueCondition = function() {
@@ -19,14 +19,14 @@ sb.binding.PropagationGuardian = function(continueCondition, timeout) {
 
         /**
          * Call Stack of observable.
-         * @type {Array.<sb.binding.ObservableProperty>}
+         * @type {Array.<sb.base.binding.ObservableProperty>}
          */
         var callStack = [];
 
         /**
          * Test propagation is success with given continueCondition and timeout.
-         * @type {sb.binding.Propagation}
-         * @param {sb.binding.ObservableProperty} source adjacent source of notify propagation
+         * @type {sb.base.binding.Propagation}
+         * @param {sb.base.binding.ObservableProperty} source adjacent source of notify propagation
          * @param {Object} e event object.
          */
         var propagation =  function(source, e) {
@@ -68,8 +68,8 @@ sb.binding.PropagationGuardian = function(continueCondition, timeout) {
 };
 
 /**
- * Default sb.binding.PropagationGuardian.
- * @const {sb.binding.PropagationGuardian}
+ * Default sb.base.binding.PropagationGuardian.
+ * @const {sb.base.binding.PropagationGuardian}
  */
-sb.binding.defaultPropagationGuardian = new sb.binding.PropagationGuardian(null, 1);
+sb.base.binding.defaultPropagationGuardian = new sb.base.binding.PropagationGuardian(null, 1);
 

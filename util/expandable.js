@@ -14,7 +14,7 @@ sb.util.expandable = function() {
      * @type {function(*):*} 
      */
     var that = function() {
-        var args = sb.argumentsToArray(arguments);
+        var args = sb.util.argumentsToArray(arguments);
         that.funcs.forEach(function(f) {
             f.apply(that, args);
         });
@@ -24,7 +24,7 @@ sb.util.expandable = function() {
      * Arguments array of this function.
      * @type {Array.<*>}
      */
-    var args = sb.argumentsToArray(arguments);
+    var args = sb.util.argumentsToArray(arguments);
 
     /**
      * Sub functions.

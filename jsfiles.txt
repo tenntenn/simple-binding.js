@@ -5,19 +5,22 @@ util/namespace.js
 util/expandable.js
 util/argumentsToArray.js
 
+# base
+base/namespace.js
+
 # bindings
-binding/namespace.js
-binding/Computed.js
-binding/Propagation.js
-binding/PropagationGuardian.js
-binding/Observer.js
-binding/Binding.js
-binding/BindingChain.js
+base/binding/namespace.js
+base/binding/Computed.js
+base/binding/Propagation.js
+base/binding/PropagationGuardian.js
+base/binding/Observer.js
+base/binding/Binding.js
+base/binding/BindingChain.js
 
 # observables
-observable/namespace.js
-observable/ObservableObject.js
-observable/Observable.js
-observable/ObservableArray.js
+base/observable/namespace.js
+base/observable/ObservableObject.js
+base/observable/Observable.js
+base/observable/ObservableArray.js
 
 functions.js

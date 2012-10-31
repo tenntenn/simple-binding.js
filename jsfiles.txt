@@ -1,13 +1,23 @@
-package.js
-expandable.js
-Computed.js
-Propagation.js
-PropagationGuardian.js
-Observer.js
-Binding.js
-ObservableProperty.js
-Observable.js
-ObservableArray.js
-BindingChain.js
-argumentsToArray.js
+namespace.js
+
+# utilities
+util/namespace.js
+util/expandable.js
+util/argumentsToArray.js
+
+# bindings
+binding/namespace.js
+binding/Computed.js
+binding/Propagation.js
+binding/PropagationGuardian.js
+binding/Observer.js
+binding/Binding.js
+binding/BindingChain.js
+
+# observables
+observable/namespace.js
+observable/ObservableObject.js
+observable/Observable.js
+observable/ObservableArray.js
+
 functions.js

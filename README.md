@@ -6,7 +6,7 @@ Sinmple binding library.
 Authors
 -------------
 * [@tenntenn](https://twitter.com/tenntenn) (Takuya Ueda)
-* spd-user
+* [spd-user](http://github.com/spd-user/) (Yuji Katsumata)
 * kazuma-s
 
 Build

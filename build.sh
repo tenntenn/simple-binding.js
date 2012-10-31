@@ -1,7 +1,8 @@
 #!/bin/sh
 
 echo "concat javascript files..."
-cat `awk -v ORS=' ' '1;END{printf"\n"}' jsfiles.txt` > simple-binding.js
+
+cat `grep -v '^#' jsfiles.txt | sed '/^$/d' | awk -v ORS=' ' '1;END{printf"\n"}'` > simple-binding.js
 
 echo "create minified code..."
 java -jar compiler.jar --js_output_file simple-binding.min.js --js simple-binding.js

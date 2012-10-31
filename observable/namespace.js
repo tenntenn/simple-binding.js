@@ -2,4 +2,4 @@
  * It provides data structures of observables.
  * @namespace
  */
-sb.observable = {};
+sb.observable = sb.observables || {};

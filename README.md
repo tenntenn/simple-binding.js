@@ -5,7 +5,7 @@ Sinmple binding library.
 
 Authors
 -------------
-* @tenntenn (Takuya Ueda)
+* [@tenntenn](https://twitter.com/tenntenn) (Takuya Ueda)
 * spd-user
 * kazuma-s
 

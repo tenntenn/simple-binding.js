@@ -61,9 +61,19 @@ sb.base.binding.Binding = function(observer, inputs, outputs, computed) {
     that.notify = function(propagation) {
 
         /**
+         * @type {sb.base.observable.ObservableObject} source of notification
+         */
+        var source = propagation.getSource();
+
+        /**
+         * @type {sb.base.binding.NotificationEvent} event object
+         */
+        var e = propagation.getEventObject();
+
+        /**
          * @type {sb.base.binding.Parameters} result of computed
          */
-        var result = computed(inputs);
+        var result = computed(inputs, source, e);
 
         /**
          * @type {Array.<sb.base.observable.ObservableObject>}

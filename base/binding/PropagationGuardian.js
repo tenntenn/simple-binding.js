@@ -27,13 +27,23 @@ sb.base.binding.PropagationGuardian = function(continueCondition, timeout) {
          * Test propagation is success with given continueCondition and timeout.
          * @type {sb.base.binding.Propagation}
          * @param {sb.base.binding.ObservableProperty} source adjacent source of notify propagation
-         * @param {Object} e event object.
+         * @param {sb.base.binding.NotificationEvent} e event object.
          */
         var propagation =  function(source, e) {
 
             // getter of callStack
             propagation.callStack = function() {
                 return callStack.concat();
+            };
+
+            // getter of source observable
+            propagation.getSource = function() {
+                return source;
+            };
+
+            // getter of event object
+            propagation.getEventObject = function() {
+                return e;
             };
 
             /**

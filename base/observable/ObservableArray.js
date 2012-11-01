@@ -34,9 +34,9 @@ sb.base.observable.newObservableArray = function(observer, initArray) {
      * Notify changing for observer.
      * @param {sb.Propagation} propagation propagation context
      */
-    observable.notify = function(propagation) {
-        
-        if (propagation(observable, observable)) {
+    observable.notify = function(propagation, e) {
+
+       if (propagation(observable, observable)) {
            observer.notify(propagation, observable);
         }  
     };
@@ -68,14 +68,24 @@ sb.base.observable.newObservableArray = function(observer, initArray) {
          */
         var propagation = observer.getPropagationGuardian().createPropagation();
 
+        /**
+         * @type {sb.base.binding.NotificationEvent}
+         */
+        var e = {
+            modifiedElements : [{
+                index: i,
+                previousValue: array[i],
+                newValue: v
+            }]
+        };
+ 
         array[i] = v;
-       
-        observable.notify(propagation);
+      
+        observable.notify(propagation, e);
     };
 
     // wrapper for functions which change the internal array
     [
-        "push", 
         "pop", 
         "shift", 
         "unshift", 
@@ -98,6 +108,44 @@ sb.base.observable.newObservableArray = function(observer, initArray) {
             };
         }
     });
+
+    /**
+     * A wrapper of Array.push.
+     * @return length of the array after adding new elements.
+     */
+    observable.push = function() {
+
+        var args = sb.util.argumentsToArray(arguments);
+        var length;        
+
+        /**
+         * Propagation context.
+         * @type {sb.Propagation}
+         */
+        var propagation = observer.getPropagationGuardian().createPropagation();
+
+        /**
+         * @type {sb.base.binding.NotificationEvent}
+         */
+        var e = {
+            addedElements : []
+        };
+
+        var index = array.length + index;
+        args.forEach(function(arg) {
+            e.addedElements.push({
+                index: index,
+                value: arg
+            });
+            index++;
+        });
+        
+        length = array.push.apply(array, args);
+
+        observable.notify(propagation, e);
+
+        return length;
+    };
 
 
     // wrapper for functions which return array

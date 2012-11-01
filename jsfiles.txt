@@ -13,6 +13,7 @@ base/binding/namespace.js
 base/binding/Computed.js
 base/binding/Propagation.js
 base/binding/PropagationGuardian.js
+base/binding/NotificationEvent.js
 base/binding/Observer.js
 base/binding/Binding.js
 base/binding/BindingChain.js

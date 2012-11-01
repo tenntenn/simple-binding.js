@@ -42,7 +42,16 @@ sb.base.observable.newObservable = function(observer, value) {
      * @param {*} v it is set for this observable
      */
     observable.notify = function(propagation, v) {
-        if (propagation(observable, v)) {
+
+        /**
+         * @type {sb.base.binding.NotificationEvent}
+         */
+        var e = {
+            previousValue : value,
+            newValue : v
+        };
+
+        if (propagation(observable, e)) {
            value = v;
            observer.notify(propagation, observable);
         }  

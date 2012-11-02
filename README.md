@@ -58,6 +58,7 @@ Usage
     hogera(200); // print "callback!!" on consle.
 
     // KnockoutJS wrappers
+    // Please look at http://jsfiddle.net/uedatakuya/rKcv3/
     var koObservable = ko.observable(100);
     var fuga = sb.ko.observable(koObservable); 
     koObservable(200); // -> fuga(200)

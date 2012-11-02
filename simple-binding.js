@@ -889,7 +889,11 @@ sb.base.observable.ko.newObservable = function(observer, koObservable) {
          * @type {ko.computed}
          */
         var koComputed = ko.computed(function() {
-                return observable(koObservable());
+                var v = koObservable();
+                if (v !== observable()) {
+                        observable(v);
+                }
+                return v;
         });
 
         /**

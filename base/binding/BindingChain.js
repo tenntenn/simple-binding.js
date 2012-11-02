@@ -112,8 +112,8 @@
                     observer,
                     inputs,
                     outputs,
-                    function(inputs) {
-                        return {output: func(inputs)};
+                    function(inputs, source, e) {
+                        return {output: func(inputs, source, e)};
                     }
                 );
 
@@ -126,7 +126,7 @@
         /**
          * Add callback which call after changing a given observable value.
          * @param {sb.base.observable.ObservableObject} observable target observable.
-         * @param {function(*):*} callback callback function
+         * @param {function(sb.base.observable.ObservableObject, sb.base.binding.NotificationEvent):*} callback callback function
          * @return {sb.base.binding.BindingChain} own
          */
         this.onChange = function(observable, callback) {
@@ -144,8 +144,8 @@
                 observer,
                 {input: observable},
                 {},
-                function() {
-                    callback();
+                function(inputs, source, e) {
+                    callback(source, e);
                     return {};
                 }
             );

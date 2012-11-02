@@ -1,5 +1,7 @@
-/**
- * It provides wrappers of KnockoutJS.
- * @namespace
- */
-sb.base.observable.ko = sb.base.observable.ko || {};
+if (ko) {
+    /**
+     * It provides wrappers of KnockoutJS.
+     * @namespace
+     */
+    sb.base.observable.ko = sb.base.observable.ko || {};
+}

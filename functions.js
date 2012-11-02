@@ -58,22 +58,24 @@
         return observableArray;
     };
 
+    // when only available KnockoutJS
+    if (ko) {
+        // wrappers of KnockoutJS.
+        sb.ko = {};
 
-    // wrappers of KnockoutJS.
-    sb.ko = {};
-
-    /**
-     * Create default setting of sb.base.observable.ko.Observable.
-     * @param {ko.observable} koObservable observable object of KnockoutJS
-     * @return {sb.base.observable.ko.Observable} default setting of sb.base.observable.ko.Observable
-     */
-    sb.ko.observable = function(koObservable) {
         /**
-         * default setting of sb.base.observable.ko.Observable.
-         * @type {sb.base.observable.ko.Observable} 
+         * Create default setting of sb.base.observable.ko.Observable.
+         * @param {ko.observable} koObservable observable object of KnockoutJS
+         * @return {sb.base.observable.ko.Observable} default setting of sb.base.observable.ko.Observable
          */
-        var observable = sb.base.observable.ko.newObservable(observer, koObservable);
-        return observable;
-    };
+        sb.ko.observable = function(koObservable) {
+            /**
+             * default setting of sb.base.observable.ko.Observable.
+             * @type {sb.base.observable.ko.Observable} 
+             */
+            var observable = sb.base.observable.ko.newObservable(observer, koObservable);
+            return observable;
+        };
+    }
 })();
 

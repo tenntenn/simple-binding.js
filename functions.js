@@ -33,7 +33,7 @@
     };
 
     /**
-     * Create default setting property of sb.base.observable.Observable.
+     * Create default setting of sb.base.observable.Observable.
      * @param {*} initValue initial value.
      * @return {sb.base.observable.Observable} default setting of sb.base.observable.Observable.
      */
@@ -46,7 +46,7 @@
     };
 
      /**
-      * Create default setting property of sb.base.observable.ObservableArray.
+      * Create default setting of sb.base.observable.ObservableArray.
       * @param {*} array initial value.
       * @return {sb.base.observable.ObservableArray} default setting sb.base.observable.ObservableArray.
       */
@@ -56,6 +56,20 @@
          */
         var observableArray = new sb.base.observable.newObservableArray(observer, array);
         return observableArray;
+    };
+
+    /**
+     * Create default setting of sb.base.observable.ko.Observable.
+     * @param {ko.observable} koObservable observable object of KnockoutJS
+     * @return {sb.base.observable.ko.Observable} default setting of sb.base.observable.ko.Observable
+     */
+    sb.ko.observable = function(koObservable) {
+        /**
+         * default setting of sb.base.observable.ko.Observable.
+         * @type {sb.base.observable.ko.Observable} 
+         */
+        var observable = new sb.base.observable.ko.newObservable(observer, koObservable);
+        return observable;
     };
 })();
 

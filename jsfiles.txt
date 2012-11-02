@@ -23,4 +23,8 @@ base/observable/ObservableObject.js
 base/observable/Observable.js
 base/observable/ObservableArray.js
 
+# wrappers of KnockoutJS
+base/observable/ko/Observable.js
+#base/observable/ko/ObservableArray.js
+
 functions.js

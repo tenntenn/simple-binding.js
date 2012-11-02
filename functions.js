@@ -41,7 +41,7 @@
         /**
          * @type {sb.base.observable.Observable} default setting of sb.base.observable.Observable.
          */
-        var observable = new sb.base.observable.newObservable(observer, initValue);
+        var observable = sb.base.observable.newObservable(observer, initValue);
         return observable;
     };
 
@@ -54,7 +54,7 @@
         /**
          * @type {sb.base.observable.ObservableArray} default setting of sb.base.observable.ObservableArray.
          */
-        var observableArray = new sb.base.observable.newObservableArray(observer, array);
+        var observableArray = sb.base.observable.newObservableArray(observer, array);
         return observableArray;
     };
 
@@ -72,7 +72,7 @@
          * default setting of sb.base.observable.ko.Observable.
          * @type {sb.base.observable.ko.Observable} 
          */
-        var observable = new sb.base.observable.ko.newObservable(observer, koObservable);
+        var observable = sb.base.observable.ko.newObservable(observer, koObservable);
         return observable;
     };
 })();

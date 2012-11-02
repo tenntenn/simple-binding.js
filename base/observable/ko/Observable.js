@@ -15,7 +15,7 @@ sb.base.observable.ko.newObservable = function(observer, koObservable) {
          * wrapper
          * @type {sb.base.observable.Observable}
          */
-        var observable = new sb.base.observable.Observable(observer, koObservable());
+        var observable = sb.base.observable.newObservable(observer, koObservable());
 
         /**
          * handling changing of ko.observable value. 

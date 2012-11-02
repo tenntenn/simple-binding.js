@@ -58,6 +58,10 @@
         return observableArray;
     };
 
+
+    // wrappers of KnockoutJS.
+    sb.ko = {};
+
     /**
      * Create default setting of sb.base.observable.ko.Observable.
      * @param {ko.observable} koObservable observable object of KnockoutJS

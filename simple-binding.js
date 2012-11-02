@@ -145,13 +145,23 @@ sb.base.binding.PropagationGuardian = function(continueCondition, timeout) {
          * Test propagation is success with given continueCondition and timeout.
          * @type {sb.base.binding.Propagation}
          * @param {sb.base.binding.ObservableProperty} source adjacent source of notify propagation
-         * @param {Object} e event object.
+         * @param {sb.base.binding.NotificationEvent} e event object.
          */
         var propagation =  function(source, e) {
 
             // getter of callStack
             propagation.callStack = function() {
                 return callStack.concat();
+            };
+
+            // getter of source observable
+            propagation.getSource = function() {
+                return source;
+            };
+
+            // getter of event object
+            propagation.getEventObject = function() {
+                return e;
             };
 
             /**
@@ -191,6 +201,11 @@ sb.base.binding.PropagationGuardian = function(continueCondition, timeout) {
  */
 sb.base.binding.defaultPropagationGuardian = new sb.base.binding.PropagationGuardian(null, 1);
 
+/**
+ * Notification event object.
+ * @typedef {Object}
+ */
+sb.base.binding.NotificationEvent;
 /**
  * @constructor
  */
@@ -273,10 +288,10 @@ sb.base.binding.Observer = function(propagationGuardian) {
  * observer will notifies values which converted by computed function
  * to binded observables which contained of output observables. 
  * 
- * @param {sb.Observer} observer the observer
- * @param {sb.Parameters} inputs input observables
- * @param {sb.Parameters} outputs output observables
- * @param {sb.Computed} computed computed function
+ * @param {sb.base.binding.Observer} observer the observer
+ * @param {sb.base.binding.Parameters} inputs input observables
+ * @param {sb.base.binding.Parameters} outputs output observables
+ * @param {sb.base.binding.Computed} computed computed function
  */
 sb.base.binding.Binding = function(observer, inputs, outputs, computed) {
 
@@ -329,9 +344,19 @@ sb.base.binding.Binding = function(observer, inputs, outputs, computed) {
     that.notify = function(propagation) {
 
         /**
+         * @type {sb.base.observable.ObservableObject} source of notification
+         */
+        var source = propagation.getSource();
+
+        /**
+         * @type {sb.base.binding.NotificationEvent} event object
+         */
+        var e = propagation.getEventObject();
+
+        /**
          * @type {sb.base.binding.Parameters} result of computed
          */
-        var result = computed(inputs);
+        var result = computed(inputs, source, e);
 
         /**
          * @type {Array.<sb.base.observable.ObservableObject>}
@@ -348,7 +373,7 @@ sb.base.binding.Binding = function(observer, inputs, outputs, computed) {
             var observable = outputs[name];
             if (input !== observable
                     && outputs.hasOwnProperty(name)
-                    && sb.isObservable(observable)) {
+                    && sb.base.observable.isObservableObject(observable)) {
                 observable.notify(propagation, result[name]);
             }
         });
@@ -471,8 +496,8 @@ sb.base.binding.Binding = function(observer, inputs, outputs, computed) {
                     observer,
                     inputs,
                     outputs,
-                    function(inputs) {
-                        return {output: func(inputs)};
+                    function(inputs, source, e) {
+                        return {output: func(inputs, source, e)};
                     }
                 );
 
@@ -485,7 +510,7 @@ sb.base.binding.Binding = function(observer, inputs, outputs, computed) {
         /**
          * Add callback which call after changing a given observable value.
          * @param {sb.base.observable.ObservableObject} observable target observable.
-         * @param {function(*):*} callback callback function
+         * @param {function(sb.base.observable.ObservableObject, sb.base.binding.NotificationEvent):*} callback callback function
          * @return {sb.base.binding.BindingChain} own
          */
         this.onChange = function(observable, callback) {
@@ -503,8 +528,8 @@ sb.base.binding.Binding = function(observer, inputs, outputs, computed) {
                 observer,
                 {input: observable},
                 {},
-                function() {
-                    callback();
+                function(inputs, source, e) {
+                    callback(source, e);
                     return {};
                 }
             );
@@ -553,7 +578,7 @@ sb.base.binding.Binding = function(observer, inputs, outputs, computed) {
  * It provides data structures of observables.
  * @namespace
  */
-sb.base.observable = sb.base.observables || {};
+sb.base.observable = sb.base.observable || {};
 /**
  * An interface for observable objects.
  * It is a function and provides followings :
@@ -626,7 +651,16 @@ sb.base.observable.newObservable = function(observer, value) {
      * @param {*} v it is set for this observable
      */
     observable.notify = function(propagation, v) {
-        if (propagation(observable, v)) {
+
+        /**
+         * @type {sb.base.binding.NotificationEvent}
+         */
+        var e = {
+            previousValue : value,
+            newValue : v
+        };
+
+        if (propagation(observable, e)) {
            value = v;
            observer.notify(propagation, observable);
         }  
@@ -670,9 +704,9 @@ sb.base.observable.newObservableArray = function(observer, initArray) {
      * Notify changing for observer.
      * @param {sb.Propagation} propagation propagation context
      */
-    observable.notify = function(propagation) {
-        
-        if (propagation(observable, observable)) {
+    observable.notify = function(propagation, e) {
+
+       if (propagation(observable, observable)) {
            observer.notify(propagation, observable);
         }  
     };
@@ -704,14 +738,24 @@ sb.base.observable.newObservableArray = function(observer, initArray) {
          */
         var propagation = observer.getPropagationGuardian().createPropagation();
 
+        /**
+         * @type {sb.base.binding.NotificationEvent}
+         */
+        var e = {
+            modifiedElements : [{
+                index: i,
+                previousValue: array[i],
+                newValue: v
+            }]
+        };
+ 
         array[i] = v;
-       
-        observable.notify(propagation);
+      
+        observable.notify(propagation, e);
     };
 
     // wrapper for functions which change the internal array
     [
-        "push", 
         "pop", 
         "shift", 
         "unshift", 
@@ -734,6 +778,44 @@ sb.base.observable.newObservableArray = function(observer, initArray) {
             };
         }
     });
+
+    /**
+     * A wrapper of Array.push.
+     * @return length of the array after adding new elements.
+     */
+    observable.push = function() {
+
+        var args = sb.util.argumentsToArray(arguments);
+        var length;        
+
+        /**
+         * Propagation context.
+         * @type {sb.Propagation}
+         */
+        var propagation = observer.getPropagationGuardian().createPropagation();
+
+        /**
+         * @type {sb.base.binding.NotificationEvent}
+         */
+        var e = {
+            addedElements : []
+        };
+
+        var index = array.length + index;
+        args.forEach(function(arg) {
+            e.addedElements.push({
+                index: index,
+                value: arg
+            });
+            index++;
+        });
+        
+        length = array.push.apply(array, args);
+
+        observable.notify(propagation, e);
+
+        return length;
+    };
 
 
     // wrapper for functions which return array
@@ -778,6 +860,55 @@ sb.base.observable.newObservableArray = function(observer, initArray) {
 
     return observable;
 };
+/**
+ * It provides wrappers of KnockoutJS.
+ * @namespace
+ */
+sb.base.observable.ko = sb.base.observable.ko || {};
+/**
+ * A wraper for ko.observable. 
+ * @typedef {sb.base.observable.Observable}
+ * @implements {sb.base.observable.ObservableObject}
+ */
+sb.base.observable.ko.Observable;
+
+/**
+ * @param {sb.base.binding.Observer} observer observer of this observable object
+ * @param {ko.observable} koObservable observable object of KnockoutJS
+ */
+sb.base.observable.ko.newObservable = function(observer, koObservable) {
+
+        /**
+         * wrapper
+         * @type {sb.base.observable.Observable}
+         */
+        var observable = new sb.base.observable.Observable(observer, koObservable());
+
+        /**
+         * handling changing of ko.observable value. 
+         * @type {ko.computed}
+         */
+        var koComputed = ko.computed(function() {
+                return observable(koObservable());
+        });
+
+        /**
+         * handling chaing of observable value.
+         * @type {sb.base.binding.Binding}
+         */
+        var binding = new sb.base.binding.Binding(
+                        observer,
+                        {observable: observable}, // inputs
+                        {},                       // outputs
+                        function() {              // computed
+                                // handling chaing of observable value
+                                koObservable(observable());
+                        }
+        );
+        binding.bind();
+
+        return observable;
+};
 // It provide functions which can be use easily.
 (function() {
 
@@ -813,7 +944,7 @@ sb.base.observable.newObservableArray = function(observer, initArray) {
     };
 
     /**
-     * Create default setting property of sb.base.observable.Observable.
+     * Create default setting of sb.base.observable.Observable.
      * @param {*} initValue initial value.
      * @return {sb.base.observable.Observable} default setting of sb.base.observable.Observable.
      */
@@ -826,16 +957,34 @@ sb.base.observable.newObservableArray = function(observer, initArray) {
     };
 
      /**
-      * Create default setting property of sb.base.observable.ObservableArray.
+      * Create default setting of sb.base.observable.ObservableArray.
       * @param {*} array initial value.
       * @return {sb.base.observable.ObservableArray} default setting sb.base.observable.ObservableArray.
       */
-    sb.base.observableArray = function(array) {
+    sb.observableArray = function(array) {
         /**
          * @type {sb.base.observable.ObservableArray} default setting of sb.base.observable.ObservableArray.
          */
         var observableArray = new sb.base.observable.newObservableArray(observer, array);
         return observableArray;
+    };
+
+
+    // wrappers of KnockoutJS.
+    sb.ko = {};
+
+    /**
+     * Create default setting of sb.base.observable.ko.Observable.
+     * @param {ko.observable} koObservable observable object of KnockoutJS
+     * @return {sb.base.observable.ko.Observable} default setting of sb.base.observable.ko.Observable
+     */
+    sb.ko.observable = function(koObservable) {
+        /**
+         * default setting of sb.base.observable.ko.Observable.
+         * @type {sb.base.observable.ko.Observable} 
+         */
+        var observable = new sb.base.observable.ko.newObservable(observer, koObservable);
+        return observable;
     };
 })();
 

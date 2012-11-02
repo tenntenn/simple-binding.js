@@ -25,6 +25,7 @@ base/observable/Observable.js
 base/observable/ObservableArray.js
 
 # wrappers of KnockoutJS
+base/observable/ko/namespace.js
 base/observable/ko/Observable.js
 #base/observable/ko/ObservableArray.js
 

@@ -38,8 +38,10 @@ sb.base.observable.ko.newObservable = function(observer, koObservable) {
                         {observable: observable}, // inputs
                         {},                       // outputs
                         function() {              // computed
-                                // handling chaing of observable value
-                                koObservable(observable());
+                                var v = observable();
+                                if (v !== koObservable()) {
+                                        koObservable(v);
+                                }
                                 return {};
                         }
         );

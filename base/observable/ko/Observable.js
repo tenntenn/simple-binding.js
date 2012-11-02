@@ -36,6 +36,7 @@ sb.base.observable.ko.newObservable = function(observer, koObservable) {
                         function() {              // computed
                                 // handling chaing of observable value
                                 koObservable(observable());
+                                return {};
                         }
         );
         binding.bind();

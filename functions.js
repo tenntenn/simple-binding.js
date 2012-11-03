@@ -59,7 +59,7 @@
     };
 
     // when only available KnockoutJS
-    if (ko) {
+    if (typeof ko !== "undefined") {
         // wrappers of KnockoutJS.
         sb.ko = {};
 

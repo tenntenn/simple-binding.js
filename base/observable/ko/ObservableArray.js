@@ -1,4 +1,4 @@
-if (ko) {
+if (typeof ko !== "undefined") {
     /**
      * A wraper for ko.observableArray. 
      * @typedef {sb.base.observable.ObservableArray}

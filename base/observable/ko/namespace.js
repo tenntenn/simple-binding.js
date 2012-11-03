@@ -1,4 +1,4 @@
-if (ko) {
+if (typeof ko !== "undefined") {
     /**
      * It provides wrappers of KnockoutJS.
      * @namespace

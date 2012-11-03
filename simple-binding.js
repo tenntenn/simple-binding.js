@@ -860,62 +860,66 @@ sb.base.observable.newObservableArray = function(observer, initArray) {
 
     return observable;
 };
-/**
- * It provides wrappers of KnockoutJS.
- * @namespace
- */
-sb.base.observable.ko = sb.base.observable.ko || {};
-/**
- * A wraper for ko.observable. 
- * @typedef {sb.base.observable.Observable}
- * @implements {sb.base.observable.ObservableObject}
- */
-sb.base.observable.ko.Observable;
-
-/**
- * @param {sb.base.binding.Observer} observer observer of this observable object
- * @param {ko.observable} koObservable observable object of KnockoutJS
- */
-sb.base.observable.ko.newObservable = function(observer, koObservable) {
-
-        /**
-         * wrapper
-         * @type {sb.base.observable.Observable}
-         */
-        var observable = sb.base.observable.newObservable(observer, koObservable());
-
-        /**
-         * handling changing of ko.observable value. 
-         * @type {ko.computed}
-         */
-        var koComputed = ko.computed(function() {
-                var v = koObservable();
-                if (v !== observable()) {
-                        observable(v);
-                }
-                return v;
-        });
-
-        /**
-         * handling chaing of observable value.
-         * @type {sb.base.binding.Binding}
-         */
-        var binding = new sb.base.binding.Binding(
-                        observer,
-                        {observable: observable}, // inputs
-                        {},                       // outputs
-                        function() {              // computed
-                                var v = observable();
-                                if (v !== koObservable()) {
-                                        koObservable(v);
-                                }
-                                return {};
-                        }
-        );
-        binding.bind();
-
-        return observable;
-};
+if (ko) {
+    /**
+     * It provides wrappers of KnockoutJS.
+     * @namespace
+     */
+    sb.base.observable.ko = sb.base.observable.ko || {};
+}
+if (ko) {
+    /**
+     * A wraper for ko.observable. 
+     * @typedef {sb.base.observable.Observable}
+     * @implements {sb.base.observable.ObservableObject}
+     */
+    sb.base.observable.ko.Observable;
+    
+    /**
+     * @param {sb.base.binding.Observer} observer observer of this observable object
+     * @param {ko.observable} koObservable observable object of KnockoutJS
+     */
+    sb.base.observable.ko.newObservable = function(observer, koObservable) {
+    
+            /**
+             * wrapper
+             * @type {sb.base.observable.Observable}
+             */
+            var observable = sb.base.observable.newObservable(observer, koObservable());
+    
+            /**
+             * handling changing of ko.observable value. 
+             * @type {ko.computed}
+             */
+            var koComputed = ko.computed(function() {
+                    var v = koObservable();
+                    if (v !== observable()) {
+                            observable(v);
+                    }
+                    return v;
+            });
+    
+            /**
+             * handling chaing of observable value.
+             * @type {sb.base.binding.Binding}
+             */
+            var binding = new sb.base.binding.Binding(
+                            observer,
+                            {observable: observable}, // inputs
+                            {},                       // outputs
+                            function() {              // computed
+                                    var v = observable();
+                                    if (v !== koObservable()) {
+                                            koObservable(v);
+                                    }
+                                    return {};
+                            }
+            );
+            binding.bind();
+    
+            return observable;
+    };
+}
 // It provide functions which can be use easily.
 (function() {
 
@@ -976,22 +980,24 @@ sb.base.observable.ko.newObservable = function(observer, koObservable) {
         return observableArray;
     };
 
+    // when only available KnockoutJS
+    if (ko) {
+        // wrappers of KnockoutJS.
+        sb.ko = {};
 
-    // wrappers of KnockoutJS.
-    sb.ko = {};
-
-    /**
-     * Create default setting of sb.base.observable.ko.Observable.
-     * @param {ko.observable} koObservable observable object of KnockoutJS
-     * @return {sb.base.observable.ko.Observable} default setting of sb.base.observable.ko.Observable
-     */
-    sb.ko.observable = function(koObservable) {
         /**
-         * default setting of sb.base.observable.ko.Observable.
-         * @type {sb.base.observable.ko.Observable} 
+         * Create default setting of sb.base.observable.ko.Observable.
+         * @param {ko.observable} koObservable observable object of KnockoutJS
+         * @return {sb.base.observable.ko.Observable} default setting of sb.base.observable.ko.Observable
          */
-        var observable = sb.base.observable.ko.newObservable(observer, koObservable);
-        return observable;
-    };
+        sb.ko.observable = function(koObservable) {
+            /**
+             * default setting of sb.base.observable.ko.Observable.
+             * @type {sb.base.observable.ko.Observable} 
+             */
+            var observable = sb.base.observable.ko.newObservable(observer, koObservable);
+            return observable;
+        };
+    }
 })();
 

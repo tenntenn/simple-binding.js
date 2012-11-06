@@ -1,9 +1,11 @@
 define(
     "sb.base.observable.ko.newObservable",
     [
-        "ko"
+        "ko",
+        "sb.base.observable.newObservable",
+        "sb.base.binding.Binding"
     ],
-    function(ko) {
+    function(ko, newObservable, Binding) {
 
         /**
          * Create a wraper for ko.observable.
@@ -11,14 +13,14 @@ define(
          * @param {ko.observable} koObservable observable object of KnockoutJS
          * @return {sb.base.observable.ko.Observable} a wraper for ko.observable.
          */
-        function newObservable(observer, koObservable) {
+        function newKoObservable(observer, koObservable) {
     
             /**
              * A wraper for ko.observable. 
              * @typedef {sb.base.observable.ko.Observable}
              * @implements {sb.base.observable.ObservableObject}
              */
-            var observable = sb.base.observable.newObservable(observer, koObservable());
+            var observable = newObservable(observer, koObservable());
     
             /**
              * handling changing of ko.observable value. 
@@ -36,7 +38,7 @@ define(
              * handling chaing of observable value.
              * @type {sb.base.binding.Binding}
              */
-            var binding = new sb.base.binding.Binding(
+            var binding = new Binding(
                             observer,
                             {observable: observable}, // inputs
                             {},                       // outputs
@@ -53,6 +55,6 @@ define(
             return observable;
         } 
 
-        return newObservable;
+        return newKoObservable;
     }
 );

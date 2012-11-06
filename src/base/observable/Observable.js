@@ -43,22 +43,23 @@ define(
              */
             observable.notify = function(propagation, v) {
 
-            /**
-             * @type {sb.base.binding.NotificationEvent}
-             */
-             var e = {
-                previousValue : value,
-                newValue : v
-             };
+                    /**
+                     * @type {sb.base.binding.NotificationEvent}
+                     */
+                     var e = {
+                        previousValue : value,
+                        newValue : v
+                     };
 
-            if (propagation(observable, e)) {
-                value = v;
-                observer.notify(propagation, observable);
-            }  
-        };
+                    if (propagation(observable, e)) {
+                        value = v;
+                        observer.notify(propagation, observable);
+                    }  
+            };
 
-        return observable;
+            return observable;
+        }
+
+        return newObservable;
     }
-
-    return newObservable;
 );

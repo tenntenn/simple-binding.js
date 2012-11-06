@@ -1,9 +1,11 @@
 define(
     "sb.base.observable.ko.newObservableArray",
     [
-        "ko"
+        "ko",
+        "sb.base.observable.newObservableArray",
+        "sb.base.binding.Binding"
     ],
-    function(ko) {
+    function(ko, newObservableArray, Binding) {
 
         /**
          * Create a wraper for ko.observableArray. 
@@ -11,14 +13,14 @@ define(
          * @param {ko.observableArray} koObservableArray observableArray object of KnockoutJS
          * @return {sb.base.observable.ko.ObservableArray} A wraper for ko.observableArray. 
          */
-        function newObservableArray(observer, koObservableArray) {
+        function newKoObservableArray(observer, koObservableArray) {
     
             /**
              * A wraper for ko.observableArray. 
              * @typedef {sb.base.observable.ko.ObservableArray}
              * @implements {sb.base.observable.ObservableObject}
              */
-             var observableArray = sb.base.observable.newObservableArray(observer, koObservableArray());
+             var observableArray = newObservableArray(observer, koObservableArray());
     
             /**
              * handling changing of ko.observable value. 
@@ -36,7 +38,7 @@ define(
              * handling chaing of observable value.
              * @type {sb.base.binding.Binding}
              */
-            var binding = new sb.base.binding.Binding(
+            var binding = new Binding(
                             observer,
                             {observable: observable}, // inputs
                             {},                       // outputs
@@ -53,7 +55,7 @@ define(
             return observable;
         }
       
-        return newObservableArray; 
+        return newKoObservableArray; 
     }
 );
 

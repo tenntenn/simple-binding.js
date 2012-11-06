@@ -1,16 +1,18 @@
 define(
-    "sb.base.observable"
+    "sb.base.observable",
     [
-        "sb.base.observables.newObservable"
+        "sb.base.observable.newObservable"
+        "sb.base.observable.newObservableArray"
     ],
-    function(newObservable) {
+    function(newObservable, newObservableArray) {
 
         /**
          * It provides data structures of observables.
          * @namespace
          */
         var observable = {
-            newObservable: newObservable
+            newObservable: newObservable,
+            newObservableArray: newObservableArray
         };
 
         return observable;

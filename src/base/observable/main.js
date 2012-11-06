@@ -1,10 +1,11 @@
 define(
     "sb.base.observable",
     [
-        "sb.base.observable.newObservable"
-        "sb.base.observable.newObservableArray"
+        "sb.base.observable.newObservable",
+        "sb.base.observable.newObservableArray",
+        "sb.base.observable.isObservableObject"
     ],
-    function(newObservable, newObservableArray) {
+    function(newObservable, newObservableArray, isObservableObject) {
 
         /**
          * It provides data structures of observables.
@@ -12,7 +13,8 @@ define(
          */
         var observable = {
             newObservable: newObservable,
-            newObservableArray: newObservableArray
+            newObservableArray: newObservableArray,
+            isObservableObject: isObservableObject
         };
 
         return observable;

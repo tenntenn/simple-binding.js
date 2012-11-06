@@ -1,0 +1,1 @@
+(function(e,t){typeof define=="function"&&define.amd?define([],t):e.sb=t()})(this,function(){return define("",[],function(){return{hoge:"hoge"}}),define("main",function(){}),require("main")})

@@ -1,0 +1,25 @@
+{
+  "author": "Takuya Ueda <uedatakuya@gmail.com> (http://u.hinoichi.net), Yuji Katumata (https://github.com/spd-user)",
+  "name": "simple-binding",
+  "description": "Sinmple binding library",
+  "version": "0.0.1",
+  "homepage": "https://github.com/tenntenn/simple-binding.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tenntenn/simple-binding.js.git"
+  },
+  "engines": {
+    "node": "~0.6.10"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.3.17"
+  },
+  "optionalDependencies": {},
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/tenntenn/simple-binding.js/blob/master/LICENSE"
+    }
+  ]
+}

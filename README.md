@@ -13,12 +13,18 @@ Authors
 * [spd-user](http://github.com/spd-user/) (Yuji Katsumata)
 * kazuma-s
 
+
 Build
 -------------
 
-Build script create a minified js file by executing such as following.
+This project is managemed by grunt.
+First, you should install grunt and using grunt tasks.
 
-    $ ./build
+    $ npm install
+
+And build the project with :
+
+    $ grunt
 
 
 Usage

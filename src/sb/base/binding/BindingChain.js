@@ -99,38 +99,38 @@ define(
                          */
                         this.computed = function(observable, func) {
 
-                                if (!sb.base.observable.isObservableObject(observable)
-                                    || typeof func !== "function") {
-                                            return this;
-                                    }
+                                if (!sb.base.observable.isObservableObject(observable) || 
+                                    typeof func !== "function") {
+                                        return this;
+                                }
 
-                                    if (observables.indexOf(observable) < 0) {
-                                            observables.push(observable);
-                                    }
+                                if (observables.indexOf(observable) < 0) {
+                                        observables.push(observable);
+                                }
 
-                                    // lazy evaluation
-                                    bindingsMaker.expand(function() {
-                                            var inputs = {};
-                                            observables.forEach(function(input, i) {
-                                                    if (observable !== input) {
-                                                            inputs["input"+i] = input;
-                                                    }
-                                            });
-                                            var outputs = {output: observable}; 
+                                // lazy evaluation
+                                bindingsMaker.expand(function() {
+                                        var inputs = {};
+                                        observables.forEach(function(input, i) {
+                                                if (observable !== input) {
+                                                        inputs["input"+i] = input;
+                                                }
+                                        });
+                                        var outputs = {output: observable}; 
 
-                                            var b = new sb.base.binding.Binding(
-                                                    observer,
-                                                    inputs,
-                                                    outputs,
-                                                    function(inputs, source, e) {
-                                                            return {output: func(inputs, source, e)};
-                                                    }
-                                            );
+                                        var b = new sb.base.binding.Binding(
+                                                observer,
+                                                inputs,
+                                                outputs,
+                                                function(inputs, source, e) {
+                                                        return {output: func(inputs, source, e)};
+                                                }
+                                        );
 
-                                            bindings.push(b);
-                                    });
+                                        bindings.push(b);
+                                });
 
-                                    return this;
+                                return this;
                         };
 
                         /**
@@ -144,30 +144,30 @@ define(
                          */
                         this.onChange = function(observable, callback) {
 
-                                if (!sb.base.observable.isObservableObject(observable)
-                                    || typeof callback !== "function") {
-                                            return this;
-                                    }
+                                if (!sb.base.observable.isObservableObject(observable) ||
+                                    typeof callback !== "function") {
+                                        return this;
+                                }
 
-                                    if (observables.indexOf(observable)) {
-                                            observables.push(observable);
-                                    }
+                                if (observables.indexOf(observable)) {
+                                        observables.push(observable);
+                                }
 
-                                    var b = new sb.base.binding.Binding(
-                                            observer,
-                                            {input: observable},
-                                            {},
-                                            function(inputs, source, e) {
-                                                    callback(source, e);
-                                                    return {};
-                                            }
-                                    );
+                                var b = new sb.base.binding.Binding(
+                                        observer,
+                                        {input: observable},
+                                        {},
+                                        function(inputs, source, e) {
+                                                callback(source, e);
+                                                return {};
+                                        }
+                                );
 
-                                    // for lazy evaluation
-                                    bindingsMaker.expand(function() {
-                                            bindings.push(b);
-                                    });
-                                    return this;
+                                // for lazy evaluation
+                                bindingsMaker.expand(function() {
+                                        bindings.push(b);
+                                });
+                                return this;
                         };
 
                         /**
@@ -206,8 +206,8 @@ define(
 
                                 return this;
                         };
-                };
-                return 	BindingChain;
+                }
+                return BindingChain;
         }
 );
 

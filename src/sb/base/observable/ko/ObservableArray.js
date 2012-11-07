@@ -9,6 +9,9 @@ define(
 
                 /**
                  * Create a wraper for ko.observableArray. 
+                 * @method sb.base.observable.ko.newKoObservableArray
+                 * @public
+                 * @static
                  * @param {sb.base.binding.Observer} observer observer of this observable object
                  * @param {ko.observableArray} koObservableArray observableArray object of KnockoutJS
                  * @return {sb.base.observable.ko.ObservableArray} A wraper for ko.observableArray. 
@@ -17,42 +20,50 @@ define(
 
                         /**
                          * A wraper for ko.observableArray. 
-                         * @typedef {sb.base.observable.ko.ObservableArray}
-                         * @implements {sb.base.observable.ObservableObject}
+                         * @class ObservableArray
+                         * @namespace sb.base.observable.ko
+                         * @type sb.base.observable.ko.ObservableArray
+                         * @extends sb.base.observable.ObservableObject
                          */
                         var observableArray = observable.newObservableArray(observer, koObservableArray());
 
                         /**
-                         * handling changing of ko.observable value. 
+                         * Handling changing of ko.observable value. 
+                         * @property koComputed
+                         * @private
                          * @type {ko.computed}
                          */
                         var koComputed = ko.computed(function() {
-                                var v = koObservable();
-                                if (v !== observable()) {
-                                        observable(v);
-                                }
-                                return v;
+                                var arry = koObservableArray();
+                                var length = observableArray.length();
+                                var args = [0, length].concat(arry); 
+
+                                observableArray.splice.apply(observableArray, args);
+
+                                return arry;
                         });
 
                         /**
-                         * handling chaing of observable value.
+                         * Handling chaing of observable value.
+                         * @property b
+                         * @private
                          * @type {sb.base.binding.Binding}
                          */
                         var b = new binding.Binding(
                                 observer,
-                                {observable: observable}, // inputs
+                                {observable: observableArray}, // inputs
                                 {},                       // outputs
                                 function() {              // computed
-                                        var v = observable();
-                                        if (v !== koObservable()) {
-                                                koObservable(v);
-                                        }
+                                        var arry = observableArray();
+                                        var length = koObservableArray().length;
+                                        var args = [0, length].concat(arry);
+                                        koObservableArray.splice.apply(args);
                                         return {};
                                 }
                         );
                         b.bind();
 
-                        return observable;
+                        return observableArray;
                 }
 
                 return newKoObservableArray; 

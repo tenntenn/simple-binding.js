@@ -1,5 +1,5 @@
 define(
-    "sb.base.observable.newObservable",
+    "sb/base/observable/newObservable",
     [
     ],
     function() {

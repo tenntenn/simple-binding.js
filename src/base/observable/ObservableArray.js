@@ -1,9 +1,9 @@
 define(
-    "sb.base.observable.newObservableArray",
+    "sb/base/observable/newObservableArray",
     [
-        "sb.util.argumentsToArray",
+        "sb/util",
     ],
-    function(argumentsToArray) {
+    function(util) {
         /**
          * Create observable array.
          * @param {sb.Observer} observer
@@ -88,7 +88,7 @@ define(
             ].forEach(function(fn) {
                 if (typeof array[fn] === "function") {
                     observable[fn] = function() {
-                        var args = argumentsToArray(arguments);
+                        var args = util.argumentsToArray(arguments);
                         var ret = array[fn].apply(array, args); 
                         /**
                          * Propagation context.
@@ -112,7 +112,7 @@ define(
             ].forEach(function(fn) {
                  if (typeof array[fn] === "function") {
                     observable[fn] = function() {
-                        var args = argumentsToArray(arguments);
+                        var args = util.argumentsToArray(arguments);
                         var ret = array[fn].apply(array, args); 
         
                         // wrap with ObservableArray
@@ -136,7 +136,7 @@ define(
             ].forEach(function(fn) {
                 if (typeof array[fn] === "function") {
                     observable[fn] = function() {
-                        var args = argumentsToArray(arguments);
+                        var args = util.argumentsToArray(arguments);
                         var ret = array[fn].apply(array, args);
                         return ret;
                     };

@@ -116,17 +116,16 @@ define(
                                 // notify to output observables
                                 Object.keys(result).forEach(function(name){
                                         var observable = outputs[name];
-                                        if (input !== observable
-                                            && outputs.hasOwnProperty(name)
-                                    && isObservableObject(observable)) {
-                                            observable.notify(propagation, result[name]);
-                                    }
+                                        if (input !== observable &&
+                                            outputs.hasOwnProperty(name) &&
+                                                    isObservableObject(observable)) {
+                                                observable.notify(propagation, result[name]);
+                                        }
                                 });
 
                                 return that;
                         };
                 }
                 return Binding;
-
         }
 );

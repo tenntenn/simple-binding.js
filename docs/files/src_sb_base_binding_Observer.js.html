@@ -57,6 +57,8 @@
             
                 <li><a href="..&#x2F;classes/sb.base.binding.PropagationGuardian.html">sb.base.binding.PropagationGuardian</a></li>
             
+                <li><a href="..&#x2F;classes/sb.base.observable.ko.ObservableArray.html">sb.base.observable.ko.ObservableArray</a></li>
+            
                 <li><a href="..&#x2F;classes/sb.base.observable.Observable.html">sb.base.observable.Observable</a></li>
             
                 <li><a href="..&#x2F;classes/sb.base.observable.ObservableArray.html">sb.base.observable.ObservableArray</a></li>
@@ -124,80 +126,80 @@ define(
                         if (!propagationGuardian ||
                             !propagationGuardian instanceof PropagationGuardian) {
                                 propagationGuardian = DEFAULT_PROPAGATION_GURDIAN;
-                            }
+                        }
 
-                            &#x2F;**
-                             * @private
-                             * @type Array.&lt;sb.base.binding.Binding&gt;
-                             *&#x2F;
-                            var bindings = [];
+                        &#x2F;**
+                         * @private
+                         * @type Array.&lt;sb.base.binding.Binding&gt;
+                         *&#x2F;
+                        var bindings = [];
 
-                            &#x2F;**
-                             * Get PropagationGuardian.
-                             * @method getPropagationGuardian
-                             * @return {sb.base.binding.PropagationGuardian} PropagationGuardian
-                             *&#x2F;
-                            this.getPropagationGuardian = function() {
-                                    return propagationGuardian;
-                            }
+                        &#x2F;**
+                         * Get PropagationGuardian.
+                         * @method getPropagationGuardian
+                         * @return {sb.base.binding.PropagationGuardian} PropagationGuardian
+                         *&#x2F;
+                        this.getPropagationGuardian = function() {
+                                return propagationGuardian;
+                        };
 
-                            &#x2F;**
-                             * Add new binding.
-                             * @method add
-                             * @param {sb.base.binding.Binding} binding
-                             *&#x2F;
-                            this.add = function(binding) {
+                        &#x2F;**
+                         * Add new binding.
+                         * @method add
+                         * @param {sb.base.binding.Binding} binding
+                         *&#x2F;
+                        this.add = function(binding) {
 
-                                    if (binding === null
-                                        || typeof binding === &quot;undefined&quot;) {
-                                                return;
-                                        }
+                        if (binding === null ||
+                            typeof binding === &quot;undefined&quot;) {
+                                return;
+                        }
 
-                                        if (bindings.indexOf(binding) &lt; 0) {
-                                                bindings.push(binding);
-                                        }
-                            };
-
-                            &#x2F;**
-                             * Notify change to binded observables.
-                             * @method nofity
-                             * @param {sb.base.binding.Propagation} propagation 
-                             * @param {Array&lt;sb.base.binding.Observable&gt;} input
-                             *&#x2F;
-                            this.notify = function(propagation, input) {
-
-                                    &#x2F;&#x2F; get bindings which has given input as argument
-                                    var bs = bindings.filter(function(binding) {
-                                            var found = false;
-                                            Object.keys(binding.inputs).forEach(function(key) {
-                                                    if (binding.inputs.hasOwnProperty(key)
-                                                        &amp;&amp; binding.inputs[key] === input) {
-                                                                found = true;
-                                                                return;
-                                                        }
-                                            });
-                                            return found;
-                                    });
-
-                                    bs.forEach(function(binding) {
-                                            binding.notify(propagation);
-                                    });
-                            };
-
-                            &#x2F;**
-                             * Remove binding from this observer.
-                             * @method remove
-                             * @param {sb.base.binding.Binding} binding
-                             *&#x2F;
-                            this.remove = function(binding) {
-                                    var index = bindings.lastIndexOf(binding);
-                                    if (index &gt;= 0) {
-                                            bindings.splice(index, 1);
-                                    }
-                            };
+                        if (bindings.indexOf(binding) &lt; 0) {
+                                bindings.push(binding);
+                        }
                 };
 
-                return 	Observer;
+                &#x2F;**
+                 * Notify change to binded observables.
+                 * @method nofity
+                 * @param {sb.base.binding.Propagation} propagation 
+                 * @param {Array&lt;sb.base.binding.Observable&gt;} input
+                 *&#x2F;
+                        this.notify = function(propagation, input) {
+
+                &#x2F;&#x2F; get bindings which has given input as argument
+                var bs = bindings.filter(function(binding) {
+                        var found = false;
+                        Object.keys(binding.inputs).forEach(function(key) {
+                                if (binding.inputs.hasOwnProperty(key) &amp;&amp;
+                                    binding.inputs[key] === input) {
+                                        found = true;
+                                return;
+                                }
+                        });
+                        return found;
+                });
+
+                bs.forEach(function(binding) {
+                        binding.notify(propagation);
+                });
+        };
+
+        &#x2F;**
+         * Remove binding from this observer.
+         * @method remove
+         * @param {sb.base.binding.Binding} binding
+         *&#x2F;
+                        this.remove = function(binding) {
+                                var index = bindings.lastIndexOf(binding);
+                                if (index &gt;= 0) {
+                                        bindings.splice(index, 1);
+                                }
+                        };
+                }
+
+        return Observer;
         }
 );
 

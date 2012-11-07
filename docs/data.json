@@ -110,9 +110,13 @@
         "src/sb/base/observable/ko/ObservableArray.js": {
             "name": "src/sb/base/observable/ko/ObservableArray.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "sb.base.observable.ko.ObservableArray": 1
+            },
             "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "sb.base.observable.ko": 1
+            }
         },
         "src/sb/base/observable/ko/main.js": {
             "name": "src/sb/base/observable/ko/main.js",
@@ -147,20 +151,6 @@
         },
         "src/sb/base/observable/ObservableObject.js": {
             "name": "src/sb/base/observable/ObservableObject.js",
-            "modules": {},
-            "classes": {},
-            "fors": {},
-            "namespaces": {}
-        },
-        "src/sb/base/observable/SplitObservableArray.js": {
-            "name": "src/sb/base/observable/SplitObservableArray.js",
-            "modules": {},
-            "classes": {},
-            "fors": {},
-            "namespaces": {}
-        },
-        "src/sb/base/observable/SplitingStrategy.js": {
-            "name": "src/sb/base/observable/SplitingStrategy.js",
             "modules": {},
             "classes": {},
             "fors": {},
@@ -379,6 +369,21 @@
                     "type": "sb.base.binding.NotificationEvent"
                 }
             ]
+        },
+        "sb.base.observable.ko.ObservableArray": {
+            "name": "sb.base.observable.ko.ObservableArray",
+            "shortname": "sb.base.observable.ko.ObservableArray",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "sb.base.observable.ko",
+            "file": "src/sb/base/observable/ko/ObservableArray.js",
+            "line": 21,
+            "description": "A wraper for ko.observableArray.",
+            "type": "sb.base.observable.ko.ObservableArray",
+            "extends": "sb.base.observable.ObservableObject"
         },
         "sb.base.observable.Observable": {
             "name": "sb.base.observable.Observable",
@@ -847,7 +852,7 @@
             "file": "src/sb/base/binding/main.js",
             "line": 12,
             "description": "It provides objects which are related to binding.",
-            "class": "sb.base.observable.Observable",
+            "class": "sb.base.observable.ko.ObservableArray",
             "namespace": "sb.base.binding"
         },
         {
@@ -870,7 +875,7 @@
                 "description": "a wraper for ko.observable.",
                 "type": "sb.base.observable.ko.Observable"
             },
-            "class": "sb.base.observable.Observable",
+            "class": "sb.base.observable.ko.ObservableArray",
             "namespace": "sb.base.binding"
         },
         {
@@ -879,7 +884,7 @@
             "description": "A wraper for ko.observable.",
             "typedef": "{sb.base.observable.ko.Observable}",
             "implements": "{sb.base.observable.ObservableObject}",
-            "class": "sb.base.observable.Observable",
+            "class": "sb.base.observable.ko.ObservableArray",
             "namespace": "sb.base.binding"
         },
         {
@@ -887,7 +892,7 @@
             "line": 25,
             "description": "handling changing of ko.observable value.",
             "type": "{ko.computed}",
-            "class": "sb.base.observable.Observable",
+            "class": "sb.base.observable.ko.ObservableArray",
             "namespace": "sb.base.binding"
         },
         {
@@ -895,13 +900,18 @@
             "line": 37,
             "description": "handling chaing of observable value.",
             "type": "{sb.base.binding.Binding}",
-            "class": "sb.base.observable.Observable",
+            "class": "sb.base.observable.ko.ObservableArray",
             "namespace": "sb.base.binding"
         },
         {
             "file": "src/sb/base/observable/ko/ObservableArray.js",
             "line": 10,
             "description": "Create a wraper for ko.observableArray.",
+            "itemtype": "method",
+            "name": "sb.base.observable.ko.newKoObservableArray",
+            "access": "public",
+            "tagname": "",
+            "static": 1,
             "params": [
                 {
                     "name": "observer",
@@ -918,33 +928,32 @@
                 "description": "A wraper for ko.observableArray.",
                 "type": "sb.base.observable.ko.ObservableArray"
             },
-            "class": "sb.base.observable.Observable",
+            "class": "sb.base.observable.ko.ObservableArray",
             "namespace": "sb.base.binding"
         },
         {
             "file": "src/sb/base/observable/ko/ObservableArray.js",
-            "line": 18,
-            "description": "A wraper for ko.observableArray.",
-            "typedef": "{sb.base.observable.ko.ObservableArray}",
-            "implements": "{sb.base.observable.ObservableObject}",
-            "class": "sb.base.observable.Observable",
-            "namespace": "sb.base.binding"
-        },
-        {
-            "file": "src/sb/base/observable/ko/ObservableArray.js",
-            "line": 25,
-            "description": "handling changing of ko.observable value.",
+            "line": 30,
+            "description": "Handling changing of ko.observable value.",
+            "itemtype": "property",
+            "name": "koComputed",
+            "access": "private",
+            "tagname": "",
             "type": "{ko.computed}",
-            "class": "sb.base.observable.Observable",
-            "namespace": "sb.base.binding"
+            "class": "sb.base.observable.ko.ObservableArray",
+            "namespace": "sb.base.observable.ko"
         },
         {
             "file": "src/sb/base/observable/ko/ObservableArray.js",
-            "line": 37,
-            "description": "handling chaing of observable value.",
+            "line": 46,
+            "description": "Handling chaing of observable value.",
+            "itemtype": "property",
+            "name": "b",
+            "access": "private",
+            "tagname": "",
             "type": "{sb.base.binding.Binding}",
-            "class": "sb.base.observable.Observable",
-            "namespace": "sb.base.binding"
+            "class": "sb.base.observable.ko.ObservableArray",
+            "namespace": "sb.base.observable.ko"
         },
         {
             "file": "src/sb/base/observable/ko/main.js",
@@ -1122,7 +1131,7 @@
         },
         {
             "file": "src/sb/base/observable/ObservableArray.js",
-            "line": 96,
+            "line": 95,
             "description": "Wrapper of Array.push.",
             "itemtype": "method",
             "name": "push",
@@ -1145,7 +1154,7 @@
         },
         {
             "file": "src/sb/base/observable/ObservableArray.js",
-            "line": 105,
+            "line": 104,
             "description": "Wrapper of Array.pop.",
             "itemtype": "method",
             "name": "pop",
@@ -1156,7 +1165,7 @@
         },
         {
             "file": "src/sb/base/observable/ObservableArray.js",
-            "line": 112,
+            "line": 111,
             "itemtype": "method",
             "name": "shift",
             "class": "sb.base.observable.ObservableArray",
@@ -1164,7 +1173,7 @@
         },
         {
             "file": "src/sb/base/observable/ObservableArray.js",
-            "line": 129,
+            "line": 128,
             "description": "Propagation context.",
             "type": "{sb.Propagation}",
             "class": "sb.base.observable.ObservableArray",
@@ -1172,7 +1181,7 @@
         },
         {
             "file": "src/sb/base/observable/ObservableObject.js",
-            "line": 5,
+            "line": 6,
             "description": "Check either obj is sb.ObservableyObject or not.",
             "params": [
                 {
@@ -1185,44 +1194,6 @@
                 "description": "true indicates that obj implements sb.ObservableObject.",
                 "type": "Boolean"
             },
-            "class": "",
-            "namespace": "sb.base.observable"
-        },
-        {
-            "file": "src/sb/base/observable/SplitObservableArray.js",
-            "line": 1,
-            "class": "",
-            "namespace": "sb.base.observable"
-        },
-        {
-            "file": "src/sb/base/observable/SplitObservableArray.js",
-            "line": 6,
-            "description": "Create sb.base.observable.SplitObservableArray.",
-            "params": [
-                {
-                    "name": "observer",
-                    "description": "observer of this observableObject",
-                    "type": "sb.Observer"
-                },
-                {
-                    "name": "allElements",
-                    "description": "sb.base.observable.ObservableArray or javascript array contains all elements",
-                    "type": "sb.base.observable.ObservableArray|Array.<*>"
-                },
-                {
-                    "name": "UNKNOWN",
-                    "description": "",
-                    "type": "sb.base.observable.SplittingStrategy"
-                }
-            ],
-            "class": "",
-            "namespace": "sb.base.observable"
-        },
-        {
-            "file": "src/sb/base/observable/SplitingStrategy.js",
-            "line": 1,
-            "description": "An strategy of splitting elements in sub arrays.",
-            "typedef": "{function(sb.ObservableArray)}",
             "class": "",
             "namespace": "sb.base.observable"
         },
@@ -1411,22 +1382,6 @@
             "line": " src/sb/base/observable/ko/Observable.js:18"
         },
         {
-            "message": "unknown tag: typedef",
-            "line": " src/sb/base/observable/ko/ObservableArray.js:18"
-        },
-        {
-            "message": "unknown tag: implements",
-            "line": " src/sb/base/observable/ko/ObservableArray.js:18"
-        },
-        {
-            "message": "param name missing: {sb.base.observable.SplittingStrategy}",
-            "line": " src/sb/base/observable/SplitObservableArray.js:6"
-        },
-        {
-            "message": "unknown tag: typedef",
-            "line": " src/sb/base/observable/SplitingStrategy.js:1"
-        },
-        {
             "message": "Missing item type",
             "line": " src/sb/base/binding/Binding.js:91"
         },
@@ -1471,22 +1426,6 @@
             "line": " src/sb/base/observable/ko/Observable.js:37"
         },
         {
-            "message": "Missing item type\nCreate a wraper for ko.observableArray.",
-            "line": " src/sb/base/observable/ko/ObservableArray.js:10"
-        },
-        {
-            "message": "Missing item type\nA wraper for ko.observableArray.",
-            "line": " src/sb/base/observable/ko/ObservableArray.js:18"
-        },
-        {
-            "message": "Missing item type\nhandling changing of ko.observable value.",
-            "line": " src/sb/base/observable/ko/ObservableArray.js:25"
-        },
-        {
-            "message": "Missing item type\nhandling chaing of observable value.",
-            "line": " src/sb/base/observable/ko/ObservableArray.js:37"
-        },
-        {
             "message": "Missing item type\nIt provides wrappers of KnockoutJS.",
             "line": " src/sb/base/observable/ko/main.js:9"
         },
@@ -1496,23 +1435,11 @@
         },
         {
             "message": "Missing item type\nPropagation context.",
-            "line": " src/sb/base/observable/ObservableArray.js:129"
+            "line": " src/sb/base/observable/ObservableArray.js:128"
         },
         {
             "message": "Missing item type\nCheck either obj is sb.ObservableyObject or not.",
-            "line": " src/sb/base/observable/ObservableObject.js:5"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src/sb/base/observable/SplitObservableArray.js:1"
-        },
-        {
-            "message": "Missing item type\nCreate sb.base.observable.SplitObservableArray.",
-            "line": " src/sb/base/observable/SplitObservableArray.js:6"
-        },
-        {
-            "message": "Missing item type\nAn strategy of splitting elements in sub arrays.",
-            "line": " src/sb/base/observable/SplitingStrategy.js:1"
+            "line": " src/sb/base/observable/ObservableObject.js:6"
         },
         {
             "message": "Missing item type\nIt provides data structures of observables.",

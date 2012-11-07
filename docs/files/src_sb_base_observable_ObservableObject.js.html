@@ -57,6 +57,8 @@
             
                 <li><a href="..&#x2F;classes/sb.base.binding.PropagationGuardian.html">sb.base.binding.PropagationGuardian</a></li>
             
+                <li><a href="..&#x2F;classes/sb.base.observable.ko.ObservableArray.html">sb.base.observable.ko.ObservableArray</a></li>
+            
                 <li><a href="..&#x2F;classes/sb.base.observable.Observable.html">sb.base.observable.Observable</a></li>
             
                 <li><a href="..&#x2F;classes/sb.base.observable.ObservableArray.html">sb.base.observable.ObservableArray</a></li>
@@ -108,12 +110,13 @@ define(
         &quot;sb&#x2F;base&#x2F;observable&#x2F;isObservableObject&quot;,
         [],
         function() {
+
                 &#x2F;**
                  * Check either obj is sb.ObservableyObject or not.
                  * @param {*} tested object 
                  * @return {boolean} true indicates that obj implements sb.ObservableObject. 
                  *&#x2F;       
-                function isObservableObject = function(obj) {
+                function isObservableObject(obj) {
 
                         &#x2F;&#x2F; either obj is a function or not?
                         if (typeof obj !== &quot;function&quot;) { 

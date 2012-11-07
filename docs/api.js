@@ -10,7 +10,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "sb.base.binding.Propagation",
         "sb.base.binding.PropagationGuardian",
         "sb.base.observable.Observable",
-        "sb.base.observable.ObservableArray"
+        "sb.base.observable.ObservableArray",
+        "sb.base.observable.ko.ObservableArray"
     ],
     "modules": [],
     "allModules": []

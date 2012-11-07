@@ -1,11 +1,11 @@
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD.
-        define([], factory);
+        define(['ko'], factory);
     } else {
         // Browser globals
-        root.sb = factory();
+        root.sb = factory(root.ko);
     }
-}(this, function () {
+}(this, function (ko) {
 
 

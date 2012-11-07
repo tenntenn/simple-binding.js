@@ -57,6 +57,8 @@
             
                 <li><a href="..&#x2F;classes/sb.base.binding.PropagationGuardian.html">sb.base.binding.PropagationGuardian</a></li>
             
+                <li><a href="..&#x2F;classes/sb.base.observable.ko.ObservableArray.html">sb.base.observable.ko.ObservableArray</a></li>
+            
                 <li><a href="..&#x2F;classes/sb.base.observable.Observable.html">sb.base.observable.Observable</a></li>
             
                 <li><a href="..&#x2F;classes/sb.base.observable.ObservableArray.html">sb.base.observable.ObservableArray</a></li>
@@ -222,18 +224,17 @@ define(
                                 &#x2F;&#x2F; notify to output observables
                                 Object.keys(result).forEach(function(name){
                                         var observable = outputs[name];
-                                        if (input !== observable
-                                            &amp;&amp; outputs.hasOwnProperty(name)
-                                    &amp;&amp; isObservableObject(observable)) {
-                                            observable.notify(propagation, result[name]);
-                                    }
+                                        if (input !== observable &amp;&amp;
+                                            outputs.hasOwnProperty(name) &amp;&amp;
+                                                    isObservableObject(observable)) {
+                                                observable.notify(propagation, result[name]);
+                                        }
                                 });
 
                                 return that;
                         };
                 }
                 return Binding;
-
         }
 );
 

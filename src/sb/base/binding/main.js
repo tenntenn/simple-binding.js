@@ -1,5 +1,5 @@
 define(
-        "sb/base/binding",
+        "sb/base/binding/main",
         [
                 "sb/base/binding/Observer",
                 "sb/base/binding/Binding",

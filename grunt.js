@@ -19,7 +19,7 @@ module.exports = function(grunt) {
                         paths: {
                                 main: "sb/main"
                         },
-                        include: ["main"],
+                        include: ['main'],
                         exclude: [],
                         out: "dist/build.js",
                         wrap: {

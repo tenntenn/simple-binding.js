@@ -107,17 +107,16 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 define(
-        &quot;sb&#x2F;base&#x2F;observable&quot;,
+        &quot;sb&#x2F;base&#x2F;observable&#x2F;main&quot;,
         [
-                &quot;sb&#x2F;base&#x2F;observable&#x2F;newObservable&quot;,
-                &quot;sb&#x2F;base&#x2F;observable&#x2F;newObservableArray&quot;,
-                &quot;sb&#x2F;base&#x2F;observable&#x2F;isObservableObject&quot;
+                &quot;sb&#x2F;base&#x2F;observable&#x2F;Observable&quot;,
+                &quot;sb&#x2F;base&#x2F;observable&#x2F;ObservableArray&quot;,
+                &quot;sb&#x2F;base&#x2F;observable&#x2F;ObservableObject&quot;
         ],
         function(newObservable, newObservableArray, isObservableObject) {
 
                 &#x2F;**
                  * It provides data structures of observables.
-                 * @namespace
                  *&#x2F;
                 var observable = {
                         newObservable: newObservable,

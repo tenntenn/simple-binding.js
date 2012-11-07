@@ -1,8 +1,8 @@
 define(
-        "sb/base",
+        "sb/base/main",
         [
-                "sb/base/observable",
-                "sb/base/binding"
+                "sb/base/observable/main",
+                "sb/base/binding/main"
         ],
         function(observable, binding) {
 

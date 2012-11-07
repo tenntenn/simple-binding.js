@@ -1,8 +1,8 @@
 define(
-        "sb/util",
+        "sb/util/main",
         [
-                "sb/util/argumentsToArray.js",
-                "sb/util/expandable.js"
+                "sb/util/argumentsToArray",
+                "sb/util/expandable"
         ],
         function(argumentsToArray, expandable) {
                 /**

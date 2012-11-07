@@ -1,8 +1,8 @@
 define(
-        'sb',
+        'sb/main',
         [
-                "sb/util",
-                "sb/base"
+                "sb/util/main",
+                "sb/base/main"
         ],
         function(util, base) {
 

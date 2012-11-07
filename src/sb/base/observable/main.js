@@ -1,15 +1,14 @@
 define(
-        "sb/base/observable",
+        "sb/base/observable/main",
         [
-                "sb/base/observable/newObservable",
-                "sb/base/observable/newObservableArray",
-                "sb/base/observable/isObservableObject"
+                "sb/base/observable/Observable",
+                "sb/base/observable/ObservableArray",
+                "sb/base/observable/ObservableObject"
         ],
         function(newObservable, newObservableArray, isObservableObject) {
 
                 /**
                  * It provides data structures of observables.
-                 * @namespace
                  */
                 var observable = {
                         newObservable: newObservable,

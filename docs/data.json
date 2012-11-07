@@ -1201,13 +1201,15 @@
             "file": "src/sb/base/observable/main.js",
             "line": 10,
             "description": "It provides data structures of observables.",
-            "class": ""
+            "class": "",
+            "namespace": "sb.base.observable"
         },
         {
             "file": "src/sb/base/main.js",
             "line": 9,
             "description": "It provides base of structures.",
-            "class": ""
+            "class": "",
+            "namespace": "sb.base.observable"
         },
         {
             "file": "src/sb/util/expandable.js",
@@ -1217,28 +1219,32 @@
                 "description": "expandable function",
                 "type": "Function(*):*"
             },
-            "class": ""
+            "class": "",
+            "namespace": "sb.base.observable"
         },
         {
             "file": "src/sb/util/expandable.js",
             "line": 19,
             "description": "Expandable function.",
             "type": "{function(*):*}",
-            "class": ""
+            "class": "",
+            "namespace": "sb.base.observable"
         },
         {
             "file": "src/sb/util/expandable.js",
             "line": 30,
             "description": "Arguments array of this function.",
             "type": "{Array.<*>}",
-            "class": ""
+            "class": "",
+            "namespace": "sb.base.observable"
         },
         {
             "file": "src/sb/util/expandable.js",
             "line": 36,
             "description": "Sub functions.",
             "type": "{Array.<function(*):*>}",
-            "class": ""
+            "class": "",
+            "namespace": "sb.base.observable"
         },
         {
             "file": "src/sb/util/expandable.js",
@@ -1251,7 +1257,8 @@
                     "type": "Function(*):*"
                 }
             ],
-            "class": ""
+            "class": "",
+            "namespace": "sb.base.observable"
         },
         {
             "file": "src/sb/util/main.js",

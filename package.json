@@ -13,7 +13,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "grunt": "~0.3.17"
+    "grunt": "~0.3.17",
+    "grunt-requirejs": "~0.2.14"
   },
   "optionalDependencies": {},
   "licenses": [

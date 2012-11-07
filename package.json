@@ -14,7 +14,8 @@
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.3.17",
-    "grunt-requirejs": "~0.2.14"
+    "grunt-requirejs": "~0.2.14",
+    "grunt-contrib-yuidoc": "~0.3.2"
   },
   "optionalDependencies": {},
   "licenses": [

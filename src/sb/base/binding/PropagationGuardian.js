@@ -19,8 +19,8 @@ define(
                                 };
                         }
 
-                        if (typeof timeout !== "number"
-                            || timeout <= 0) {
+                        if (typeof timeout !== "number" ||
+                            timeout <= 0) {
                                     timeout = 1;
                             }
 
@@ -104,7 +104,7 @@ define(
 
                                     return propagation;
                             };     
-                };
+                }
 
                 return PropagationGuardian;
         }

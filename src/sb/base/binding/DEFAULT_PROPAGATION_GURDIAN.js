@@ -12,7 +12,7 @@ define(
                  * @for PropagationGuardian
                  * @final
                  */
-                var DEFAULT_PROPAGATION_GURDIA = new PropagationGuardian(null, 1);
+                var DEFAULT_PROPAGATION_GURDIAN = new PropagationGuardian(null, 1);
 
                 return DEFAULT_PROPAGATION_GURDIAN;
         }

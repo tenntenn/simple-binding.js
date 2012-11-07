@@ -1,7 +1,7 @@
 define(
         "sb/base/observable/newObservableArray",
         [
-                "sb/util",
+                "sb/util"
         ],
         function(util) {
 
@@ -85,11 +85,10 @@ define(
                                 // Propagation context.
                                 var propagation = observer.getPropagationGuardian().createPropagation();
 
+                                array[i] = v;
+                                observable.notify(propagation, array);
+
                         };
-
-                        array[i] = v;
-
-                        observable.notify(propagation, array);
 
                         // wrapper for functions which change the internal array
                         [
@@ -101,7 +100,7 @@ define(
                                  * @return {number} The new length property of the object upon which the method was called.
                                  */
                                 "push",
-                                
+
                                 /**
                                  * Wrapper of Array.pop.
                                  * @method pop

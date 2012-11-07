@@ -2,12 +2,13 @@ define(
         "sb/base/observable/isObservableObject",
         [],
         function() {
+
                 /**
                  * Check either obj is sb.ObservableyObject or not.
                  * @param {*} tested object 
                  * @return {boolean} true indicates that obj implements sb.ObservableObject. 
                  */       
-                function isObservableObject = function(obj) {
+                function isObservableObject(obj) {
 
                         // either obj is a function or not?
                         if (typeof obj !== "function") { 

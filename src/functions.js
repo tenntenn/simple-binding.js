@@ -1,36 +1,6 @@
 // It provide functions which can be use easily.
 (function() {
 
-    /**
-     * @const {sb.base.binding.Observer} default observer.
-     */
-    var observer = new sb.base.binding.Observer();
-
-    /**
-     * Create default setting binding chain.
-     * @return {sb.base.binding.BindingChain} default setting binding chain.
-     */
-    sb.binding = function() {
-
-        /**
-         * @type {Array.<*>} arguments array of this function.
-         */
-        var args = sb.util.argumentsToArray(arguments);
-
-        /**
-         * @type {Array.<sb.base.observable.ObservableObject>} 
-         */
-        var observables = args.filter(function(arg){
-            return sb.base.observable.isObservableObject(arg);
-        });
-
-        /**
-         * @type {sb.base.binding.BindingChain} default setting binding chain.
-         */
-        var chain = new sb.base.binding.BindingChain(observer, observables);
-
-        return chain;
-    };
 
     /**
      * Create default setting of sb.base.observable.Observable.

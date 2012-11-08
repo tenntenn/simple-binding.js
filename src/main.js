@@ -1,9 +1,17 @@
 define(
     '',
-    [],
-    function() {
-        return {
-            hoge: "hoge"
+    [
+        "sb/binding",
+    ],
+    function(binding) {
+
+        /**
+         * @namespace
+         */
+        var sb = {
+            binding: binding
         };
+
+        return sb;
     }
 );

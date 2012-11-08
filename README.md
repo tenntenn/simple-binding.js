@@ -9,21 +9,22 @@ But simple-binding.js also provides wrapper for [KnockoutJS](http://knockoutjs.c
 
 Authors
 -------------
-<<<<<<< HEAD
-* @tenntenn (Takuya Ueda)
-* [spd-user](http://github.com/spd-user/simple-binding.js) (Yuji Katsumata)
-=======
 * [@tenntenn](https://twitter.com/tenntenn) (Takuya Ueda)
 * [spd-user](http://github.com/spd-user/) (Yuji Katsumata)
->>>>>>> 1ef920a0333906286bd3c8b1aece395f220b31b1
 * kazuma-s
+
 
 Build
 -------------
 
-Build script create a minified js file by executing such as following.
+This project is managemed by grunt.
+First, you should install grunt and using grunt tasks.
 
-    $ ./build
+    $ npm install
+
+And build the project with :
+
+    $ grunt
 
 
 Usage

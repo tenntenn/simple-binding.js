@@ -1,0 +1,1528 @@
+{
+    "project": {
+        "name": "simple-binding",
+        "description": "Sinmple binding library",
+        "version": "0.0.1",
+        "url": "https://github.com/tenntenn/simple-binding.js"
+    },
+    "files": {
+        "src/sb/base/binding/Binding.js": {
+            "name": "src/sb/base/binding/Binding.js",
+            "modules": {},
+            "classes": {
+                "sb.base.binding.Binding": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "sb.base.binding": 1
+            }
+        },
+        "src/sb/base/binding/BindingChain.js": {
+            "name": "src/sb/base/binding/BindingChain.js",
+            "modules": {},
+            "classes": {
+                "sb.base.binding.BindingChain": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "sb.base.binding": 1
+            }
+        },
+        "src/sb/base/binding/Computed.js": {
+            "name": "src/sb/base/binding/Computed.js",
+            "modules": {},
+            "classes": {
+                "sb.base.binding.Computed": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/sb/base/binding/DEFAULT_PROPAGATION_GURDIAN.js": {
+            "name": "src/sb/base/binding/DEFAULT_PROPAGATION_GURDIAN.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "PropagationGuardian": 1
+            },
+            "namespaces": {
+                "sb.base.binding": 1
+            }
+        },
+        "src/sb/base/binding/NotificationEvent.js": {
+            "name": "src/sb/base/binding/NotificationEvent.js",
+            "modules": {},
+            "classes": {
+                "sb.base.binding.NotificationEvent": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "sb.base.binding": 1
+            }
+        },
+        "src/sb/base/binding/Observer.js": {
+            "name": "src/sb/base/binding/Observer.js",
+            "modules": {},
+            "classes": {
+                "sb.base.binding.Observer": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "sb.base.binding": 1
+            }
+        },
+        "src/sb/base/binding/Parameter.js": {
+            "name": "src/sb/base/binding/Parameter.js",
+            "modules": {},
+            "classes": {
+                "sb.base.binding.Parameters": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/sb/base/binding/PropagationGuardian.js": {
+            "name": "src/sb/base/binding/PropagationGuardian.js",
+            "modules": {},
+            "classes": {
+                "sb.base.binding.PropagationGuardian": 1,
+                "sb.base.binding.Propagation": 1
+            },
+            "fors": {
+                "Propagation": 1
+            },
+            "namespaces": {
+                "sb.base.binding": 1
+            }
+        },
+        "src/sb/base/binding/main.js": {
+            "name": "src/sb/base/binding/main.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/sb/base/observable/ko/Observable.js": {
+            "name": "src/sb/base/observable/ko/Observable.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/sb/base/observable/ko/ObservableArray.js": {
+            "name": "src/sb/base/observable/ko/ObservableArray.js",
+            "modules": {},
+            "classes": {
+                "sb.base.observable.ko.ObservableArray": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "sb.base.observable.ko": 1
+            }
+        },
+        "src/sb/base/observable/ko/main.js": {
+            "name": "src/sb/base/observable/ko/main.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/sb/base/observable/Observable.js": {
+            "name": "src/sb/base/observable/Observable.js",
+            "modules": {},
+            "classes": {
+                "sb.base.observable.Observable": 1
+            },
+            "fors": {
+                "sb.base.observable.Observable": 1
+            },
+            "namespaces": {
+                "sb.base.observable": 1
+            }
+        },
+        "src/sb/base/observable/ObservableArray.js": {
+            "name": "src/sb/base/observable/ObservableArray.js",
+            "modules": {},
+            "classes": {
+                "sb.base.observable.ObservableArray": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "sb.base.observable": 1
+            }
+        },
+        "src/sb/base/observable/ObservableObject.js": {
+            "name": "src/sb/base/observable/ObservableObject.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/sb/base/observable/main.js": {
+            "name": "src/sb/base/observable/main.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/sb/base/main.js": {
+            "name": "src/sb/base/main.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/sb/util/expandable.js": {
+            "name": "src/sb/util/expandable.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/sb/util/main.js": {
+            "name": "src/sb/util/main.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/sb/functions.js": {
+            "name": "src/sb/functions.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/sb/main.js": {
+            "name": "src/sb/main.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "sb.base.binding.Binding": {
+            "name": "sb.base.binding.Binding",
+            "shortname": "sb.base.binding.Binding",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "sb.base.binding",
+            "file": "src/sb/base/binding/Binding.js",
+            "line": 8,
+            "description": "A binding between observables.\nIf an observer which contained of input observables\nnotifies changing own value to the observer \nobserver will notifies values which converted by computed function\nto binded observables which contained of output observables.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "observer",
+                    "description": "the observer",
+                    "type": "sb.base.binding.Observer"
+                },
+                {
+                    "name": "inputs",
+                    "description": "input observables",
+                    "type": "sb.base.binding.Parameters"
+                },
+                {
+                    "name": "outputs",
+                    "description": "output observables",
+                    "type": "sb.base.binding.Parameters"
+                },
+                {
+                    "name": "computed",
+                    "description": "computed function",
+                    "type": "sb.base.binding.Computed"
+                }
+            ]
+        },
+        "sb.base.binding.BindingChain": {
+            "name": "sb.base.binding.BindingChain",
+            "shortname": "sb.base.binding.BindingChain",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "sb.base.binding",
+            "file": "src/sb/base/binding/BindingChain.js",
+            "line": 10,
+            "description": "A set of bindings which provide binding functions as method chains.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "observer",
+                    "description": "",
+                    "type": "sb.base.binding.Observer"
+                },
+                {
+                    "name": "observables",
+                    "description": "",
+                    "type": "Array"
+                }
+            ]
+        },
+        "sb.base.binding.Computed": {
+            "name": "sb.base.binding.Computed",
+            "shortname": "Computed",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "sb.base.binding",
+            "file": "src/sb/base/binding/Computed.js",
+            "line": 5,
+            "type": "function(sb.base.binding.Parameters):sb.base.binding.Parameters"
+        },
+        "sb.base.binding.PropagationGuardian": {
+            "name": "sb.base.binding.PropagationGuardian",
+            "shortname": "PropagationGuardian",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "sb.base.binding",
+            "file": "src/sb/base/binding/PropagationGuardian.js",
+            "line": 7,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "continueCondition",
+                    "description": "",
+                    "type": "Function():boolean"
+                },
+                {
+                    "name": "timeout",
+                    "description": "",
+                    "type": "Number"
+                }
+            ]
+        },
+        "sb.base.binding.NotificationEvent": {
+            "name": "sb.base.binding.NotificationEvent",
+            "shortname": "sb.base.binding.NotificationEvent",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "sb.base.binding",
+            "file": "src/sb/base/binding/NotificationEvent.js",
+            "line": 5,
+            "description": "Interface of notificaiton event object."
+        },
+        "sb.base.binding.Observer": {
+            "name": "sb.base.binding.Observer",
+            "shortname": "sb.base.binding.Observer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "sb.base.binding",
+            "file": "src/sb/base/binding/Observer.js",
+            "line": 9,
+            "description": "This class observes ObservableObject.",
+            "is_constructor": 1,
+            "uses": [
+                "sb.base.binding.ObservableObject"
+            ]
+        },
+        "sb.base.binding.Parameters": {
+            "name": "sb.base.binding.Parameters",
+            "shortname": "Parameters",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "sb.base.binding",
+            "file": "src/sb/base/binding/Parameter.js",
+            "line": 6,
+            "description": "Interface of inputs or outputs for sb.base.binding.Computed function.",
+            "type": "Object"
+        },
+        "sb.base.binding.Propagation": {
+            "name": "sb.base.binding.Propagation",
+            "shortname": "Propagation",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "sb.base.binding",
+            "file": "src/sb/base/binding/PropagationGuardian.js",
+            "line": 42,
+            "description": "Test propagation is success with given continueCondition and timeout.",
+            "params": [
+                {
+                    "name": "source",
+                    "description": "adjacent source of notify propagation",
+                    "type": "sb.base.binding.ObservableObject"
+                },
+                {
+                    "name": "e",
+                    "description": "event object.",
+                    "type": "sb.base.binding.NotificationEvent"
+                }
+            ]
+        },
+        "sb.base.observable.ko.ObservableArray": {
+            "name": "sb.base.observable.ko.ObservableArray",
+            "shortname": "sb.base.observable.ko.ObservableArray",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "sb.base.observable.ko",
+            "file": "src/sb/base/observable/ko/ObservableArray.js",
+            "line": 21,
+            "description": "A wraper for ko.observableArray.",
+            "type": "sb.base.observable.ko.ObservableArray",
+            "extends": "sb.base.observable.ObservableObject"
+        },
+        "sb.base.observable.Observable": {
+            "name": "sb.base.observable.Observable",
+            "shortname": "sb.base.observable.Observable",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "sb.base.observable",
+            "file": "src/sb/base/observable/Observable.js",
+            "line": 19,
+            "description": "An observable object which can have an internal value.",
+            "type": "function(*):*",
+            "extends": "{sb.base.observable.ObservableObject}",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "it is set for this observable",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "set value at this observable",
+                "type": "*"
+            }
+        },
+        "sb.base.observable.ObservableArray": {
+            "name": "sb.base.observable.ObservableArray",
+            "shortname": "sb.base.observable.ObservableArray",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "sb.base.observable",
+            "file": "src/sb/base/observable/ObservableArray.js",
+            "line": 25,
+            "description": "An array which can be observed.\nIf new element is added or an element deleted,\nsb.base.observable.ObservableArray notify binded other \nsb.base.observable.ObservableObject.",
+            "extends": "sb.base.observable.ObservableObject",
+            "type": "function():Array",
+            "return": {
+                "description": "internal array",
+                "type": "Array"
+            }
+        }
+    },
+    "classitems": [
+        {
+            "file": "src/sb/base/binding/Binding.js",
+            "line": 25,
+            "description": "Own object.",
+            "itemtype": "property",
+            "name": "that",
+            "access": "private",
+            "tagname": "",
+            "type": "{sb.base.binding.Binding}",
+            "class": "sb.base.binding.Binding",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/Binding.js",
+            "line": 33,
+            "description": "Input observables.",
+            "itemtype": "property",
+            "name": "inputs",
+            "access": "public",
+            "tagname": "",
+            "type": "{sb.base.binding.Parameters}",
+            "class": "sb.base.binding.Binding",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/Binding.js",
+            "line": 41,
+            "description": "Output observables.",
+            "itemtype": "property",
+            "name": "outputs",
+            "access": "public",
+            "tagname": "",
+            "type": "{sb.base.binding.Parameters}",
+            "class": "sb.base.binding.Binding",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/Binding.js",
+            "line": 49,
+            "description": "Computed function.",
+            "itemtype": "property",
+            "name": "computed",
+            "access": "public",
+            "tagname": "",
+            "type": "{sb.base.binding.Computed}",
+            "class": "sb.base.binding.Binding",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/Binding.js",
+            "line": 57,
+            "description": "Enable this binding.",
+            "itemtype": "method",
+            "name": "bind",
+            "access": "public",
+            "tagname": "",
+            "chainable": 1,
+            "return": {
+                "description": "own object",
+                "type": "sb.base.binding.Binding"
+            },
+            "class": "sb.base.binding.Binding",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/Binding.js",
+            "line": 69,
+            "description": "Disable this binding.",
+            "itemtype": "method",
+            "name": "unbind",
+            "access": "public",
+            "tagname": "",
+            "chainable": 1,
+            "return": {
+                "description": "own object",
+                "type": "sb.base.binding.Binding"
+            },
+            "class": "sb.base.binding.Binding",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/Binding.js",
+            "line": 81,
+            "description": "Notify changing to output observables.",
+            "itemtype": "method",
+            "name": "notify",
+            "access": "public",
+            "tagname": "",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "propagation",
+                    "description": "propagation context",
+                    "type": "sb.base.binding.Propagation"
+                }
+            ],
+            "return": {
+                "description": "own object",
+                "type": "sb.base.binding.Binding"
+            },
+            "class": "sb.base.binding.Binding",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/Binding.js",
+            "line": 91,
+            "type": "{sb.base.observable.ObservableObject} source of notification",
+            "class": "sb.base.binding.Binding",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/Binding.js",
+            "line": 96,
+            "type": "{sb.base.binding.NotificationEvent} event object",
+            "class": "sb.base.binding.Binding",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/Binding.js",
+            "line": 101,
+            "type": "{sb.base.binding.Parameters} result of computed",
+            "class": "sb.base.binding.Binding",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/Binding.js",
+            "line": 106,
+            "type": "{Array.<sb.base.observable.ObservableObject>}",
+            "class": "sb.base.binding.Binding",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/Binding.js",
+            "line": 111,
+            "type": "{sb.base.observable.ObservableObject} input observable",
+            "class": "sb.base.binding.Binding",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/BindingChain.js",
+            "line": 20,
+            "description": "Create bindings.",
+            "itemtype": "property",
+            "name": "bindingsMaker",
+            "access": "private",
+            "tagname": "",
+            "type": "{sb.util.expandable}",
+            "class": "sb.base.binding.BindingChain",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/BindingChain.js",
+            "line": 28,
+            "description": "A set of bindings.",
+            "itemtype": "property",
+            "name": "bindings",
+            "access": "private",
+            "tagname": "",
+            "type": "{Array}",
+            "class": "sb.base.binding.BindingChain",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/BindingChain.js",
+            "line": 36,
+            "description": "Synchronize observables which are same value each other\nand when an observable changes, others immediately synchronized.",
+            "itemtype": "method",
+            "name": "synchronize",
+            "access": "public",
+            "tagname": "",
+            "chainable": 1,
+            "return": {
+                "description": "own object",
+                "type": "sb.base.binding.BindingChain"
+            },
+            "class": "sb.base.binding.BindingChain",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/BindingChain.js",
+            "line": 91,
+            "description": "Add computed binding.",
+            "itemtype": "method",
+            "name": "computed",
+            "access": "public",
+            "tagname": "",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "observable",
+                    "description": "target observable",
+                    "type": "sb.base.observable.ObservableObject"
+                },
+                {
+                    "name": "func",
+                    "description": "computed function",
+                    "type": "sb.base.binding.Computed"
+                }
+            ],
+            "return": {
+                "description": "own object",
+                "type": "sb.base.binding.BindingChain"
+            },
+            "class": "sb.base.binding.BindingChain",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/BindingChain.js",
+            "line": 136,
+            "description": "Add callback which call after changing a given observable value.",
+            "itemtype": "method",
+            "name": "onChange",
+            "access": "public",
+            "tagname": "",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "observable",
+                    "description": "target observable.",
+                    "type": "sb.base.observable.ObservableObject"
+                },
+                {
+                    "name": "callback",
+                    "description": "callback function",
+                    "type": "function(sb.base.observable.ObservableObject, sb.base.binding.NotificationEvent)"
+                }
+            ],
+            "return": {
+                "description": "own object",
+                "type": "sb.base.binding.BindingChain"
+            },
+            "class": "sb.base.binding.BindingChain",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/BindingChain.js",
+            "line": 173,
+            "description": "Enable internal all internal bindings.",
+            "itemtype": "method",
+            "name": "bind",
+            "access": "public",
+            "tagname": "",
+            "chainable": 1,
+            "return": {
+                "description": "own object",
+                "type": "sb.base.binding.BindingChain"
+            },
+            "class": "sb.base.binding.BindingChain",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/BindingChain.js",
+            "line": 193,
+            "description": "Disable internal all internal bindings.",
+            "itemtype": "method",
+            "name": "unbind",
+            "access": "public",
+            "tagname": "",
+            "chainable": 1,
+            "return": {
+                "description": "own object",
+                "type": "sb.base.binding.BindingChain"
+            },
+            "class": "sb.base.binding.BindingChain",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/DEFAULT_PROPAGATION_GURDIAN.js",
+            "line": 8,
+            "description": "Default value of sb.base.binding.PropagationGuardian.",
+            "itemtype": "property",
+            "name": "DEFAULT_PROPAGATION_GURDIA",
+            "final": 1,
+            "class": "sb.base.binding.PropagationGuardian"
+        },
+        {
+            "file": "src/sb/base/binding/Observer.js",
+            "line": 23,
+            "access": "private",
+            "tagname": "",
+            "type": "Array.<sb.base.binding.Binding>",
+            "class": "sb.base.binding.Observer",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/Observer.js",
+            "line": 29,
+            "description": "Get PropagationGuardian.",
+            "itemtype": "method",
+            "name": "getPropagationGuardian",
+            "return": {
+                "description": "PropagationGuardian",
+                "type": "sb.base.binding.PropagationGuardian"
+            },
+            "class": "sb.base.binding.Observer",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/Observer.js",
+            "line": 38,
+            "description": "Add new binding.",
+            "itemtype": "method",
+            "name": "add",
+            "params": [
+                {
+                    "name": "binding",
+                    "description": "",
+                    "type": "sb.base.binding.Binding"
+                }
+            ],
+            "class": "sb.base.binding.Observer",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/Observer.js",
+            "line": 55,
+            "description": "Notify change to binded observables.",
+            "itemtype": "method",
+            "name": "nofity",
+            "params": [
+                {
+                    "name": "propagation",
+                    "description": "",
+                    "type": "sb.base.binding.Propagation"
+                },
+                {
+                    "name": "input",
+                    "description": "",
+                    "type": "Array<sb.base.binding.Observable>"
+                }
+            ],
+            "class": "sb.base.binding.Observer",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/Observer.js",
+            "line": 81,
+            "description": "Remove binding from this observer.",
+            "itemtype": "method",
+            "name": "remove",
+            "params": [
+                {
+                    "name": "binding",
+                    "description": "",
+                    "type": "sb.base.binding.Binding"
+                }
+            ],
+            "class": "sb.base.binding.Observer",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/PropagationGuardian.js",
+            "line": 27,
+            "itemtype": "method",
+            "name": "createPropagation",
+            "access": "public",
+            "tagname": "",
+            "class": "sb.base.binding.PropagationGuardian",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/PropagationGuardian.js",
+            "line": 33,
+            "description": "Call Stack of observable.",
+            "itemtype": "property",
+            "name": "callStack",
+            "access": "private",
+            "tagname": "",
+            "type": "Array",
+            "class": "sb.base.binding.Propagation"
+        },
+        {
+            "file": "src/sb/base/binding/PropagationGuardian.js",
+            "line": 51,
+            "description": "Get callStack of this propagation.",
+            "itemtype": "method",
+            "name": "callStack",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "sb.base.binding.Propagation",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/PropagationGuardian.js",
+            "line": 61,
+            "description": "Get source observable.",
+            "itemtype": "method",
+            "name": "getSource",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "sb.base.binding.ObservableObject"
+            },
+            "class": "sb.base.binding.Propagation",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/PropagationGuardian.js",
+            "line": 71,
+            "description": "Get event object.",
+            "itemtype": "method",
+            "name": "getEventObject",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "sb.base.binding.NotificationEvent"
+            },
+            "class": "sb.base.binding.Propagation",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/main.js",
+            "line": 12,
+            "description": "It provides objects which are related to binding.",
+            "class": "sb.base.observable.ko.ObservableArray",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/observable/ko/Observable.js",
+            "line": 10,
+            "description": "Create a wraper for ko.observable.",
+            "params": [
+                {
+                    "name": "observer",
+                    "description": "observer of this observable object",
+                    "type": "sb.base.binding.Observer"
+                },
+                {
+                    "name": "koObservable",
+                    "description": "observable object of KnockoutJS",
+                    "type": "ko.observable"
+                }
+            ],
+            "return": {
+                "description": "a wraper for ko.observable.",
+                "type": "sb.base.observable.ko.Observable"
+            },
+            "class": "sb.base.observable.ko.ObservableArray",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/observable/ko/Observable.js",
+            "line": 18,
+            "description": "A wraper for ko.observable.",
+            "typedef": "{sb.base.observable.ko.Observable}",
+            "implements": "{sb.base.observable.ObservableObject}",
+            "class": "sb.base.observable.ko.ObservableArray",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/observable/ko/Observable.js",
+            "line": 25,
+            "description": "handling changing of ko.observable value.",
+            "type": "{ko.computed}",
+            "class": "sb.base.observable.ko.ObservableArray",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/observable/ko/Observable.js",
+            "line": 37,
+            "description": "handling chaing of observable value.",
+            "type": "{sb.base.binding.Binding}",
+            "class": "sb.base.observable.ko.ObservableArray",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/observable/ko/ObservableArray.js",
+            "line": 10,
+            "description": "Create a wraper for ko.observableArray.",
+            "itemtype": "method",
+            "name": "sb.base.observable.ko.newKoObservableArray",
+            "access": "public",
+            "tagname": "",
+            "static": 1,
+            "params": [
+                {
+                    "name": "observer",
+                    "description": "observer of this observable object",
+                    "type": "sb.base.binding.Observer"
+                },
+                {
+                    "name": "koObservableArray",
+                    "description": "observableArray object of KnockoutJS",
+                    "type": "ko.observableArray"
+                }
+            ],
+            "return": {
+                "description": "A wraper for ko.observableArray.",
+                "type": "sb.base.observable.ko.ObservableArray"
+            },
+            "class": "sb.base.observable.ko.ObservableArray",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/observable/ko/ObservableArray.js",
+            "line": 30,
+            "description": "Handling changing of ko.observable value.",
+            "itemtype": "property",
+            "name": "koComputed",
+            "access": "private",
+            "tagname": "",
+            "type": "{ko.computed}",
+            "class": "sb.base.observable.ko.ObservableArray",
+            "namespace": "sb.base.observable.ko"
+        },
+        {
+            "file": "src/sb/base/observable/ko/ObservableArray.js",
+            "line": 46,
+            "description": "Handling chaing of observable value.",
+            "itemtype": "property",
+            "name": "b",
+            "access": "private",
+            "tagname": "",
+            "type": "{sb.base.binding.Binding}",
+            "class": "sb.base.observable.ko.ObservableArray",
+            "namespace": "sb.base.observable.ko"
+        },
+        {
+            "file": "src/sb/base/observable/ko/main.js",
+            "line": 9,
+            "description": "It provides wrappers of KnockoutJS.",
+            "class": "sb.base.observable.Observable"
+        },
+        {
+            "file": "src/sb/base/observable/Observable.js",
+            "line": 7,
+            "description": "Create a sb.base.observable.Observable object.",
+            "itemtype": "method",
+            "name": "sb.base.observable.newObservable",
+            "static": 1,
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "observer",
+                    "description": "observer of this observable value",
+                    "type": "sb.base.binding.Observer"
+                },
+                {
+                    "name": "value",
+                    "description": "initial value",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "created observable object",
+                "type": "sb.base.observable.Observable"
+            },
+            "class": "sb.base.observable.Observable"
+        },
+        {
+            "file": "src/sb/base/observable/Observable.js",
+            "line": 43,
+            "description": "Notify change registed observer object.",
+            "itemtype": "method",
+            "name": "notify",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "propagation",
+                    "description": "propagation context",
+                    "type": "sb.Propagation"
+                },
+                {
+                    "name": "v",
+                    "description": "it is set for this observable",
+                    "type": "*"
+                }
+            ],
+            "class": "sb.base.observable.Observable",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/base/observable/Observable.js",
+            "line": 52,
+            "type": "{sb.base.binding.NotificationEvent}",
+            "class": "sb.base.observable.Observable",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/base/observable/ObservableArray.js",
+            "line": 8,
+            "description": "Create observable array.",
+            "itemtype": "method",
+            "name": "sb.base.observable.newObservableArray",
+            "access": "public",
+            "tagname": "",
+            "static": 1,
+            "params": [
+                {
+                    "name": "observer",
+                    "description": "registed observer",
+                    "type": "sb.Observer"
+                },
+                {
+                    "name": "initArray",
+                    "description": "initial value of array",
+                    "type": "Array.<*>"
+                }
+            ],
+            "return": {
+                "description": "created observable array",
+                "type": "sb.observable.ObservableArray"
+            },
+            "class": "sb.base.observable.ObservableArray",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/base/observable/ObservableArray.js",
+            "line": 41,
+            "description": "Notify changing for observer.",
+            "itemtype": "method",
+            "name": "notify",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "propagation",
+                    "description": "propagation context",
+                    "type": "sb.base.binding.Propagation"
+                },
+                {
+                    "name": "e",
+                    "description": "event object",
+                    "type": "sb.base.binding.NotificationEvent"
+                }
+            ],
+            "class": "sb.base.observable.ObservableArray",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/base/observable/ObservableArray.js",
+            "line": 54,
+            "description": "Get array size which wrapes the internal array length.",
+            "itemtype": "method",
+            "name": "length",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "array size",
+                "type": "Numnber"
+            },
+            "class": "sb.base.observable.ObservableArray",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/base/observable/ObservableArray.js",
+            "line": 64,
+            "description": "Get value with index i.",
+            "itemtype": "method",
+            "name": "get",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "i",
+                    "description": "index",
+                    "type": "Numnber"
+                }
+            ],
+            "return": {
+                "description": "value of given index.",
+                "type": "Object"
+            },
+            "class": "sb.base.observable.ObservableArray",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/base/observable/ObservableArray.js",
+            "line": 75,
+            "description": "Set value with index i.\nAnd it notify observer.",
+            "itemtype": "method",
+            "name": "set",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "i",
+                    "description": "index",
+                    "type": "Numnber"
+                },
+                {
+                    "name": "v",
+                    "description": "value",
+                    "type": "Object"
+                }
+            ],
+            "class": "sb.base.observable.ObservableArray",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/base/observable/ObservableArray.js",
+            "line": 95,
+            "description": "Wrapper of Array.push.",
+            "itemtype": "method",
+            "name": "push",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "element*",
+                    "description": "The elements to add to the end of the array.",
+                    "type": "Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "The new length property of the object upon which the method was called.",
+                "type": "Number"
+            },
+            "class": "sb.base.observable.ObservableArray",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/base/observable/ObservableArray.js",
+            "line": 104,
+            "description": "Wrapper of Array.pop.",
+            "itemtype": "method",
+            "name": "pop",
+            "access": "public",
+            "tagname": "",
+            "class": "sb.base.observable.ObservableArray",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/base/observable/ObservableArray.js",
+            "line": 111,
+            "itemtype": "method",
+            "name": "shift",
+            "class": "sb.base.observable.ObservableArray",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/base/observable/ObservableArray.js",
+            "line": 128,
+            "description": "Propagation context.",
+            "type": "{sb.Propagation}",
+            "class": "sb.base.observable.ObservableArray",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/base/observable/ObservableObject.js",
+            "line": 6,
+            "description": "Check either obj is sb.ObservableyObject or not.",
+            "params": [
+                {
+                    "name": "tested",
+                    "description": "object",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "true indicates that obj implements sb.ObservableObject.",
+                "type": "Boolean"
+            },
+            "class": "",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/base/observable/main.js",
+            "line": 10,
+            "description": "It provides data structures of observables.",
+            "class": "",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/base/main.js",
+            "line": 9,
+            "description": "It provides base of structures.",
+            "class": "",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/util/expandable.js",
+            "line": 9,
+            "description": "Create an expandable function \nwhich can expand with other function.\nForexample, let f is expandable function and g is normal function.\nf.expand(g) expand f with g.\nCalling expanded f do the original process of f and then do the g's process.",
+            "return": {
+                "description": "expandable function",
+                "type": "Function(*):*"
+            },
+            "class": "",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/util/expandable.js",
+            "line": 19,
+            "description": "Expandable function.",
+            "type": "{function(*):*}",
+            "class": "",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/util/expandable.js",
+            "line": 30,
+            "description": "Arguments array of this function.",
+            "type": "{Array.<*>}",
+            "class": "",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/util/expandable.js",
+            "line": 36,
+            "description": "Sub functions.",
+            "type": "{Array.<function(*):*>}",
+            "class": "",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/util/expandable.js",
+            "line": 44,
+            "description": "Expand with given function.",
+            "params": [
+                {
+                    "name": "newFunc",
+                    "description": "new sub function which is run at last.",
+                    "type": "Function(*):*"
+                }
+            ],
+            "class": "",
+            "namespace": "sb.base.observable"
+        },
+        {
+            "file": "src/sb/util/main.js",
+            "line": 8,
+            "description": "It provides utility functions and data structures.",
+            "class": ""
+        },
+        {
+            "file": "src/sb/functions.js",
+            "line": 4,
+            "itemtype": "property",
+            "name": "{sb.base.binding.Observer} default observer.",
+            "final": "",
+            "class": ""
+        },
+        {
+            "file": "src/sb/functions.js",
+            "line": 9,
+            "description": "Create default setting binding chain.",
+            "return": {
+                "description": "default setting binding chain.",
+                "type": "sb.base.binding.BindingChain"
+            },
+            "class": ""
+        },
+        {
+            "file": "src/sb/functions.js",
+            "line": 15,
+            "type": "{Array.<*>} arguments array of this function.",
+            "class": ""
+        },
+        {
+            "file": "src/sb/functions.js",
+            "line": 20,
+            "type": "{Array.<sb.base.observable.ObservableObject>}",
+            "class": ""
+        },
+        {
+            "file": "src/sb/functions.js",
+            "line": 27,
+            "type": "{sb.base.binding.BindingChain} default setting binding chain.",
+            "class": ""
+        },
+        {
+            "file": "src/sb/functions.js",
+            "line": 35,
+            "description": "Create default setting of sb.base.observable.Observable.",
+            "params": [
+                {
+                    "name": "initValue",
+                    "description": "initial value.",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "default setting of sb.base.observable.Observable.",
+                "type": "sb.base.observable.Observable"
+            },
+            "class": ""
+        },
+        {
+            "file": "src/sb/functions.js",
+            "line": 41,
+            "type": "{sb.base.observable.Observable} default setting of sb.base.observable.Observable.",
+            "class": ""
+        },
+        {
+            "file": "src/sb/functions.js",
+            "line": 48,
+            "description": "Create default setting of sb.base.observable.ObservableArray.",
+            "params": [
+                {
+                    "name": "array",
+                    "description": "initial value.",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "default setting sb.base.observable.ObservableArray.",
+                "type": "sb.base.observable.ObservableArray"
+            },
+            "class": ""
+        },
+        {
+            "file": "src/sb/functions.js",
+            "line": 54,
+            "type": "{sb.base.observable.ObservableArray} default setting of sb.base.observable.ObservableArray.",
+            "class": ""
+        },
+        {
+            "file": "src/sb/functions.js",
+            "line": 66,
+            "description": "Create default setting of sb.base.observable.ko.Observable.",
+            "params": [
+                {
+                    "name": "koObservable",
+                    "description": "observable object of KnockoutJS",
+                    "type": "ko.observable"
+                }
+            ],
+            "return": {
+                "description": "default setting of sb.base.observable.ko.Observable",
+                "type": "sb.base.observable.ko.Observable"
+            },
+            "class": ""
+        },
+        {
+            "file": "src/sb/functions.js",
+            "line": 72,
+            "description": "default setting of sb.base.observable.ko.Observable.",
+            "type": "{sb.base.observable.ko.Observable}",
+            "class": ""
+        },
+        {
+            "file": "src/sb/main.js",
+            "line": 9,
+            "description": "The root module of simple-binding.js.",
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "unknown tag: typedef",
+            "line": " src/sb/base/observable/ko/Observable.js:18"
+        },
+        {
+            "message": "unknown tag: implements",
+            "line": " src/sb/base/observable/ko/Observable.js:18"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/sb/base/binding/Binding.js:91"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/sb/base/binding/Binding.js:96"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/sb/base/binding/Binding.js:101"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/sb/base/binding/Binding.js:106"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/sb/base/binding/Binding.js:111"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/sb/base/binding/Observer.js:23"
+        },
+        {
+            "message": "Missing item type\nIt provides objects which are related to binding.",
+            "line": " src/sb/base/binding/main.js:12"
+        },
+        {
+            "message": "Missing item type\nCreate a wraper for ko.observable.",
+            "line": " src/sb/base/observable/ko/Observable.js:10"
+        },
+        {
+            "message": "Missing item type\nA wraper for ko.observable.",
+            "line": " src/sb/base/observable/ko/Observable.js:18"
+        },
+        {
+            "message": "Missing item type\nhandling changing of ko.observable value.",
+            "line": " src/sb/base/observable/ko/Observable.js:25"
+        },
+        {
+            "message": "Missing item type\nhandling chaing of observable value.",
+            "line": " src/sb/base/observable/ko/Observable.js:37"
+        },
+        {
+            "message": "Missing item type\nIt provides wrappers of KnockoutJS.",
+            "line": " src/sb/base/observable/ko/main.js:9"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/sb/base/observable/Observable.js:52"
+        },
+        {
+            "message": "Missing item type\nPropagation context.",
+            "line": " src/sb/base/observable/ObservableArray.js:128"
+        },
+        {
+            "message": "Missing item type\nCheck either obj is sb.ObservableyObject or not.",
+            "line": " src/sb/base/observable/ObservableObject.js:6"
+        },
+        {
+            "message": "Missing item type\nIt provides data structures of observables.",
+            "line": " src/sb/base/observable/main.js:10"
+        },
+        {
+            "message": "Missing item type\nIt provides base of structures.",
+            "line": " src/sb/base/main.js:9"
+        },
+        {
+            "message": "Missing item type\nCreate an expandable function \nwhich can expand with other function.\nForexample, let f is expandable function and g is normal function.\nf.expand(g) expand f with g.\nCalling expanded f do the original process of f and then do the g's process.",
+            "line": " src/sb/util/expandable.js:9"
+        },
+        {
+            "message": "Missing item type\nExpandable function.",
+            "line": " src/sb/util/expandable.js:19"
+        },
+        {
+            "message": "Missing item type\nArguments array of this function.",
+            "line": " src/sb/util/expandable.js:30"
+        },
+        {
+            "message": "Missing item type\nSub functions.",
+            "line": " src/sb/util/expandable.js:36"
+        },
+        {
+            "message": "Missing item type\nExpand with given function.",
+            "line": " src/sb/util/expandable.js:44"
+        },
+        {
+            "message": "Missing item type\nIt provides utility functions and data structures.",
+            "line": " src/sb/util/main.js:8"
+        },
+        {
+            "message": "Missing item type\nCreate default setting binding chain.",
+            "line": " src/sb/functions.js:9"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/sb/functions.js:15"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/sb/functions.js:20"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/sb/functions.js:27"
+        },
+        {
+            "message": "Missing item type\nCreate default setting of sb.base.observable.Observable.",
+            "line": " src/sb/functions.js:35"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/sb/functions.js:41"
+        },
+        {
+            "message": "Missing item type\nCreate default setting of sb.base.observable.ObservableArray.",
+            "line": " src/sb/functions.js:48"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/sb/functions.js:54"
+        },
+        {
+            "message": "Missing item type\nCreate default setting of sb.base.observable.ko.Observable.",
+            "line": " src/sb/functions.js:66"
+        },
+        {
+            "message": "Missing item type\ndefault setting of sb.base.observable.ko.Observable.",
+            "line": " src/sb/functions.js:72"
+        },
+        {
+            "message": "Missing item type\nThe root module of simple-binding.js.",
+            "line": " src/sb/main.js:9"
+        }
+    ]
+}

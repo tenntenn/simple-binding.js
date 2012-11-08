@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>sb.base.binding.BindingChain - simple-binding</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.7.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..&#x2F;assets/css/logo.png" title="simple-binding"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.0.1</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/sb.base.binding.Binding.html">sb.base.binding.Binding</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.binding.BindingChain.html">sb.base.binding.BindingChain</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.binding.Computed.html">sb.base.binding.Computed</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.binding.NotificationEvent.html">sb.base.binding.NotificationEvent</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.binding.Observer.html">sb.base.binding.Observer</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.binding.Parameters.html">sb.base.binding.Parameters</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.binding.Propagation.html">sb.base.binding.Propagation</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.binding.PropagationGuardian.html">sb.base.binding.PropagationGuardian</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.observable.ko.ObservableArray.html">sb.base.observable.ko.ObservableArray</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.observable.Observable.html">sb.base.observable.Observable</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.observable.ObservableArray.html">sb.base.observable.ObservableArray</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1>sb.base.binding.BindingChain Class</h1>
+<div class="box meta">
+    
+
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="..&#x2F;files&#x2F;src_sb_base_binding_BindingChain.js.html#l10"><code>src&#x2F;sb&#x2F;base&#x2F;binding&#x2F;BindingChain.js:10</code></a>
+        </div>
+    
+
+    
+
+    
+</div>
+
+
+
+<div class="box intro">
+    <p>A set of bindings which provide binding functions as method chains.</p>
+</div>
+
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+        <div id="method_sb.base.binding.BindingChain" class="method item">
+    <h3 class="name"><code>sb.base.binding.BindingChain</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>observer</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>observables</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_sb_base_binding_BindingChain.js.html#l10"><code>src&#x2F;sb&#x2F;base&#x2F;binding&#x2F;BindingChain.js:10</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">observer</code>
+                        <span class="type"><a href="../classes/sb.base.binding.Observer.html" class="crosslink">sb.base.binding.Observer</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">observables</code>
+                        <span class="type">Array</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+    </div>
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+        
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+        
+        
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+        
+        
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method public">
+                                <a href="#method_bind">bind</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method public">
+                                <a href="#method_computed">computed</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method public">
+                                <a href="#method_onChange">onChange</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method public">
+                                <a href="#method_synchronize">synchronize</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method public">
+                                <a href="#method_unbind">unbind</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                        
+                            <li class="index-item property private">
+                                <a href="#property_bindings">bindings</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property_bindingsMaker">bindingsMaker</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_bind" class="method item public">
+    <h3 class="name"><code>bind</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/sb.base.binding.BindingChain.html" class="crosslink">sb.base.binding.BindingChain</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_sb_base_binding_BindingChain.js.html#l173"><code>src&#x2F;sb&#x2F;base&#x2F;binding&#x2F;BindingChain.js:173</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Enable internal all internal bindings.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/sb.base.binding.BindingChain.html" class="crosslink">sb.base.binding.BindingChain</a></span>:
+                    
+                    own object
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_computed" class="method item public">
+    <h3 class="name"><code>computed</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>observable</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>func</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/sb.base.binding.BindingChain.html" class="crosslink">sb.base.binding.BindingChain</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_sb_base_binding_BindingChain.js.html#l91"><code>src&#x2F;sb&#x2F;base&#x2F;binding&#x2F;BindingChain.js:91</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Add computed binding.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">observable</code>
+                        <span class="type">sb.base.observable.ObservableObject</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>target observable</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">func</code>
+                        <span class="type"><a href="../classes/sb.base.binding.Computed.html" class="crosslink">sb.base.binding.Computed</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>computed function</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/sb.base.binding.BindingChain.html" class="crosslink">sb.base.binding.BindingChain</a></span>:
+                    
+                    own object
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_onChange" class="method item public">
+    <h3 class="name"><code>onChange</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>observable</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>callback</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/sb.base.binding.BindingChain.html" class="crosslink">sb.base.binding.BindingChain</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_sb_base_binding_BindingChain.js.html#l136"><code>src&#x2F;sb&#x2F;base&#x2F;binding&#x2F;BindingChain.js:136</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Add callback which call after changing a given observable value.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">observable</code>
+                        <span class="type">sb.base.observable.ObservableObject</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>target observable.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">callback</code>
+                        <span class="type">function(sb.base.observable.ObservableObject, sb.base.binding.NotificationEvent)</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>callback function</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/sb.base.binding.BindingChain.html" class="crosslink">sb.base.binding.BindingChain</a></span>:
+                    
+                    own object
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_synchronize" class="method item public">
+    <h3 class="name"><code>synchronize</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/sb.base.binding.BindingChain.html" class="crosslink">sb.base.binding.BindingChain</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_sb_base_binding_BindingChain.js.html#l36"><code>src&#x2F;sb&#x2F;base&#x2F;binding&#x2F;BindingChain.js:36</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Synchronize observables which are same value each other
+and when an observable changes, others immediately synchronized.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/sb.base.binding.BindingChain.html" class="crosslink">sb.base.binding.BindingChain</a></span>:
+                    
+                    own object
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_unbind" class="method item public">
+    <h3 class="name"><code>unbind</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/sb.base.binding.BindingChain.html" class="crosslink">sb.base.binding.BindingChain</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_sb_base_binding_BindingChain.js.html#l193"><code>src&#x2F;sb&#x2F;base&#x2F;binding&#x2F;BindingChain.js:193</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Disable internal all internal bindings.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/sb.base.binding.BindingChain.html" class="crosslink">sb.base.binding.BindingChain</a></span>:
+                    
+                    own object
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property_bindings" class="property item private">
+    <h3 class="name"><code>bindings</code></h3>
+    <span class="type">Array</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_sb_base_binding_BindingChain.js.html#l28"><code>src&#x2F;sb&#x2F;base&#x2F;binding&#x2F;BindingChain.js:28</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>A set of bindings.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_bindingsMaker" class="property item private">
+    <h3 class="name"><code>bindingsMaker</code></h3>
+    <span class="type">sb.util.expandable</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_sb_base_binding_BindingChain.js.html#l20"><code>src&#x2F;sb&#x2F;base&#x2F;binding&#x2F;BindingChain.js:20</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Create bindings.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>

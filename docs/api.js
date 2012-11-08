@@ -1,7 +1,6 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
-        "ko",
         "sb",
         "sb.base.binding.Binding",
         "sb.base.binding.BindingChain",

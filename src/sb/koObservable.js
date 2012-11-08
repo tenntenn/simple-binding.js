@@ -8,7 +8,7 @@ define(
 
                 /**
                  * Create default setting of sb.base.observable.ko.Observable.
-                 * @for ko
+                 * @for sb.ko
                  * @method observable
                  * @param {ko.observable} koObservable observable object of KnockoutJS
                  * @return {sb.base.observable.ko.Observable} default setting of sb.base.observable.ko.Observable

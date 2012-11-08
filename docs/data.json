@@ -433,6 +433,16 @@
             "type": "sb.base.observable.ko.ObservableArray",
             "extends": "sb.base.observable.ObservableObject"
         },
+        "sb.base.observable.ko.sb.base.observable.Observable": {
+            "name": "sb.base.observable.ko.sb.base.observable.Observable",
+            "shortname": "sb.base.observable.Observable",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "sb.base.observable.ko"
+        },
         "sb.base.observable.Observable": {
             "name": "sb.base.observable.Observable",
             "shortname": "sb.base.observable.Observable",
@@ -1033,7 +1043,8 @@
             "file": "src/sb/base/observable/ko/main.js",
             "line": 9,
             "description": "It provides wrappers of KnockoutJS.",
-            "class": "sb.base.observable.Observable"
+            "class": "sb.base.observable.ko.sb.base.observable.Observable",
+            "namespace": "sb.base.observable.ko"
         },
         {
             "file": "src/sb/base/observable/Observable.js",
@@ -1060,7 +1071,7 @@
                 "description": "created observable object",
                 "type": "sb.base.observable.Observable"
             },
-            "class": "sb.base.observable.Observable"
+            "class": "sb.base.observable.ko.sb.base.observable.Observable"
         },
         {
             "file": "src/sb/base/observable/Observable.js",

@@ -1,5 +1,5 @@
 define(
-        "sb/base/observable/ko",
+        "sb/base/observable/ko/main",
         [
                 "sb/base/observable/ko/newObservable",
                 "sb/base/observable/ko/newObservableArray"  
@@ -8,7 +8,6 @@ define(
 
                 /**
                  * It provides wrappers of KnockoutJS.
-                 * @namespace
                  */
                 var sbko = {
                         newObservable: newObservable,

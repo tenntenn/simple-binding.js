@@ -2,8 +2,8 @@ define(
         "sb/base/observable/ko/newObservableArray",
         [
                 "ko",
-                "sb/base/observable/newObservableArray",
-                "sb/base/binding/Binding"
+                "sb/base/observable/main",
+                "sb/base/binding/main"
         ],
         function(ko, observable, binding) {
 

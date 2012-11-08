@@ -1,7 +1,7 @@
 define(
         "sb/base/binding/BindingChain",
         [
-                "sb/util",
+                "sb/util/main",
                 "sb/base/binding/Binding",
                 "sb/base/observable/isObservableObject"
         ],

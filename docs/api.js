@@ -13,6 +13,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "sb.base.observable.Observable",
         "sb.base.observable.ObservableArray",
         "sb.base.observable.ko.ObservableArray",
+        "sb.base.observable.ko.sb.base.observable.Observable",
         "sb.ko"
     ],
     "modules": [],

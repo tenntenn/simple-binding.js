@@ -1,7 +1,7 @@
 define(
         "sb/base/observable/newObservableArray",
         [
-                "sb/util"
+                "sb/util/main"
         ],
         function(util) {
 

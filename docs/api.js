@@ -1,6 +1,8 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
+        "ko",
+        "sb",
         "sb.base.binding.Binding",
         "sb.base.binding.BindingChain",
         "sb.base.binding.Computed",
@@ -11,7 +13,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "sb.base.binding.PropagationGuardian",
         "sb.base.observable.Observable",
         "sb.base.observable.ObservableArray",
-        "sb.base.observable.ko.ObservableArray"
+        "sb.base.observable.ko.ObservableArray",
+        "sb.ko"
     ],
     "modules": [],
     "allModules": []

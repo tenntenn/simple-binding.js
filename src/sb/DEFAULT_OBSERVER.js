@@ -1,17 +1,19 @@
 define(
         "sb/DEFAULT_OBSERVER",
         [
-                "sb/base/binding"
+                "sb/base/binding/main"
         ],
         function(binding) {
                 /**
                  * default observer.
-                 * @class DEFAULT_OBSERVER
+                 *
+                 * @property DEFAULT_OBSERVER
+                 * @for sb
                  * @private
-                 * @namespace sb
                  * @type sb.base.binding.Observer 
                  */
                 var DEFAULT_OBSERVER = new binding.Observer();
+
                 return DEFAULT_OBSERVER;
         }
 );

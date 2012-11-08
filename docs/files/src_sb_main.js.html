@@ -41,6 +41,10 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="..&#x2F;classes/ko.html">ko</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.html">sb</a></li>
+            
                 <li><a href="..&#x2F;classes/sb.base.binding.Binding.html">sb.base.binding.Binding</a></li>
             
                 <li><a href="..&#x2F;classes/sb.base.binding.BindingChain.html">sb.base.binding.BindingChain</a></li>
@@ -62,6 +66,8 @@
                 <li><a href="..&#x2F;classes/sb.base.observable.Observable.html">sb.base.observable.Observable</a></li>
             
                 <li><a href="..&#x2F;classes/sb.base.observable.ObservableArray.html">sb.base.observable.ObservableArray</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.ko.html">sb.ko</a></li>
             
             </ul>
 
@@ -109,17 +115,46 @@
 define(
         &#x27;sb&#x2F;main&#x27;,
         [
+                &#x2F;&#x2F; utility classes
                 &quot;sb&#x2F;util&#x2F;main&quot;,
-                &quot;sb&#x2F;base&#x2F;main&quot;
+
+                &#x2F;&#x2F; base classes 
+                &quot;sb&#x2F;base&#x2F;main&quot;,
+
+                &#x2F;&#x2F; default value of observables
+                &quot;sb&#x2F;binding&quot;,
+                &quot;sb&#x2F;observable&quot;,
+                &quot;sb&#x2F;observableArray&quot;,
+
+                &#x2F;&#x2F; default value of ko wrapper
+                &quot;sb&#x2F;koObservable&quot;,
+                &quot;sb&#x2F;koObservableArray&quot;
         ],
-        function(util, base) {
+        function(util, base,
+                 binding, observable, observableArray,
+                 koObservable, koObservableArray) {
 
                 &#x2F;**
                  * The root module of simple-binding.js.
+                 * @class sb
                  *&#x2F;
                 var sb = {
                         util: util,
-                        base: base
+                        base: base,
+
+                        binding: binding,
+                        observable: observable,
+                        observableArray: observableArray,
+
+                        &#x2F;**
+                         * It provides KockoutJS wrappers.
+                         * @class ko
+                         * @namespace sb
+                         *&#x2F;
+                        ko: {
+                                observable: koObservable,
+                                observableArray: koObservableArray
+                        }
                 };
 
                 return sb;

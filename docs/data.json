@@ -184,18 +184,66 @@
             "fors": {},
             "namespaces": {}
         },
-        "src/sb/functions.js": {
-            "name": "src/sb/functions.js",
+        "src/sb/DEFAULT_OBSERVER.js": {
+            "name": "src/sb/DEFAULT_OBSERVER.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "sb": 1
+            },
+            "namespaces": {}
+        },
+        "src/sb/binding.js": {
+            "name": "src/sb/binding.js",
             "modules": {},
             "classes": {},
             "fors": {},
             "namespaces": {}
         },
+        "src/sb/koObservable.js": {
+            "name": "src/sb/koObservable.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "ko": 1
+            },
+            "namespaces": {}
+        },
+        "src/sb/koObservableArray.js": {
+            "name": "src/sb/koObservableArray.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "ko": 1
+            },
+            "namespaces": {}
+        },
         "src/sb/main.js": {
             "name": "src/sb/main.js",
             "modules": {},
+            "classes": {
+                "sb": 1,
+                "sb.ko": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "sb": 1
+            }
+        },
+        "src/sb/observable.js": {
+            "name": "src/sb/observable.js",
+            "modules": {},
             "classes": {},
             "fors": {},
+            "namespaces": {}
+        },
+        "src/sb/observableArray.js": {
+            "name": "src/sb/observableArray.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "sb": 1
+            },
             "namespaces": {}
         }
     },
@@ -429,6 +477,42 @@
                 "description": "internal array",
                 "type": "Array"
             }
+        },
+        "sb": {
+            "name": "sb",
+            "shortname": "sb",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "",
+            "file": "src/sb/main.js",
+            "line": 23,
+            "description": "The root module of simple-binding.js."
+        },
+        "ko": {
+            "name": "ko",
+            "shortname": "ko",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": ""
+        },
+        "sb.ko": {
+            "name": "sb.ko",
+            "shortname": "sb.ko",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "sb",
+            "file": "src/sb/main.js",
+            "line": 35,
+            "description": "It provides KockoutJS wrappers."
         }
     },
     "classitems": [
@@ -1194,21 +1278,21 @@
                 "description": "true indicates that obj implements sb.ObservableObject.",
                 "type": "Boolean"
             },
-            "class": "",
+            "class": "sb",
             "namespace": "sb.base.observable"
         },
         {
             "file": "src/sb/base/observable/main.js",
             "line": 10,
             "description": "It provides data structures of observables.",
-            "class": "",
+            "class": "sb",
             "namespace": "sb.base.observable"
         },
         {
             "file": "src/sb/base/main.js",
             "line": 9,
             "description": "It provides base of structures.",
-            "class": "",
+            "class": "sb",
             "namespace": "sb.base.observable"
         },
         {
@@ -1219,7 +1303,7 @@
                 "description": "expandable function",
                 "type": "Function(*):*"
             },
-            "class": "",
+            "class": "sb",
             "namespace": "sb.base.observable"
         },
         {
@@ -1227,7 +1311,7 @@
             "line": 19,
             "description": "Expandable function.",
             "type": "{function(*):*}",
-            "class": "",
+            "class": "sb",
             "namespace": "sb.base.observable"
         },
         {
@@ -1235,7 +1319,7 @@
             "line": 30,
             "description": "Arguments array of this function.",
             "type": "{Array.<*>}",
-            "class": "",
+            "class": "sb",
             "namespace": "sb.base.observable"
         },
         {
@@ -1243,7 +1327,7 @@
             "line": 36,
             "description": "Sub functions.",
             "type": "{Array.<function(*):*>}",
-            "class": "",
+            "class": "sb",
             "namespace": "sb.base.observable"
         },
         {
@@ -1257,101 +1341,42 @@
                     "type": "Function(*):*"
                 }
             ],
-            "class": "",
+            "class": "sb",
             "namespace": "sb.base.observable"
         },
         {
             "file": "src/sb/util/main.js",
             "line": 8,
             "description": "It provides utility functions and data structures.",
-            "class": ""
+            "class": "sb"
         },
         {
-            "file": "src/sb/functions.js",
-            "line": 4,
+            "file": "src/sb/DEFAULT_OBSERVER.js",
+            "line": 7,
+            "description": "default observer.",
             "itemtype": "property",
-            "name": "{sb.base.binding.Observer} default observer.",
-            "final": "",
-            "class": ""
+            "name": "DEFAULT_OBSERVER",
+            "access": "private",
+            "tagname": "",
+            "type": "sb.base.binding.Observer",
+            "class": "sb"
         },
         {
-            "file": "src/sb/functions.js",
-            "line": 9,
+            "file": "src/sb/binding.js",
+            "line": 11,
             "description": "Create default setting binding chain.",
             "return": {
                 "description": "default setting binding chain.",
                 "type": "sb.base.binding.BindingChain"
             },
-            "class": ""
+            "class": "ko"
         },
         {
-            "file": "src/sb/functions.js",
-            "line": 15,
-            "type": "{Array.<*>} arguments array of this function.",
-            "class": ""
-        },
-        {
-            "file": "src/sb/functions.js",
-            "line": 20,
-            "type": "{Array.<sb.base.observable.ObservableObject>}",
-            "class": ""
-        },
-        {
-            "file": "src/sb/functions.js",
-            "line": 27,
-            "type": "{sb.base.binding.BindingChain} default setting binding chain.",
-            "class": ""
-        },
-        {
-            "file": "src/sb/functions.js",
-            "line": 35,
-            "description": "Create default setting of sb.base.observable.Observable.",
-            "params": [
-                {
-                    "name": "initValue",
-                    "description": "initial value.",
-                    "type": "*"
-                }
-            ],
-            "return": {
-                "description": "default setting of sb.base.observable.Observable.",
-                "type": "sb.base.observable.Observable"
-            },
-            "class": ""
-        },
-        {
-            "file": "src/sb/functions.js",
-            "line": 41,
-            "type": "{sb.base.observable.Observable} default setting of sb.base.observable.Observable.",
-            "class": ""
-        },
-        {
-            "file": "src/sb/functions.js",
-            "line": 48,
-            "description": "Create default setting of sb.base.observable.ObservableArray.",
-            "params": [
-                {
-                    "name": "array",
-                    "description": "initial value.",
-                    "type": "*"
-                }
-            ],
-            "return": {
-                "description": "default setting sb.base.observable.ObservableArray.",
-                "type": "sb.base.observable.ObservableArray"
-            },
-            "class": ""
-        },
-        {
-            "file": "src/sb/functions.js",
-            "line": 54,
-            "type": "{sb.base.observable.ObservableArray} default setting of sb.base.observable.ObservableArray.",
-            "class": ""
-        },
-        {
-            "file": "src/sb/functions.js",
-            "line": 66,
+            "file": "src/sb/koObservable.js",
+            "line": 9,
             "description": "Create default setting of sb.base.observable.ko.Observable.",
+            "itemtype": "method",
+            "name": "observable",
             "params": [
                 {
                     "name": "koObservable",
@@ -1363,20 +1388,66 @@
                 "description": "default setting of sb.base.observable.ko.Observable",
                 "type": "sb.base.observable.ko.Observable"
             },
-            "class": ""
+            "class": "ko"
         },
         {
-            "file": "src/sb/functions.js",
-            "line": 72,
-            "description": "default setting of sb.base.observable.ko.Observable.",
-            "type": "{sb.base.observable.ko.Observable}",
-            "class": ""
-        },
-        {
-            "file": "src/sb/main.js",
+            "file": "src/sb/koObservableArray.js",
             "line": 9,
-            "description": "The root module of simple-binding.js.",
-            "class": ""
+            "description": "Create default setting of sb.base.observable.ko.ObservableArray.",
+            "itemtype": "method",
+            "name": "observableArray",
+            "params": [
+                {
+                    "name": "koObservable",
+                    "description": "observable object of KnockoutJS",
+                    "type": "ko.observable"
+                }
+            ],
+            "return": {
+                "description": "default setting of sb.base.observable.ko.Observable",
+                "type": "sb.base.observable.ko.Observable"
+            },
+            "class": "ko"
+        },
+        {
+            "file": "src/sb/observable.js",
+            "line": 10,
+            "description": "Create default setting of sb.base.observable.Observable.",
+            "itemtype": "method",
+            "name": "observable",
+            "params": [
+                {
+                    "name": "initValue",
+                    "description": "initial value.",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "default setting of sb.base.observable.Observable.",
+                "type": "sb.base.observable.Observable"
+            },
+            "class": "sb",
+            "namespace": "sb"
+        },
+        {
+            "file": "src/sb/observableArray.js",
+            "line": 9,
+            "description": "Create default setting of sb.base.observable.ObservableArray.",
+            "itemtype": "method",
+            "name": "observableArray",
+            "params": [
+                {
+                    "name": "array",
+                    "description": "initial value.",
+                    "type": "Array",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "default setting sb.base.observable.ObservableArray.",
+                "type": "sb.base.observable.ObservableArray"
+            },
+            "class": "sb"
         }
     ],
     "warnings": [
@@ -1482,47 +1553,7 @@
         },
         {
             "message": "Missing item type\nCreate default setting binding chain.",
-            "line": " src/sb/functions.js:9"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src/sb/functions.js:15"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src/sb/functions.js:20"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src/sb/functions.js:27"
-        },
-        {
-            "message": "Missing item type\nCreate default setting of sb.base.observable.Observable.",
-            "line": " src/sb/functions.js:35"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src/sb/functions.js:41"
-        },
-        {
-            "message": "Missing item type\nCreate default setting of sb.base.observable.ObservableArray.",
-            "line": " src/sb/functions.js:48"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src/sb/functions.js:54"
-        },
-        {
-            "message": "Missing item type\nCreate default setting of sb.base.observable.ko.Observable.",
-            "line": " src/sb/functions.js:66"
-        },
-        {
-            "message": "Missing item type\ndefault setting of sb.base.observable.ko.Observable.",
-            "line": " src/sb/functions.js:72"
-        },
-        {
-            "message": "Missing item type\nThe root module of simple-binding.js.",
-            "line": " src/sb/main.js:9"
+            "line": " src/sb/binding.js:11"
         }
     ]
 }

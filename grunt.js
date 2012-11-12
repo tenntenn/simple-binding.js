@@ -16,10 +16,9 @@ module.exports = function(grunt) {
                 },
                 requirejs: {
                         baseUrl: "src",
-                        paths: {
-                                main: "sb/main"
-                        },
-                        include: ['main'],
+                        include: [
+                                "sb/main"
+                        ],
                         exclude: [],
                         out: "dist/build.js",
                         wrap: {

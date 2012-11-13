@@ -3,7 +3,7 @@ define(
         [
                 "sb/base/binding/Observer",
                 "sb/base/binding/Binding",
-                "sb/base/binding/BindingCain",
+                "sb/base/binding/BindingChain",
                 "sb/base/binding/PropagationGuardian",
                 "sb/base/binding/DEFAULT_PROPAGATION_GURDIAN"
         ],

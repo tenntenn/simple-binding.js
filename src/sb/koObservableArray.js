@@ -2,7 +2,7 @@ define(
         "sb/koObservableArray",
         [
                 "sb/DEFAULT_OBSERVER",
-                "sb/base/observable"
+                "sb/base/observable/main"
         ],
         function(DEFAULT_OBSERVER, observable) {
 

@@ -3,6 +3,7 @@
         "name": "simple-binding",
         "description": "Sinmple binding library",
         "version": "0.0.1",
+        "logo": "../img/logo.png",
         "url": "https://github.com/tenntenn/simple-binding.js"
     },
     "files": {

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src&#x2F;sb&#x2F;base&#x2F;binding&#x2F;Observer.js - simple-binding</title>
+    <title>sb.base.observable.ko.sb.base.observable.Observable - simple-binding</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -108,108 +108,212 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src&#x2F;sb&#x2F;base&#x2F;binding&#x2F;Observer.js</h1>
+                        <h1>sb.base.observable.ko.sb.base.observable.Observable Class</h1>
+<div class="box meta">
+    
 
-<div class="file">
-    <pre class="code prettyprint linenums">
-define(
-        &quot;sb&#x2F;base&#x2F;binding&#x2F;Observer&quot;,
-        [
-                &quot;sb&#x2F;base&#x2F;binding&#x2F;PropagationGuardian&quot;,
-                &quot;sb&#x2F;base&#x2F;binding&#x2F;DEFAULT_PROPAGATION_GURDIAN&quot;
-        ],
-        function(PropagationGuardian, DEFAULT_PROPAGATION_GURDIAN) {
+    
 
-                &#x2F;**
-                 * This class observes ObservableObject.
-                 * @class Observer
-                 * @constructor
-                 * @namespace sb.base.binding
-                 * @uses sb.base.binding.ObservableObject
-                 *&#x2F;
-                function Observer(propagationGuardian) {
+    
 
-                        if (!propagationGuardian ||
-                            !propagationGuardian instanceof PropagationGuardian) {
-                                propagationGuardian = DEFAULT_PROPAGATION_GURDIAN;
-                        }
+    
 
-                        &#x2F;**
-                         * @private
-                         * @type Array.&lt;sb.base.binding.Binding&gt;
-                         *&#x2F;
-                        var bindings = [];
+    
+</div>
 
-                        &#x2F;**
-                         * Get PropagationGuardian.
-                         * @method getPropagationGuardian
-                         * @return {sb.base.binding.PropagationGuardian} PropagationGuardian
-                         *&#x2F;
-                        this.getPropagationGuardian = function() {
-                                return propagationGuardian;
-                        };
 
-                        &#x2F;**
-                         * Add new binding.
-                         * @method add
-                         * @param {sb.base.binding.Binding} binding
-                         *&#x2F;
-                        this.add = function(binding) {
 
-                        if (binding === null ||
-                            typeof binding === &quot;undefined&quot;) {
-                                return;
-                        }
+<div class="box intro">
+    
+</div>
 
-                        if (bindings.indexOf(binding) &lt; 0) {
-                                bindings.push(binding);
-                        }
-                };
 
-                &#x2F;**
-                 * Notify change to binded observables.
-                 * @method nofity
-                 * @param {sb.base.binding.Propagation} propagation 
-                 * @param {Array&lt;sb.base.binding.Observable&gt;} input
-                 *&#x2F;
-                        this.notify = function(propagation, input) {
 
-                &#x2F;&#x2F; get bindings which has given input as argument
-                var bs = bindings.filter(function(binding) {
-                        var found = false;
-                        Object.keys(binding.inputs).forEach(function(key) {
-                                if (binding.inputs.hasOwnProperty(key) &amp;&amp;
-                                    binding.inputs[key] === input) {
-                                        found = true;
-                                return;
-                                }
-                        });
-                        return found;
-                });
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
 
-                bs.forEach(function(binding) {
-                        binding.notify(propagation);
-                });
-        };
+        
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+        
+        
+        
+        
+    </ul>
 
-        &#x2F;**
-         * Remove binding from this observer.
-         * @method remove
-         * @param {sb.base.binding.Binding} binding
-         *&#x2F;
-                        this.remove = function(binding) {
-                                var index = bindings.lastIndexOf(binding);
-                                if (index &gt;= 0) {
-                                        bindings.splice(index, 1);
-                                }
-                        };
-                }
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
 
-        return Observer;
-        }
-);
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
 
-    </pre>
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method public">
+                                <a href="#method_sb.base.observable.newObservable">sb.base.observable.newObservable</a>
+
+                                
+                                    <span class="flag static">static</span>
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_sb.base.observable.newObservable" class="method item public">
+    <h3 class="name"><code>sb.base.observable.newObservable</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>observer</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/sb.base.observable.Observable.html" class="crosslink">sb.base.observable.Observable</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+        <span class="flag static">static</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_sb_base_observable_Observable.js.html#l7"><code>src&#x2F;sb&#x2F;base&#x2F;observable&#x2F;Observable.js:7</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Create a sb.base.observable.Observable object.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">observer</code>
+                        <span class="type"><a href="../classes/sb.base.binding.Observer.html" class="crosslink">sb.base.binding.Observer</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>observer of this observable value</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type"></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>initial value</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/sb.base.observable.Observable.html" class="crosslink">sb.base.observable.Observable</a></span>:
+                    
+                    created observable object
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+
+        
+    </div>
 </div>
 
                     </div>

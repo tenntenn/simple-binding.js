@@ -73,6 +73,7 @@ module.exports = function(grunt) {
                                 "name": '<%= pkg.title || pkg.name %>',
                                 "description": '<%= pkg.description %>',
                                 "version": '<%= pkg.version %>',
+                                "logo": '../img/logo.png',
                                 "url": '<%= pkg.homepage %>',
                                 options: {
                                         paths: '<config:requirejs.baseUrl>',

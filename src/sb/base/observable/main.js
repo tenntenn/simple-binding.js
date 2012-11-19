@@ -1,9 +1,9 @@
 define(
         "sb/base/observable/main",
         [
-                "sb/base/observable/Observable",
-                "sb/base/observable/ObservableArray",
-                "sb/base/observable/ObservableObject"
+                "sb/base/observable/newObservable",
+                "sb/base/observable/newObservableArray",
+                "sb/base/observable/isObservableObject"
         ],
         function(newObservable, newObservableArray, isObservableObject) {
 

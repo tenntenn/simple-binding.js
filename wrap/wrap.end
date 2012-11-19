@@ -1,6 +1,2 @@
-    define('ko', function () {
-        return ko;
-    });
-
-   return require('main');
+   return require('sb/main');
 }));

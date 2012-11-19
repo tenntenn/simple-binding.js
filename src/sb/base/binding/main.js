@@ -7,7 +7,7 @@ define(
                 "sb/base/binding/PropagationGuardian",
                 "sb/base/binding/DEFAULT_PROPAGATION_GURDIAN"
         ],
-        function(Observer, Binding, BindingCain, PropagationGuardian, DEFAULT_PROPAGATION_GURDIAN) {
+        function(Observer, Binding, BindingChain, PropagationGuardian, DEFAULT_PROPAGATION_GURDIAN) {
 
                 /**
                  * It provides objects which are related to binding.
@@ -15,7 +15,7 @@ define(
                 var binding = {
                         Observer : Observer,
                         Binding : Binding,
-                        BindingCain : BindingCain,
+                        BindingChain : BindingChain,
                         PropagationGuardian : PropagationGuardian,
                         DEFAULT_PROPAGATION_GURDIAN: DEFAULT_PROPAGATION_GURDIAN
                 };

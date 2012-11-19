@@ -23,7 +23,7 @@ define(
                          * @private
                          * @type {sb.util.expandable}
                          */
-                        var bindingsMaker = sb.util.expandable();
+                        var bindingsMaker = util.expandable();
 
                         /**
                          * A set of bindings.
@@ -99,7 +99,7 @@ define(
                          */
                         this.computed = function(observable, func) {
 
-                                if (!sb.base.observable.isObservableObject(observable) || 
+                                if (!isObservableObject(observable) || 
                                     typeof func !== "function") {
                                         return this;
                                 }
@@ -118,7 +118,7 @@ define(
                                         });
                                         var outputs = {output: observable}; 
 
-                                        var b = new sb.base.binding.Binding(
+                                        var b = new Binding(
                                                 observer,
                                                 inputs,
                                                 outputs,
@@ -144,7 +144,7 @@ define(
                          */
                         this.onChange = function(observable, callback) {
 
-                                if (!sb.base.observable.isObservableObject(observable) ||
+                                if (!isObservableObject(observable) ||
                                     typeof callback !== "function") {
                                         return this;
                                 }
@@ -153,7 +153,7 @@ define(
                                         observables.push(observable);
                                 }
 
-                                var b = new sb.base.binding.Binding(
+                                var b = new Binding(
                                         observer,
                                         {input: observable},
                                         {},

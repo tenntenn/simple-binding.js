@@ -65,7 +65,7 @@ define(
 
                         return observable;
                 }
-
+                
                 return newObservable;
         }
 );

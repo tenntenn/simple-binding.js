@@ -126,32 +126,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "src/sb/base/observable/Observable.js": {
-            "name": "src/sb/base/observable/Observable.js",
-            "modules": {},
-            "classes": {
-                "sb.base.observable.Observable": 1
-            },
-            "fors": {
-                "sb.base.observable.Observable": 1
-            },
-            "namespaces": {
-                "sb.base.observable": 1
-            }
-        },
-        "src/sb/base/observable/ObservableArray.js": {
-            "name": "src/sb/base/observable/ObservableArray.js",
-            "modules": {},
-            "classes": {
-                "sb.base.observable.ObservableArray": 1
-            },
-            "fors": {},
-            "namespaces": {
-                "sb.base.observable": 1
-            }
-        },
-        "src/sb/base/observable/ObservableObject.js": {
-            "name": "src/sb/base/observable/ObservableObject.js",
+        "src/sb/base/observable/isObservableObject.js": {
+            "name": "src/sb/base/observable/isObservableObject.js",
             "modules": {},
             "classes": {},
             "fors": {},
@@ -163,6 +139,30 @@
             "classes": {},
             "fors": {},
             "namespaces": {}
+        },
+        "src/sb/base/observable/newObservable.js": {
+            "name": "src/sb/base/observable/newObservable.js",
+            "modules": {},
+            "classes": {
+                "sb.base.observable.Observable": 1
+            },
+            "fors": {
+                "sb.base.observable.Observable": 1
+            },
+            "namespaces": {
+                "sb.base.observable": 1
+            }
+        },
+        "src/sb/base/observable/newObservableArray.js": {
+            "name": "src/sb/base/observable/newObservableArray.js",
+            "modules": {},
+            "classes": {
+                "sb.base.observable.ObservableArray": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "sb.base.observable": 1
+            }
         },
         "src/sb/base/main.js": {
             "name": "src/sb/base/main.js",
@@ -453,7 +453,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "sb.base.observable",
-            "file": "src/sb/base/observable/Observable.js",
+            "file": "src/sb/base/observable/newObservable.js",
             "line": 19,
             "description": "An observable object which can have an internal value.",
             "type": "function(*):*",
@@ -479,7 +479,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "sb.base.observable",
-            "file": "src/sb/base/observable/ObservableArray.js",
+            "file": "src/sb/base/observable/newObservableArray.js",
             "line": 25,
             "description": "An array which can be observed.\nIf new element is added or an element deleted,\nsb.base.observable.ObservableArray notify binded other \nsb.base.observable.ObservableObject.",
             "extends": "sb.base.observable.ObservableObject",
@@ -1048,7 +1048,32 @@
             "namespace": "sb.base.observable.ko"
         },
         {
-            "file": "src/sb/base/observable/Observable.js",
+            "file": "src/sb/base/observable/isObservableObject.js",
+            "line": 6,
+            "description": "Check either obj is sb.ObservableyObject or not.",
+            "params": [
+                {
+                    "name": "tested",
+                    "description": "object",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "true indicates that obj implements sb.ObservableObject.",
+                "type": "Boolean"
+            },
+            "class": "sb.base.observable.ko.sb.base.observable.Observable",
+            "namespace": "sb.base.observable.ko"
+        },
+        {
+            "file": "src/sb/base/observable/main.js",
+            "line": 10,
+            "description": "It provides data structures of observables.",
+            "class": "sb.base.observable.ko.sb.base.observable.Observable",
+            "namespace": "sb.base.observable.ko"
+        },
+        {
+            "file": "src/sb/base/observable/newObservable.js",
             "line": 7,
             "description": "Create a sb.base.observable.Observable object.",
             "itemtype": "method",
@@ -1075,7 +1100,7 @@
             "class": "sb.base.observable.ko.sb.base.observable.Observable"
         },
         {
-            "file": "src/sb/base/observable/Observable.js",
+            "file": "src/sb/base/observable/newObservable.js",
             "line": 43,
             "description": "Notify change registed observer object.",
             "itemtype": "method",
@@ -1098,14 +1123,14 @@
             "namespace": "sb.base.observable"
         },
         {
-            "file": "src/sb/base/observable/Observable.js",
+            "file": "src/sb/base/observable/newObservable.js",
             "line": 52,
             "type": "{sb.base.binding.NotificationEvent}",
             "class": "sb.base.observable.Observable",
             "namespace": "sb.base.observable"
         },
         {
-            "file": "src/sb/base/observable/ObservableArray.js",
+            "file": "src/sb/base/observable/newObservableArray.js",
             "line": 8,
             "description": "Create observable array.",
             "itemtype": "method",
@@ -1133,7 +1158,7 @@
             "namespace": "sb.base.observable"
         },
         {
-            "file": "src/sb/base/observable/ObservableArray.js",
+            "file": "src/sb/base/observable/newObservableArray.js",
             "line": 41,
             "description": "Notify changing for observer.",
             "itemtype": "method",
@@ -1156,7 +1181,7 @@
             "namespace": "sb.base.observable"
         },
         {
-            "file": "src/sb/base/observable/ObservableArray.js",
+            "file": "src/sb/base/observable/newObservableArray.js",
             "line": 54,
             "description": "Get array size which wrapes the internal array length.",
             "itemtype": "method",
@@ -1171,7 +1196,7 @@
             "namespace": "sb.base.observable"
         },
         {
-            "file": "src/sb/base/observable/ObservableArray.js",
+            "file": "src/sb/base/observable/newObservableArray.js",
             "line": 64,
             "description": "Get value with index i.",
             "itemtype": "method",
@@ -1193,7 +1218,7 @@
             "namespace": "sb.base.observable"
         },
         {
-            "file": "src/sb/base/observable/ObservableArray.js",
+            "file": "src/sb/base/observable/newObservableArray.js",
             "line": 75,
             "description": "Set value with index i.\nAnd it notify observer.",
             "itemtype": "method",
@@ -1216,7 +1241,7 @@
             "namespace": "sb.base.observable"
         },
         {
-            "file": "src/sb/base/observable/ObservableArray.js",
+            "file": "src/sb/base/observable/newObservableArray.js",
             "line": 95,
             "description": "Wrapper of Array.push.",
             "itemtype": "method",
@@ -1239,7 +1264,7 @@
             "namespace": "sb.base.observable"
         },
         {
-            "file": "src/sb/base/observable/ObservableArray.js",
+            "file": "src/sb/base/observable/newObservableArray.js",
             "line": 104,
             "description": "Wrapper of Array.pop.",
             "itemtype": "method",
@@ -1250,7 +1275,7 @@
             "namespace": "sb.base.observable"
         },
         {
-            "file": "src/sb/base/observable/ObservableArray.js",
+            "file": "src/sb/base/observable/newObservableArray.js",
             "line": 111,
             "itemtype": "method",
             "name": "shift",
@@ -1258,36 +1283,11 @@
             "namespace": "sb.base.observable"
         },
         {
-            "file": "src/sb/base/observable/ObservableArray.js",
+            "file": "src/sb/base/observable/newObservableArray.js",
             "line": 128,
             "description": "Propagation context.",
             "type": "{sb.Propagation}",
             "class": "sb.base.observable.ObservableArray",
-            "namespace": "sb.base.observable"
-        },
-        {
-            "file": "src/sb/base/observable/ObservableObject.js",
-            "line": 6,
-            "description": "Check either obj is sb.ObservableyObject or not.",
-            "params": [
-                {
-                    "name": "tested",
-                    "description": "object",
-                    "type": "*"
-                }
-            ],
-            "return": {
-                "description": "true indicates that obj implements sb.ObservableObject.",
-                "type": "Boolean"
-            },
-            "class": "sb",
-            "namespace": "sb.base.observable"
-        },
-        {
-            "file": "src/sb/base/observable/main.js",
-            "line": 10,
-            "description": "It provides data structures of observables.",
-            "class": "sb",
             "namespace": "sb.base.observable"
         },
         {
@@ -1510,20 +1510,20 @@
             "line": " src/sb/base/observable/ko/main.js:9"
         },
         {
-            "message": "Missing item type",
-            "line": " src/sb/base/observable/Observable.js:52"
-        },
-        {
-            "message": "Missing item type\nPropagation context.",
-            "line": " src/sb/base/observable/ObservableArray.js:128"
-        },
-        {
             "message": "Missing item type\nCheck either obj is sb.ObservableyObject or not.",
-            "line": " src/sb/base/observable/ObservableObject.js:6"
+            "line": " src/sb/base/observable/isObservableObject.js:6"
         },
         {
             "message": "Missing item type\nIt provides data structures of observables.",
             "line": " src/sb/base/observable/main.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/sb/base/observable/newObservable.js:52"
+        },
+        {
+            "message": "Missing item type\nPropagation context.",
+            "line": " src/sb/base/observable/newObservableArray.js:128"
         },
         {
             "message": "Missing item type\nIt provides base of structures.",

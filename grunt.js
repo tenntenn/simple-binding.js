@@ -15,16 +15,27 @@ module.exports = function(grunt) {
                                 ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
                 },
                 requirejs: {
+                        //almond:true,
                         baseUrl: "src",
+                        paths: {
+                                //"requirejs":"../lib/require",
+                                //"sb": "src/sb/main"
+                        },
                         include: [
+                                //"requirejs",
                                 "sb/main"
                         ],
-                        exclude: [],
+                        //exclude: [],
                         out: "dist/build.js",
-                        wrap: {
-                                startFile: "wrap/wrap.start",
-                                endFile: "wrap/wrap.end"
-                        },
+                        pragmas: {
+                                          doExclude: true
+                                                },
+//                        wrap: {
+//                                startFile: "wrap/wrap.start",
+//                                endFile: "wrap/wrap.end"
+//                        },
+                        skipModuleInsertion: false,
+                        optimizeAllPluginResources: true,
                         findNestedDependencies: true
                 },
                 lint: {
@@ -38,8 +49,8 @@ module.exports = function(grunt) {
                         ]
                 },
                 min: {
-                        dist: {
-                                src: ['<banner:meta.banner>', '<config:requirejs.out>'],
+                       dist: {
+                                src: ['<banner:meta.banner>','<config:requirejs.out>'],
                                 dest: 'dist/<%= pkg.name %>.min.js'
                         }
                 },
@@ -62,9 +73,10 @@ module.exports = function(grunt) {
                                 browser: true
                         },
                         globals: {
+                                "console":true,
                                 "sb": true,
                                 "ko": true,
-                                "define": true 
+                                "define": true
                         }
                 },
                 yuidoc: {

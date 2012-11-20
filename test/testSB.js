@@ -11,4 +11,11 @@ describe("simple binding test", function(){
 	hoge(200);
 	expect(200).to.equal(hoge());
     });
+
+    it('failed set test', function(){
+	var hoge = sb.observable(100);
+	hoge(200);
+	expect(100).to.equal(hoge());
+    });
+
 });

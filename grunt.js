@@ -15,25 +15,20 @@ module.exports = function(grunt) {
                                 ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
                 },
                 requirejs: {
-                        //almond:true,
                         baseUrl: "src",
                         paths: {
-                                //"requirejs":"../lib/require",
-                                //"sb": "src/sb/main"
+                                "almond":"../lib/almond"
                         },
                         include: [
-                                //"requirejs",
+                                "almond",
                                 "sb/main"
                         ],
-                        //exclude: [],
+                        exclude: [],
                         out: "dist/build.js",
-                        pragmas: {
-                                          doExclude: true
-                                                },
-//                        wrap: {
-//                                startFile: "wrap/wrap.start",
-//                                endFile: "wrap/wrap.end"
-//                        },
+                        wrap: {
+                                startFile: "wrap/wrap.start",
+                                endFile: "wrap/wrap.end"
+                        },
                         skipModuleInsertion: false,
                         optimizeAllPluginResources: true,
                         findNestedDependencies: true

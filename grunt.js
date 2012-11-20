@@ -15,9 +15,10 @@ module.exports = function(grunt) {
                                 ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
                 },
                 requirejs: {
-                        baseUrl: "src",
+                        baseUrl: ".",
                         paths: {
-                                "almond":"../lib/almond"
+                                "almond":"lib/almond",
+                                "sb":"src/sb"
                         },
                         include: [
                                 "almond",

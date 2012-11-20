@@ -7,6 +7,20 @@
         "url": "https://github.com/tenntenn/simple-binding.js"
     },
     "files": {
+        "dist/build.js": {
+            "name": "dist/build.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/almond.js": {
+            "name": "lib/almond.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "src/sb/base/binding/Binding.js": {
             "name": "src/sb/base/binding/Binding.js",
             "modules": {},
@@ -245,6 +259,13 @@
             "fors": {
                 "sb": 1
             },
+            "namespaces": {}
+        },
+        "test/target.js": {
+            "name": "test/target.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
             "namespaces": {}
         }
     },
@@ -517,6 +538,52 @@
         }
     },
     "classitems": [
+        {
+            "file": "dist/build.js",
+            "line": 1,
+            "description": "almond 0.2.0 Copyright (c) 2011, The Dojo Foundation All Rights Reserved.\nAvailable via the MIT or new BSD license.\nsee: http://github.com/jrburke/almond for details",
+            "class": "sb.base.binding.Binding"
+        },
+        {
+            "file": "lib/almond.js",
+            "line": 1,
+            "description": "almond 0.2.0 Copyright (c) 2011, The Dojo Foundation All Rights Reserved.\nAvailable via the MIT or new BSD license.\nsee: http://github.com/jrburke/almond for details",
+            "class": "sb.base.binding.Binding"
+        },
+        {
+            "file": "lib/almond.js",
+            "line": 20,
+            "description": "Given a relative module name, like ./something, normalize it to\na real name that can be mapped to a path.",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "the relative name",
+                    "type": "String"
+                },
+                {
+                    "name": "baseName",
+                    "description": "a real name that the name arg is relative\nto.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "normalized name",
+                "type": "String"
+            },
+            "class": "sb.base.binding.Binding"
+        },
+        {
+            "file": "lib/almond.js",
+            "line": 179,
+            "description": "Makes a name map, normalizing the name, and using a plugin\nfor normalization if necessary. Grabs a ref to plugin\ntoo, as an optimization.",
+            "class": "sb.base.binding.Binding"
+        },
+        {
+            "file": "lib/almond.js",
+            "line": 359,
+            "description": "Just drops the config on the floor, but returns req in case\nthe config return value is used.",
+            "class": "sb.base.binding.Binding"
+        },
         {
             "file": "src/sb/base/binding/Binding.js",
             "line": 25,
@@ -1450,9 +1517,852 @@
                 "type": "sb.base.observable.ObservableArray"
             },
             "class": "sb"
+        },
+        {
+            "file": "test/target.js",
+            "line": 1,
+            "description": "https://github.com/tenntenn/simple-binding.js\n\nCopyright (c) 2012, Takuya Ueda and Yuji Katsumata.\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without modification,\nare permitted provided that the following conditions are met:\n\n* Redistributions of source code must retain the above copyright notice,\n  this list of conditions and the following disclaimer.\n* Redistributions in binary form must reproduce the above copyright notice,\n  this list of conditions and the following disclaimer in the documentation\n  and/or other materials provided with the distribution.\n* Neither the name of the author nor the names of its contributors may be used\n  to endorse or promote products derived from this software\n  without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND\nANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\nWARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR\nANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\nLOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON\nANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\nSOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 31,
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 35,
+            "description": "It provides utility functions and data structures.",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 40,
+            "description": "Create an expandable function \nwhich can expand with other function.\nForexample, let f is expandable function and g is normal function.\nf.expand(g) expand f with g.\nCalling expanded f do the original process of f and then do the g's process.",
+            "return": {
+                "description": "expandable function",
+                "type": "Function(*):*"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 51,
+            "description": "Expandable function.",
+            "type": "{function(*):*}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 62,
+            "description": "Arguments array of this function.",
+            "type": "{Array.<*>}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 68,
+            "description": "Sub functions.",
+            "type": "{Array.<function(*):*>}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 76,
+            "description": "Expand with given function.",
+            "params": [
+                {
+                    "name": "newFunc",
+                    "description": "new sub function which is run at last.",
+                    "type": "Function(*):*"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 97,
+            "description": "It provides base of structures.",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 102,
+            "description": "It provides objects which are related to binding.",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 107,
+            "description": "Computed function.\nIt is used when notifies changing an observable value\nto other binded observables by using computing notified value at sb.base.binding.Binding.",
+            "typedef": "{function(sb.base.binding.Parameters):sb.base.binding.Parameters}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 114,
+            "description": "It provide context of propagation and can test availability of propagation.",
+            "typedef": "{function(sb.base.binding.ObservableProperty, Object): boolean}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 119,
+            "is_constructor": 1,
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 138,
+            "description": "Call Stack of observable.",
+            "type": "{Array.<sb.base.binding.ObservableProperty>}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 144,
+            "description": "Test propagation is success with given continueCondition and timeout.",
+            "type": "{sb.base.binding.Propagation}",
+            "params": [
+                {
+                    "name": "source",
+                    "description": "adjacent source of notify propagation",
+                    "type": "sb.base.binding.ObservableProperty"
+                },
+                {
+                    "name": "e",
+                    "description": "event object.",
+                    "type": "sb.base.binding.NotificationEvent"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 167,
+            "description": "Counter for number of appearance\nof same observable in callstack.",
+            "type": "{number}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 198,
+            "description": "Default sb.base.binding.PropagationGuardian.",
+            "itemtype": "property",
+            "name": "{sb.base.binding.PropagationGuardian}",
+            "final": "",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 204,
+            "description": "Notification event object.",
+            "typedef": "{Object}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 209,
+            "is_constructor": 1,
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 219,
+            "type": "{Array.<sb.base.binding.Binding>}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 224,
+            "description": "Get sb.base.binding.PropagationGuardian.",
+            "return": {
+                "description": "",
+                "type": "sb.base.binding.PropagationGuardian"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 232,
+            "params": [
+                {
+                    "name": "binding",
+                    "description": "",
+                    "type": "sb.base.binding.Binding"
+                }
+            ],
+            "return": {
+                "description": "void"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 248,
+            "params": [
+                {
+                    "name": "propagation",
+                    "description": "",
+                    "type": "sb.base.binding.Propagation"
+                },
+                {
+                    "name": "input",
+                    "description": "",
+                    "type": "Array<sb.base.binding.Observable>"
+                }
+            ],
+            "return": {
+                "description": "void"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 273,
+            "params": [
+                {
+                    "name": "target",
+                    "description": "",
+                    "type": "sb.base.binding.Binding"
+                }
+            ],
+            "return": {
+                "description": "void"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 284,
+            "description": "A binding between observables.\nIf an observer which contained of input observables\nnotifies changing own value to the observer \nobserver will notifies values which converted by computed function\nto binded observables which contained of output observables.",
+            "params": [
+                {
+                    "name": "observer",
+                    "description": "the observer",
+                    "type": "sb.base.binding.Observer"
+                },
+                {
+                    "name": "inputs",
+                    "description": "input observables",
+                    "type": "sb.base.binding.Parameters"
+                },
+                {
+                    "name": "outputs",
+                    "description": "output observables",
+                    "type": "sb.base.binding.Parameters"
+                },
+                {
+                    "name": "computed",
+                    "description": "computed function",
+                    "type": "sb.base.binding.Computed"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 298,
+            "type": "{sb.base.binding.Binding} own",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 303,
+            "type": "{sb.base.binding.Parameters} input observables",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 308,
+            "type": "{sb.base.binding.Parameters} output observables",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 314,
+            "description": "Computed function.",
+            "type": "{sb.base.binding.Computed}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 320,
+            "description": "Enable this binding.",
+            "return": {
+                "description": "",
+                "type": "sb.base.binding.Binding"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 329,
+            "description": "Disable this binding.",
+            "return": {
+                "description": "",
+                "type": "sb.base.binding.Binding"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 338,
+            "description": "Notify changing to output observables.",
+            "params": [
+                {
+                    "name": "propagation",
+                    "description": "propagation context",
+                    "type": "sb.base.binding.Propagation"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "sb.base.binding.Binding"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 346,
+            "type": "{sb.base.observable.ObservableObject} source of notification",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 351,
+            "type": "{sb.base.binding.NotificationEvent} event object",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 356,
+            "type": "{sb.base.binding.Parameters} result of computed",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 361,
+            "type": "{Array.<sb.base.observable.ObservableObject>}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 366,
+            "type": "{sb.base.observable.ObservableObject} input observable",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 387,
+            "description": "A set of bindings which provide binding functions as method chains.",
+            "params": [
+                {
+                    "name": "observer",
+                    "description": "",
+                    "type": "sb.base.binding.Observer"
+                },
+                {
+                    "name": "observables",
+                    "description": "",
+                    "type": "Array.<sb.base.observable.ObservableObject>"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 394,
+            "description": "Create bindings.",
+            "type": "{sb.util.expandable}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 400,
+            "description": "A set of bindings.",
+            "type": "{Array.<sb.base.binding.Binding>}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 406,
+            "description": "Synchronize observables which are same value each other\nand when an observable changes, others immediately synchronized.",
+            "return": {
+                "description": "own",
+                "type": "sb.base.binding.BindingChain"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 414,
+            "description": "Arguments array this function.",
+            "type": "{Array.<*>}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 420,
+            "description": "Observables which are synchronized.",
+            "type": "{Array.<sb.base.binding.ObservableObject>}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 435,
+            "description": "Bindings which are used for synchronize given observables.",
+            "type": "{Array.<sb.base.binding.Binding>}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 468,
+            "description": "Add computed binding.",
+            "params": [
+                {
+                    "name": "observable",
+                    "description": "target observable",
+                    "type": "sb.base.observable.ObservableObject"
+                },
+                {
+                    "name": "func",
+                    "description": "computed function",
+                    "type": "sb.base.binding.Computed"
+                }
+            ],
+            "return": {
+                "description": "own",
+                "type": "sb.base.binding.BindingChain"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 510,
+            "description": "Add callback which call after changing a given observable value.",
+            "params": [
+                {
+                    "name": "observable",
+                    "description": "target observable.",
+                    "type": "sb.base.observable.ObservableObject"
+                },
+                {
+                    "name": "callback",
+                    "description": "callback function",
+                    "type": "function(sb.base.observable.ObservableObject, sb.base.binding.NotificationEvent):*"
+                }
+            ],
+            "return": {
+                "description": "own",
+                "type": "sb.base.binding.BindingChain"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 544,
+            "description": "Enable internal all internal bindings.",
+            "return": {
+                "description": "own",
+                "type": "sb.base.binding.BindingChain"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 561,
+            "description": "Disable internal all internal bindings.",
+            "return": {
+                "description": "own",
+                "type": "sb.base.binding.BindingChain"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 577,
+            "description": "It provides data structures of observables.",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 582,
+            "description": "An interface for observable objects.\nIt is a function and provides followings :\n + notify function as method",
+            "interface": "",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 590,
+            "description": "Check either obj is sb.ObservableyObject or not.",
+            "params": [
+                {
+                    "name": "tested",
+                    "description": "object",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "true indicates that obj implements sb.ObservableObject.",
+                "type": "Boolean"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 610,
+            "description": "An observable object which can have an internal value.",
+            "typedef": "{function(*):*}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 617,
+            "description": "Create an sb.base.observable.Observable object.",
+            "params": [
+                {
+                    "name": "observer",
+                    "description": "observer of this observable value",
+                    "type": "sb.Observer"
+                },
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "*"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 625,
+            "implements": "{sb.base.observable.ObservableObject}",
+            "type": "{sb.base.observable.Observable}",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "it is set for this observable",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "set value at this observable",
+                "type": "*"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 633,
+            "description": "Propagation context.",
+            "type": "{sb.Propagation}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 649,
+            "params": [
+                {
+                    "name": "propagation",
+                    "description": "propagation context",
+                    "type": "sb.Propagation"
+                },
+                {
+                    "name": "v",
+                    "description": "it is set for this observable",
+                    "type": "*"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 655,
+            "type": "{sb.base.binding.NotificationEvent}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 672,
+            "description": "An array which can be observed.\nIf new element is added or an element deleted,\nsb.base.observable.ObservableArray notify binded other sb.ObservableObject.",
+            "typedef": "{function():Array.<*>}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 681,
+            "params": [
+                {
+                    "name": "observer",
+                    "description": "",
+                    "type": "sb.Observer"
+                },
+                {
+                    "name": "initArray",
+                    "description": "",
+                    "type": "Array.<*>"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 687,
+            "type": "{Array.<*>} internal array",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 695,
+            "description": "Get internal array.",
+            "return": {
+                "description": "internal array",
+                "type": "Array.<*>"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 703,
+            "description": "Notify changing for observer.",
+            "params": [
+                {
+                    "name": "propagation",
+                    "description": "propagation context",
+                    "type": "sb.Propagation"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 714,
+            "description": "Get array size which wrapes the internal array length.",
+            "return": {
+                "description": "array size",
+                "type": "Numnber"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 722,
+            "description": "Get value with index i.",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 729,
+            "description": "Set value with index i.\nAnd it notify observer.",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 735,
+            "description": "Propagation context.",
+            "type": "{sb.Propagation}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 741,
+            "type": "{sb.base.binding.NotificationEvent}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 770,
+            "description": "Propagation context.",
+            "type": "{sb.Propagation}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 782,
+            "description": "A wrapper of Array.push.",
+            "return": {
+                "description": "length of the array after adding new elements."
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 791,
+            "description": "Propagation context.",
+            "type": "{sb.Propagation}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 797,
+            "type": "{sb.base.binding.NotificationEvent}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 864,
+            "description": "It provides wrappers of KnockoutJS.",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 871,
+            "description": "A wraper for ko.observable.",
+            "typedef": "{sb.base.observable.Observable}",
+            "implements": "{sb.base.observable.ObservableObject}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 878,
+            "params": [
+                {
+                    "name": "observer",
+                    "description": "observer of this observable object",
+                    "type": "sb.base.binding.Observer"
+                },
+                {
+                    "name": "koObservable",
+                    "description": "observable object of KnockoutJS",
+                    "type": "ko.observable"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 884,
+            "description": "wrapper",
+            "type": "{sb.base.observable.Observable}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 890,
+            "description": "handling changing of ko.observable value.",
+            "type": "{ko.computed}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 902,
+            "description": "handling chaing of observable value.",
+            "type": "{sb.base.binding.Binding}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 926,
+            "itemtype": "property",
+            "name": "{sb.base.binding.Observer} default observer.",
+            "final": "",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 931,
+            "description": "Create default setting binding chain.",
+            "return": {
+                "description": "default setting binding chain.",
+                "type": "sb.base.binding.BindingChain"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 937,
+            "type": "{Array.<*>} arguments array of this function.",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 942,
+            "type": "{Array.<sb.base.observable.ObservableObject>}",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 949,
+            "type": "{sb.base.binding.BindingChain} default setting binding chain.",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 957,
+            "description": "Create default setting of sb.base.observable.Observable.",
+            "params": [
+                {
+                    "name": "initValue",
+                    "description": "initial value.",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "default setting of sb.base.observable.Observable.",
+                "type": "sb.base.observable.Observable"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 963,
+            "type": "{sb.base.observable.Observable} default setting of sb.base.observable.Observable.",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 970,
+            "description": "Create default setting of sb.base.observable.ObservableArray.",
+            "params": [
+                {
+                    "name": "array",
+                    "description": "initial value.",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "default setting sb.base.observable.ObservableArray.",
+                "type": "sb.base.observable.ObservableArray"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 976,
+            "type": "{sb.base.observable.ObservableArray} default setting of sb.base.observable.ObservableArray.",
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 988,
+            "description": "Create default setting of sb.base.observable.ko.Observable.",
+            "params": [
+                {
+                    "name": "koObservable",
+                    "description": "observable object of KnockoutJS",
+                    "type": "ko.observable"
+                }
+            ],
+            "return": {
+                "description": "default setting of sb.base.observable.ko.Observable",
+                "type": "sb.base.observable.ko.Observable"
+            },
+            "class": ""
+        },
+        {
+            "file": "test/target.js",
+            "line": 994,
+            "description": "default setting of sb.base.observable.ko.Observable.",
+            "type": "{sb.base.observable.ko.Observable}",
+            "class": ""
         }
     ],
     "warnings": [
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " lib/almond.js:20"
+        },
         {
             "message": "unknown tag: typedef",
             "line": " src/sb/base/observable/ko/Observable.js:18"
@@ -1460,6 +2370,62 @@
         {
             "message": "unknown tag: implements",
             "line": " src/sb/base/observable/ko/Observable.js:18"
+        },
+        {
+            "message": "unknown tag: typedef",
+            "line": " test/target.js:107"
+        },
+        {
+            "message": "unknown tag: typedef",
+            "line": " test/target.js:114"
+        },
+        {
+            "message": "unknown tag: typedef",
+            "line": " test/target.js:204"
+        },
+        {
+            "message": "unknown tag: interface",
+            "line": " test/target.js:582"
+        },
+        {
+            "message": "unknown tag: typedef",
+            "line": " test/target.js:610"
+        },
+        {
+            "message": "unknown tag: implements",
+            "line": " test/target.js:625"
+        },
+        {
+            "message": "unknown tag: typedef",
+            "line": " test/target.js:672"
+        },
+        {
+            "message": "unknown tag: typedef",
+            "line": " test/target.js:871"
+        },
+        {
+            "message": "unknown tag: implements",
+            "line": " test/target.js:871"
+        },
+        {
+            "message": "Missing item type\nalmond 0.2.0 Copyright (c) 2011, The Dojo Foundation All Rights Reserved.\nAvailable via the MIT or new BSD license.\nsee: http://github.com/jrburke/almond for details",
+            "line": " dist/build.js:1"
+        },
+        {
+            "message": "Missing item type\nalmond 0.2.0 Copyright (c) 2011, The Dojo Foundation All Rights Reserved.\nAvailable via the MIT or new BSD license.\nsee: http://github.com/jrburke/almond for details",
+            "line": " lib/almond.js:1"
+        },
+        {
+            "message": "Missing item type\nGiven a relative module name, like ./something, normalize it to\na real name that can be mapped to a path.",
+            "line": " lib/almond.js:20"
+        },
+        {
+            "message": "Missing item type\nMakes a name map, normalizing the name, and using a plugin\nfor normalization if necessary. Grabs a ref to plugin\ntoo, as an optimization.",
+            "line": " lib/almond.js:179"
+        },
+        {
+            "message": "Missing item type\nJust drops the config on the floor, but returns req in case\nthe config return value is used.",
+            "line": " lib/almond.js:359"
         },
         {
             "message": "Missing item type",
@@ -1556,6 +2522,350 @@
         {
             "message": "Missing item type\nCreate default setting binding chain.",
             "line": " src/sb/binding.js:11"
+        },
+        {
+            "message": "Missing item type\nhttps://github.com/tenntenn/simple-binding.js\n\nCopyright (c) 2012, Takuya Ueda and Yuji Katsumata.\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without modification,\nare permitted provided that the following conditions are met:\n\n* Redistributions of source code must retain the above copyright notice,\n  this list of conditions and the following disclaimer.\n* Redistributions in binary form must reproduce the above copyright notice,\n  this list of conditions and the following disclaimer in the documentation\n  and/or other materials provided with the distribution.\n* Neither the name of the author nor the names of its contributors may be used\n  to endorse or promote products derived from this software\n  without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND\nANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\nWARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR\nANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\nLOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON\nANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\nSOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.",
+            "line": " test/target.js:1"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:31"
+        },
+        {
+            "message": "Missing item type\nIt provides utility functions and data structures.",
+            "line": " test/target.js:35"
+        },
+        {
+            "message": "Missing item type\nCreate an expandable function \nwhich can expand with other function.\nForexample, let f is expandable function and g is normal function.\nf.expand(g) expand f with g.\nCalling expanded f do the original process of f and then do the g's process.",
+            "line": " test/target.js:40"
+        },
+        {
+            "message": "Missing item type\nExpandable function.",
+            "line": " test/target.js:51"
+        },
+        {
+            "message": "Missing item type\nArguments array of this function.",
+            "line": " test/target.js:62"
+        },
+        {
+            "message": "Missing item type\nSub functions.",
+            "line": " test/target.js:68"
+        },
+        {
+            "message": "Missing item type\nExpand with given function.",
+            "line": " test/target.js:76"
+        },
+        {
+            "message": "Missing item type\nIt provides base of structures.",
+            "line": " test/target.js:97"
+        },
+        {
+            "message": "Missing item type\nIt provides objects which are related to binding.",
+            "line": " test/target.js:102"
+        },
+        {
+            "message": "Missing item type\nComputed function.\nIt is used when notifies changing an observable value\nto other binded observables by using computing notified value at sb.base.binding.Binding.",
+            "line": " test/target.js:107"
+        },
+        {
+            "message": "Missing item type\nIt provide context of propagation and can test availability of propagation.",
+            "line": " test/target.js:114"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:119"
+        },
+        {
+            "message": "Missing item type\nCall Stack of observable.",
+            "line": " test/target.js:138"
+        },
+        {
+            "message": "Missing item type\nTest propagation is success with given continueCondition and timeout.",
+            "line": " test/target.js:144"
+        },
+        {
+            "message": "Missing item type\nCounter for number of appearance\nof same observable in callstack.",
+            "line": " test/target.js:167"
+        },
+        {
+            "message": "Missing item type\nNotification event object.",
+            "line": " test/target.js:204"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:209"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:219"
+        },
+        {
+            "message": "Missing item type\nGet sb.base.binding.PropagationGuardian.",
+            "line": " test/target.js:224"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:232"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:248"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:273"
+        },
+        {
+            "message": "Missing item type\nA binding between observables.\nIf an observer which contained of input observables\nnotifies changing own value to the observer \nobserver will notifies values which converted by computed function\nto binded observables which contained of output observables.",
+            "line": " test/target.js:284"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:298"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:303"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:308"
+        },
+        {
+            "message": "Missing item type\nComputed function.",
+            "line": " test/target.js:314"
+        },
+        {
+            "message": "Missing item type\nEnable this binding.",
+            "line": " test/target.js:320"
+        },
+        {
+            "message": "Missing item type\nDisable this binding.",
+            "line": " test/target.js:329"
+        },
+        {
+            "message": "Missing item type\nNotify changing to output observables.",
+            "line": " test/target.js:338"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:346"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:351"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:356"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:361"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:366"
+        },
+        {
+            "message": "Missing item type\nA set of bindings which provide binding functions as method chains.",
+            "line": " test/target.js:387"
+        },
+        {
+            "message": "Missing item type\nCreate bindings.",
+            "line": " test/target.js:394"
+        },
+        {
+            "message": "Missing item type\nA set of bindings.",
+            "line": " test/target.js:400"
+        },
+        {
+            "message": "Missing item type\nSynchronize observables which are same value each other\nand when an observable changes, others immediately synchronized.",
+            "line": " test/target.js:406"
+        },
+        {
+            "message": "Missing item type\nArguments array this function.",
+            "line": " test/target.js:414"
+        },
+        {
+            "message": "Missing item type\nObservables which are synchronized.",
+            "line": " test/target.js:420"
+        },
+        {
+            "message": "Missing item type\nBindings which are used for synchronize given observables.",
+            "line": " test/target.js:435"
+        },
+        {
+            "message": "Missing item type\nAdd computed binding.",
+            "line": " test/target.js:468"
+        },
+        {
+            "message": "Missing item type\nAdd callback which call after changing a given observable value.",
+            "line": " test/target.js:510"
+        },
+        {
+            "message": "Missing item type\nEnable internal all internal bindings.",
+            "line": " test/target.js:544"
+        },
+        {
+            "message": "Missing item type\nDisable internal all internal bindings.",
+            "line": " test/target.js:561"
+        },
+        {
+            "message": "Missing item type\nIt provides data structures of observables.",
+            "line": " test/target.js:577"
+        },
+        {
+            "message": "Missing item type\nAn interface for observable objects.\nIt is a function and provides followings :\n + notify function as method",
+            "line": " test/target.js:582"
+        },
+        {
+            "message": "Missing item type\nCheck either obj is sb.ObservableyObject or not.",
+            "line": " test/target.js:590"
+        },
+        {
+            "message": "Missing item type\nAn observable object which can have an internal value.",
+            "line": " test/target.js:610"
+        },
+        {
+            "message": "Missing item type\nCreate an sb.base.observable.Observable object.",
+            "line": " test/target.js:617"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:625"
+        },
+        {
+            "message": "Missing item type\nPropagation context.",
+            "line": " test/target.js:633"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:649"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:655"
+        },
+        {
+            "message": "Missing item type\nAn array which can be observed.\nIf new element is added or an element deleted,\nsb.base.observable.ObservableArray notify binded other sb.ObservableObject.",
+            "line": " test/target.js:672"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:681"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:687"
+        },
+        {
+            "message": "Missing item type\nGet internal array.",
+            "line": " test/target.js:695"
+        },
+        {
+            "message": "Missing item type\nNotify changing for observer.",
+            "line": " test/target.js:703"
+        },
+        {
+            "message": "Missing item type\nGet array size which wrapes the internal array length.",
+            "line": " test/target.js:714"
+        },
+        {
+            "message": "Missing item type\nGet value with index i.",
+            "line": " test/target.js:722"
+        },
+        {
+            "message": "Missing item type\nSet value with index i.\nAnd it notify observer.",
+            "line": " test/target.js:729"
+        },
+        {
+            "message": "Missing item type\nPropagation context.",
+            "line": " test/target.js:735"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:741"
+        },
+        {
+            "message": "Missing item type\nPropagation context.",
+            "line": " test/target.js:770"
+        },
+        {
+            "message": "Missing item type\nA wrapper of Array.push.",
+            "line": " test/target.js:782"
+        },
+        {
+            "message": "Missing item type\nPropagation context.",
+            "line": " test/target.js:791"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:797"
+        },
+        {
+            "message": "Missing item type\nIt provides wrappers of KnockoutJS.",
+            "line": " test/target.js:864"
+        },
+        {
+            "message": "Missing item type\nA wraper for ko.observable.",
+            "line": " test/target.js:871"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:878"
+        },
+        {
+            "message": "Missing item type\nwrapper",
+            "line": " test/target.js:884"
+        },
+        {
+            "message": "Missing item type\nhandling changing of ko.observable value.",
+            "line": " test/target.js:890"
+        },
+        {
+            "message": "Missing item type\nhandling chaing of observable value.",
+            "line": " test/target.js:902"
+        },
+        {
+            "message": "Missing item type\nCreate default setting binding chain.",
+            "line": " test/target.js:931"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:937"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:942"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:949"
+        },
+        {
+            "message": "Missing item type\nCreate default setting of sb.base.observable.Observable.",
+            "line": " test/target.js:957"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:963"
+        },
+        {
+            "message": "Missing item type\nCreate default setting of sb.base.observable.ObservableArray.",
+            "line": " test/target.js:970"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test/target.js:976"
+        },
+        {
+            "message": "Missing item type\nCreate default setting of sb.base.observable.ko.Observable.",
+            "line": " test/target.js:988"
+        },
+        {
+            "message": "Missing item type\ndefault setting of sb.base.observable.ko.Observable.",
+            "line": " test/target.js:994"
         }
     ]
 }

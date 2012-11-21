@@ -3,6 +3,7 @@ module.exports = function(grunt) {
 
         grunt.loadNpmTasks('grunt-requirejs');
         grunt.loadNpmTasks('grunt-contrib-yuidoc');
+        grunt.loadNpmTasks('grunt-shell');
 
         // Project configuration.
         grunt.initConfig({
@@ -41,7 +42,9 @@ module.exports = function(grunt) {
                                 'src/sb/base/*.js',
                                 'src/sb/base/binding/*.js',
                                 'src/sb/base/observable/*.js',
-                                'src/sb/base/observable/ko/*.js'
+                                'src/sb/base/observable/ko/*.js',
+
+                                'test/sepc/*.js'
                         ]
                 },
                 min: {
@@ -50,9 +53,15 @@ module.exports = function(grunt) {
                                 dest: 'dist/<%= pkg.name %>.min.js'
                         }
                 },
+                shell: {
+                        test: {
+                                command: 'mocha-phantomjs -R spec test/*.html',
+                                stdout: true
+                        }
+                },
                 watch: {
                         files: '<config:lint.files>',
-                        tasks: 'doc lint requirejs min'
+                        tasks: 'default'
                 },
                 jshint: {
                         options: {
@@ -94,7 +103,9 @@ module.exports = function(grunt) {
         // Create API documnet
         grunt.registerTask('doc', 'yuidoc');
 
+        // Test with mocha-phantomjs
+        grunt.registerTask('test', 'shell:test');
         // Default task.
-        grunt.registerTask('default', 'lint requirejs min doc');
+        grunt.registerTask('default', 'lint requirejs min test doc');
 
 };

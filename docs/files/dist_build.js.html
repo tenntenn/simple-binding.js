@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>dist&#x2F;build.js - simple-binding</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.7.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..&#x2F;img&#x2F;logo.png" title="simple-binding"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.0.1</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/sb.html">sb</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.binding.Binding.html">sb.base.binding.Binding</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.binding.BindingChain.html">sb.base.binding.BindingChain</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.binding.Computed.html">sb.base.binding.Computed</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.binding.NotificationEvent.html">sb.base.binding.NotificationEvent</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.binding.Observer.html">sb.base.binding.Observer</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.binding.Parameters.html">sb.base.binding.Parameters</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.binding.Propagation.html">sb.base.binding.Propagation</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.binding.PropagationGuardian.html">sb.base.binding.PropagationGuardian</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.observable.ko.ObservableArray.html">sb.base.observable.ko.ObservableArray</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.observable.ko.sb.base.observable.Observable.html">sb.base.observable.ko.sb.base.observable.Observable</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.observable.Observable.html">sb.base.observable.Observable</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.base.observable.ObservableArray.html">sb.base.observable.ObservableArray</a></li>
+            
+                <li><a href="..&#x2F;classes/sb.ko.html">sb.ko</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: dist&#x2F;build.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+ * almond 0.2.0 Copyright (c) 2011, The Dojo Foundation All Rights Reserved.
+ * Available via the MIT or new BSD license.
+ * see: http:&#x2F;&#x2F;github.com&#x2F;jrburke&#x2F;almond for details
+ *&#x2F;
+
+(function(e,t){e.sb=t()})(this,function(){var e,t,n;return function(r){function p(e,t){var n,r,i,s,o,u,a,f,c,h,p=t&amp;&amp;t.split(&quot;&#x2F;&quot;),d=l.map,v=d&amp;&amp;d[&quot;*&quot;]||{};if(e&amp;&amp;e.charAt(0)===&quot;.&quot;&amp;&amp;t){p=p.slice(0,p.length-1),e=p.concat(e.split(&quot;&#x2F;&quot;));for(f=0;f&lt;e.length;f+=1){h=e[f];if(h===&quot;.&quot;)e.splice(f,1),f-=1;else if(h===&quot;..&quot;){if(f===1&amp;&amp;(e[2]===&quot;..&quot;||e[0]===&quot;..&quot;))break;f&gt;0&amp;&amp;(e.splice(f-1,2),f-=2)}}e=e.join(&quot;&#x2F;&quot;)}if((p||v)&amp;&amp;d){n=e.split(&quot;&#x2F;&quot;);for(f=n.length;f&gt;0;f-=1){r=n.slice(0,f).join(&quot;&#x2F;&quot;);if(p)for(c=p.length;c&gt;0;c-=1){i=d[p.slice(0,c).join(&quot;&#x2F;&quot;)];if(i){i=i[r];if(i){s=i,o=f;break}}}if(s)break;!u&amp;&amp;v&amp;&amp;v[r]&amp;&amp;(u=v[r],a=f)}!s&amp;&amp;u&amp;&amp;(s=u,o=a),s&amp;&amp;(n.splice(0,o,s),e=n.join(&quot;&#x2F;&quot;))}return e}function d(e,t){return function(){return s.apply(r,h.call(arguments,0).concat([e,t]))}}function v(e){return function(t){return p(t,e)}}function m(e){return function(t){a[e]=t}}function g(e){if(f.hasOwnProperty(e)){var t=f[e];delete f[e],c[e]=!0,i.apply(r,t)}if(!a.hasOwnProperty(e)&amp;&amp;!c.hasOwnProperty(e))throw new Error(&quot;No &quot;+e);return a[e]}function y(e){var t,n=e?e.indexOf(&quot;!&quot;):-1;return n&gt;-1&amp;&amp;(t=e.substring(0,n),e=e.substring(n+1,e.length)),[t,e]}function b(e){return function(){return l&amp;&amp;l.config&amp;&amp;l.config[e]||{}}}var i,s,o,u,a={},f={},l={},c={},h=[].slice;o=function(e,t){var n,r=y(e),i=r[0];return e=r[1],i&amp;&amp;(i=p(i,t),n=g(i)),i?n&amp;&amp;n.normalize?e=n.normalize(e,v(t)):e=p(e,t):(e=p(e,t),r=y(e),i=r[0],e=r[1],i&amp;&amp;(n=g(i))),{f:i?i+&quot;!&quot;+e:e,n:e,pr:i,p:n}},u={require:function(e){return d(e)},exports:function(e){var t=a[e];return typeof t!=&quot;undefined&quot;?t:a[e]={}},module:function(e){return{id:e,uri:&quot;&quot;,exports:a[e],config:b(e)}}},i=function(e,t,n,i){var s,l,h,p,v,y=[],b;i=i||e;if(typeof n==&quot;function&quot;){t=!t.length&amp;&amp;n.length?[&quot;require&quot;,&quot;exports&quot;,&quot;module&quot;]:t;for(v=0;v&lt;t.length;v+=1){p=o(t[v],i),l=p.f;if(l===&quot;require&quot;)y[v]=u.require(e);else if(l===&quot;exports&quot;)y[v]=u.exports(e),b=!0;else if(l===&quot;module&quot;)s=y[v]=u.module(e);else if(a.hasOwnProperty(l)||f.hasOwnProperty(l)||c.hasOwnProperty(l))y[v]=g(l);else{if(!p.p)throw new Error(e+&quot; missing &quot;+l);p.p.load(p.n,d(i,!0),m(l),{}),y[v]=a[l]}}h=n.apply(a[e],y);if(e)if(s&amp;&amp;s.exports!==r&amp;&amp;s.exports!==a[e])a[e]=s.exports;else if(h!==r||!b)a[e]=h}else e&amp;&amp;(a[e]=n)},e=t=s=function(e,t,n,a,f){return typeof e==&quot;string&quot;?u[e]?u[e](t):g(o(e,t).f):(e.splice||(l=e,t.splice?(e=t,t=n,n=null):e=r),t=t||function(){},typeof n==&quot;function&quot;&amp;&amp;(n=a,a=f),a?i(r,e,t,n):setTimeout(function(){i(r,e,t,n)},15),s)},s.config=function(e){return l=e,s},n=function(e,t,n){t.splice||(n=t,t=[]),f[e]=[e,t,n]},n.amd={jQuery:!0}}(),n(&quot;almond&quot;,function(){}),n(&quot;sb&#x2F;util&#x2F;argumentsToArray&quot;,[],function(){function e(e){var t=[];return Object.keys(e).forEach(function(n){t.push(e[n])}),t}return e}),n(&quot;sb&#x2F;util&#x2F;expandable&quot;,[&quot;sb&#x2F;util&#x2F;argumentsToArray&quot;],function(e){function t(){var t=function(){var n=e(arguments);t.funcs.forEach(function(e){e.apply(t,n)})},n=e(arguments);return t.funcs=n.filter(function(e){return typeof e==&quot;function&quot;}),t.expand=function(e){return typeof e==&quot;function&quot;&amp;&amp;t.funcs.push(e),t},t}return t}),n(&quot;sb&#x2F;util&#x2F;main&quot;,[&quot;sb&#x2F;util&#x2F;argumentsToArray&quot;,&quot;sb&#x2F;util&#x2F;expandable&quot;],function(e,t){var n={argumentsToArray:e,expandable:t};return n}),n(&quot;sb&#x2F;base&#x2F;observable&#x2F;newObservable&quot;,[],function(){function e(e,t){function n(r){var i;return r!==undefined&amp;&amp;(i=e.getPropagationGuardian().createPropagation(),n.notify(i,r)),t}return n.notify=function(r,i){var s={previousValue:t,newValue:i};r(n,s)&amp;&amp;(t=i,e.notify(r,n))},n}return e}),n(&quot;sb&#x2F;base&#x2F;observable&#x2F;newObservableArray&quot;,[&quot;sb&#x2F;util&#x2F;main&quot;],function(e){function t(t,n){var r=n;r instanceof Array||(r=[]);var i=function(){return r.concat()};return i.notify=function(e,n){e(i,i)&amp;&amp;t.notify(e,i)},i.length=function(){return r.length},i.get=function(e){return r[e]},i.set=function(e,n){var s=t.getPropagationGuardian().createPropagation();r[e]=n,i.notify(s,r)},[&quot;push&quot;,&quot;pop&quot;,&quot;shift&quot;,&quot;unshift&quot;,&quot;splice&quot;,&quot;reverse&quot;,&quot;sort&quot;].forEach(function(n){typeof r[n]==&quot;function&quot;&amp;&amp;(i[n]=function(){var s=e.argumentsToArray(arguments),o=r[n].apply(r,s),u=t.getPropagationGuardian().createPropagation();return i.notify(u),o})}),[&quot;concat&quot;,&quot;map&quot;,&quot;filter&quot;].forEach(function(n){typeof r[n]==&quot;function&quot;&amp;&amp;(i[n]=function(){var i=e.argumentsToArray(arguments),s=r[n].apply(r,i),o=new sb.ObservableArray(t,s);return o})}),[&quot;join&quot;,&quot;toString&quot;,&quot;toLocalString&quot;,&quot;indexOf&quot;,&quot;lastIndexOf&quot;,&quot;forEach&quot;].forEach(function(t){typeof r[t]==&quot;function&quot;&amp;&amp;(i[t]=function(){var n=e.argumentsToArray(arguments),i=r[t].apply(r,n);return i})}),i}return t}),n(&quot;sb&#x2F;base&#x2F;observable&#x2F;isObservableObject&quot;,[],function(){function e(e){return typeof e!=&quot;function&quot;?!1:!e.notify||typeof e.notify!=&quot;function&quot;?!1:!0}return e}),n(&quot;sb&#x2F;base&#x2F;observable&#x2F;main&quot;,[&quot;sb&#x2F;base&#x2F;observable&#x2F;newObservable&quot;,&quot;sb&#x2F;base&#x2F;observable&#x2F;newObservableArray&quot;,&quot;sb&#x2F;base&#x2F;observable&#x2F;isObservableObject&quot;],function(e,t,n){var r={newObservable:e,newObservableArray:t,isObservableObject:n};return r}),n(&quot;sb&#x2F;base&#x2F;binding&#x2F;PropagationGuardian&quot;,[],function(){function e(e,t){typeof e!=&quot;function&quot;&amp;&amp;(e=function(){return!0});if(typeof t!=&quot;number&quot;||t&lt;=0)t=1;this.createPropagation=function(){var n=[],r=function(i,s){r.callStack=function(){return n.concat()},r.getSource=function(){return i},r.getEventObject=function(){return s};var o=0;return n.forEach(function(e){e===i&amp;&amp;o++}),t&lt;=o?!1:e(i,s)?(n.push(i),!0):!1};return r}}return e}),n(&quot;sb&#x2F;base&#x2F;binding&#x2F;DEFAULT_PROPAGATION_GURDIAN&quot;,[&quot;sb&#x2F;base&#x2F;binding&#x2F;PropagationGuardian&quot;],function(e){var t=new e(null,1);return t}),n(&quot;sb&#x2F;base&#x2F;binding&#x2F;Observer&quot;,[&quot;sb&#x2F;base&#x2F;binding&#x2F;PropagationGuardian&quot;,&quot;sb&#x2F;base&#x2F;binding&#x2F;DEFAULT_PROPAGATION_GURDIAN&quot;],function(e,t){function n(n){if(!n||!n instanceof e)n=t;var r=[];this.getPropagationGuardian=function(){return n},this.add=function(e){if(e===null||typeof e==&quot;undefined&quot;)return;r.indexOf(e)&lt;0&amp;&amp;r.push(e)},this.notify=function(e,t){var n=r.filter(function(e){var n=!1;return Object.keys(e.inputs).forEach(function(r){if(e.inputs.hasOwnProperty(r)&amp;&amp;e.inputs[r]===t){n=!0;return}}),n});n.forEach(function(t){t.notify(e)})},this.remove=function(e){var t=r.lastIndexOf(e);t&gt;=0&amp;&amp;r.splice(t,1)}}return n}),n(&quot;sb&#x2F;base&#x2F;binding&#x2F;Binding&quot;,[&quot;sb&#x2F;base&#x2F;observable&#x2F;isObservableObject&quot;],function(e){function t(t,n,r,i){var s=this;s.inputs=n,s.outputs=r,s.computed=i,s.bind=function(){return t.add(s),s},s.unbind=function(){return t.remove(s),s},s.notify=function(t){var o=t.getSource(),u=t.getEventObject(),a=i(n,o,u),f=t.callStack(),l=f[f.length-1];return Object.keys(a).forEach(function(n){var i=r[n];l!==i&amp;&amp;r.hasOwnProperty(n)&amp;&amp;e(i)&amp;&amp;i.notify(t,a[n])}),s}}return t}),n(&quot;sb&#x2F;base&#x2F;binding&#x2F;BindingChain&quot;,[&quot;sb&#x2F;util&#x2F;main&quot;,&quot;sb&#x2F;base&#x2F;binding&#x2F;Binding&quot;,&quot;sb&#x2F;base&#x2F;observable&#x2F;isObservableObject&quot;],function(e,t,n){function r(r,i){var s=e.expandable(),o=[];this.synchronize=function(){var u=e.argumentsToArray(arguments),a=[];u.forEach(function(e){n(e)&amp;&amp;(a.push(e),i.indexOf(e)&lt;0&amp;&amp;i.push(e))});var f=a.map(function(e){var n={input:e},i={};a.forEach(function(t,n){e!==t&amp;&amp;(i[&quot;output&quot;+n]=t)});var s=function(e){var t={};return Object.keys(i).forEach(function(n){t[n]=e.input()}),t},o=new t(r,n,i,s);return o});return s.expand(function(){o=o.concat(f)}),this},this.computed=function(e,u){return!n(e)||typeof u!=&quot;function&quot;?this:(i.indexOf(e)&lt;0&amp;&amp;i.push(e),s.expand(function(){var n={};i.forEach(function(t,r){e!==t&amp;&amp;(n[&quot;input&quot;+r]=t)});var s={output:e},a=new t(r,n,s,function(e,t,n){return{output:u(e,t,n)}});o.push(a)}),this)},this.onChange=function(e,u){if(!n(e)||typeof u!=&quot;function&quot;)return this;i.indexOf(e)&amp;&amp;i.push(e);var a=new t(r,{input:e},{},function(e,t,n){return u(t,n),{}});return s.expand(function(){o.push(a)}),this},this.bind=function(){return this.unbind(),s(),o.forEach(function(e){e.bind()}),this},this.unbind=function(){return o.forEach(function(e){e.unbind()}),o=[],this}}return r}),n(&quot;sb&#x2F;base&#x2F;binding&#x2F;main&quot;,[&quot;sb&#x2F;base&#x2F;binding&#x2F;Observer&quot;,&quot;sb&#x2F;base&#x2F;binding&#x2F;Binding&quot;,&quot;sb&#x2F;base&#x2F;binding&#x2F;BindingChain&quot;,&quot;sb&#x2F;base&#x2F;binding&#x2F;PropagationGuardian&quot;,&quot;sb&#x2F;base&#x2F;binding&#x2F;DEFAULT_PROPAGATION_GURDIAN&quot;],function(e,t,n,r,i){var s={Observer:e,Binding:t,BindingChain:n,PropagationGuardian:r,DEFAULT_PROPAGATION_GURDIAN:i};return s}),n(&quot;sb&#x2F;base&#x2F;main&quot;,[&quot;sb&#x2F;base&#x2F;observable&#x2F;main&quot;,&quot;sb&#x2F;base&#x2F;binding&#x2F;main&quot;],function(e,t){var n={observable:e,binding:t};return n}),n(&quot;sb&#x2F;DEFAULT_OBSERVER&quot;,[&quot;sb&#x2F;base&#x2F;binding&#x2F;main&quot;],function(e){var t=new e.Observer;return t}),n(&quot;sb&#x2F;binding&quot;,[&quot;sb&#x2F;DEFAULT_OBSERVER&quot;,&quot;sb&#x2F;util&#x2F;main&quot;,&quot;sb&#x2F;base&#x2F;observable&#x2F;main&quot;,&quot;sb&#x2F;base&#x2F;binding&#x2F;main&quot;],function(e,t,n,r){function i(){var i=t.argumentsToArray(arguments),s=i.filter(function(e){return n.isObservableObject(e)}),o=new r.BindingChain(e,s);return o}return i}),n(&quot;sb&#x2F;observable&quot;,[&quot;sb&#x2F;DEFAULT_OBSERVER&quot;,&quot;sb&#x2F;base&#x2F;observable&#x2F;main&quot;],function(e,t){function n(n){var r=t.newObservable(e,n);return r}return n}),n(&quot;sb&#x2F;observableArray&quot;,[&quot;sb&#x2F;DEFAULT_OBSERVER&quot;,&quot;sb&#x2F;base&#x2F;observable&#x2F;main&quot;],function(e,t){function n(n){var r=t.newObservableArray(e,n);return r}return n}),n(&quot;sb&#x2F;koObservable&quot;,[&quot;sb&#x2F;DEFAULT_OBSERVER&quot;,&quot;sb&#x2F;base&#x2F;observable&#x2F;main&quot;],function(e,t){function n(n){var r=t.ko.newObservable(e,n);return r}return n}),n(&quot;sb&#x2F;koObservableArray&quot;,[&quot;sb&#x2F;DEFAULT_OBSERVER&quot;,&quot;sb&#x2F;base&#x2F;observable&#x2F;main&quot;],function(e,t){function n(n){var r=t.ko.newObservableArray(e,n);return r}return n}),n(&quot;sb&#x2F;main&quot;,[&quot;sb&#x2F;util&#x2F;main&quot;,&quot;sb&#x2F;base&#x2F;main&quot;,&quot;sb&#x2F;binding&quot;,&quot;sb&#x2F;observable&quot;,&quot;sb&#x2F;observableArray&quot;,&quot;sb&#x2F;koObservable&quot;,&quot;sb&#x2F;koObservableArray&quot;],function(e,t,n,r,i,s,o){var u={util:e,base:t,binding:n,observable:r,observableArray:i,ko:{observable:s,observableArray:o}};return u}),t(&quot;sb&#x2F;main&quot;)})
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>

@@ -43,6 +43,7 @@ module.exports = function(grunt) {
                                 'src/sb/base/binding/*.js',
                                 'src/sb/base/observable/*.js',
                                 'src/sb/base/observable/ko/*.js',
+                                'src/sb/base/factory/*.js',
 
                                 'test/sepc/*.js'
                         ]

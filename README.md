@@ -52,7 +52,7 @@ Usage
     var piyo = sb.observable(100);
     var piyopiyo = sb.observable(200);
     var piyopiyopiyo = sb.observable(300);
-    sb.binding().synchronize(piyo, piyopiyo, piyopiyopiyo).bind();
+    sb.binding().sync(piyo, piyopiyo, piyopiyopiyo).bind();
     piyo(200); // piyo() === piyopiyo() === piyopiyopiyo()
 
 

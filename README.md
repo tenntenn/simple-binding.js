@@ -38,10 +38,10 @@ Usage
         .computed(foo, function() {
             return hoge() - bar();
         })
-        .computed(bar, function() {
+        ._(bar, function() {
             return hoge() - foo();
         })
-        .computed(hoge, function() {
+        ._(hoge, function() {
             return foo() + bar();
         })
         .bind();

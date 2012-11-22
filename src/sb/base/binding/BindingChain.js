@@ -36,12 +36,12 @@ define(
                         /**
                          * Synchronize observables which are same value each other
                          * and when an observable changes, others immediately synchronized.
-                         * @method synchronize
+                         * @method sync
                          * @public
                          * @chainable
                          * @return {sb.base.binding.BindingChain} own object
                          */
-                        this.synchronize = function() {
+                        this.sync = function() {
 
                                 // Arguments array this function. 
                                 var args = util.argumentsToArray(arguments);

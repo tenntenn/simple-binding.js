@@ -758,7 +758,7 @@
             "line": 36,
             "description": "Synchronize observables which are same value each other\nand when an observable changes, others immediately synchronized.",
             "itemtype": "method",
-            "name": "synchronize",
+            "name": "sync",
             "access": "public",
             "tagname": "",
             "chainable": 1,

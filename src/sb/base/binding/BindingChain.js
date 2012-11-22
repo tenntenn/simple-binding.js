@@ -84,6 +84,7 @@ define(
                                         bindings = bindings.concat(syncBindings);
                                 });
 
+                                this._ = this.sync;
                                 return this;
                         };
 
@@ -130,6 +131,7 @@ define(
                                         bindings.push(b);
                                 });
 
+                                this._ = this.computed;
                                 return this;
                         };
 
@@ -167,6 +169,8 @@ define(
                                 bindingsMaker.expand(function() {
                                         bindings.push(b);
                                 });
+
+                                this._ = this.onChange;
                                 return this;
                         };
 
@@ -206,6 +210,15 @@ define(
 
                                 return this;
                         };
+
+                        /**
+                         * Alias of the last called function.
+                         * @method _
+                         * @public
+                         * @chainable
+                         * @return {sb.base.binding.BindingChain} own object
+                         */
+                        this._ = this.binding;
                 }
                 return BindingChain;
         }

@@ -771,7 +771,7 @@
         },
         {
             "file": "src/sb/base/binding/BindingChain.js",
-            "line": 91,
+            "line": 92,
             "description": "Add computed binding.",
             "itemtype": "method",
             "name": "computed",
@@ -799,7 +799,7 @@
         },
         {
             "file": "src/sb/base/binding/BindingChain.js",
-            "line": 136,
+            "line": 138,
             "description": "Add callback which call after changing a given observable value.",
             "itemtype": "method",
             "name": "onChange",
@@ -827,7 +827,7 @@
         },
         {
             "file": "src/sb/base/binding/BindingChain.js",
-            "line": 173,
+            "line": 177,
             "description": "Enable internal all internal bindings.",
             "itemtype": "method",
             "name": "bind",
@@ -843,10 +843,26 @@
         },
         {
             "file": "src/sb/base/binding/BindingChain.js",
-            "line": 193,
+            "line": 197,
             "description": "Disable internal all internal bindings.",
             "itemtype": "method",
             "name": "unbind",
+            "access": "public",
+            "tagname": "",
+            "chainable": 1,
+            "return": {
+                "description": "own object",
+                "type": "sb.base.binding.BindingChain"
+            },
+            "class": "sb.base.binding.BindingChain",
+            "namespace": "sb.base.binding"
+        },
+        {
+            "file": "src/sb/base/binding/BindingChain.js",
+            "line": 214,
+            "description": "Alias of the last called function.",
+            "itemtype": "method",
+            "name": "_",
             "access": "public",
             "tagname": "",
             "chainable": 1,

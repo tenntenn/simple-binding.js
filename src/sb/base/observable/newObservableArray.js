@@ -10,9 +10,9 @@ define(
                  * @method sb.base.observable.newObservableArray
                  * @public
                  * @static
-                 * @param {sb.Observer} observer registed observer
+                 * @param {sb.base.binding.Observer} observer registed observer
                  * @param {Array.<*>} initArray initial value of array
-                 * @return {sb.observable.ObservableArray} created observable array
+                 * @return {sb.base.observable.ObservableArray} created observable array
                  */
                 function newObservableArray(observer, initArray) {
 
